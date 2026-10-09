@@ -29,6 +29,8 @@ css_rules = [
     "#MainMenu {visibility: hidden;}",
     "header {visibility: hidden;}",
     "footer {visibility: hidden;}",
+    "div[data-testid='stDecoration'] {display: none !important;}",
+    "div[data-testid='stToolbar'] {display: none !important;}",
     ".stApp { background-color: #0b0e14; color: #ffffff; }",
     "section[data-testid='stSidebar'] { background-color: #11151c !important; border-right: 1px solid #1e2430; }",
     "div[role='radiogroup'] label div[data-testid='stRadioButtonCustomIcon'] { display: none !important; }",
@@ -41,4 +43,5 @@ css_rules = [
     ".btn-action { display: inline-block; background: linear-gradient(90deg, #0066ff 0%, #00a2ff 100%); color: white !important; text-decoration: none !important; border-radius: 12px; padding: 12px 28px; font-weight: bold; margin-right: 15px; box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4); transition: all 0.3s ease; }",
     ".btn-action:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(0, 136, 255, 0.7); }",
     ".btn-secondary-action { display: inline-block; background: #161b22; color: #ffffff !important; text-decoration: none !important; border: 1px solid #21262d; border-radius: 12px; padding: 12px 28px; font-weight: bold; transition: all 0.3s ease; }",
-    ".btn-secondary-action:hover
+    ".btn-secondary-action:hover { border-color: #0088ff; background: #1c212a; transform: translateY(-2px); }",
+    ".staff-card { background: linear-gradient(145deg, #11151c 0%, #161b22 100%); border: 1px solid #1e293b; border-radius: 18px; padding:

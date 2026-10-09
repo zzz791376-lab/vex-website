@@ -180,7 +180,7 @@ elif "Staff Team" in page:
     with c6:
         st.markdown("<div class='card-box'><div class='role-badge'>🔵 DEV</div><div class='staff-title'>PIROx99.</div><div class='staff-sub'>@piro.fps20.</div></div>", unsafe_allow_html=True)
     with c7:
-        st.markdown("<div class='card-box'><div class='role-badge'>⭐ DEV DISCORD</div><div class='staff-title'>ZAKI VEX</div><div class="staff-sub">@closedaccount1_</div></div>", unsafe_allow_html=True)
+        st.markdown("<div class='card-box'><div class='role-badge'>⭐ DEV DISCORD</div><div class='staff-title'>ZAKI VEX</div><div class='staff-sub'>@closedaccount1_</div></div>", unsafe_allow_html=True)
 
 elif "Rules" in page:
     st.header("📜 Server Rules")

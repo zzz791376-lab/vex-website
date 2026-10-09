@@ -23,7 +23,7 @@ def get_base64_image(image_path):
 img_b64 = get_base64_image("banner.jpg")
 bg_style = f"data:image/jpeg;base64,{img_b64}" if img_b64 else "https://images.alphacoders.com/131/1318498.jpeg"
 
-# 2. CSS Injection (سطور قصيرة جداً مستحيل يكسرها GitHub)
+# 2. CSS Styles
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -89,37 +89,30 @@ div[role="radiogroup"] label p {
     padding: 12px 28px;
     font-weight: bold;
 }
-.staff-card {
-    background: #11151c;
-    border: 1px solid #1e293b;
-    border-radius: 18px;
-    padding: 25px 15px;
+.card-box {
+    background-color: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 12px;
+    padding: 20px;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
-.staff-card-owner {
-    border: 1px solid #0088ff;
-    background: #131b2e;
-}
-.staff-role {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 800;
+.role-badge {
     color: #00a2ff;
-    padding: 6px 14px;
-    border-radius: 20px;
-    border: 1px solid #0088ff;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
-.staff-name {
+.staff-title {
     color: #ffffff;
-    font-size: 20px;
-    font-weight: 900;
-    margin: 15px 0 5px 0;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 8px;
 }
-.staff-tag {
+.staff-sub {
     color: #64748b;
     font-size: 13px;
-    font-family: monospace;
+    margin-top: 4px;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -168,4 +161,99 @@ elif "Server" in page:
 elif "Staff Team" in page:
     st.header("👥 Staff Team — VILLAGE RF")
     st.caption("Meet our official management and leadership team.")
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.write("---")
+    
+    # 1. Owner
+    st.subheader("👑 Owner")
+    o1, _ = st.columns([1, 2])
+    with o1:
+        st.markdown("""
+        <div class="card-box" style="border-color: #0088ff;">
+            <div class="role-badge">👑 OWNER</div>
+            <div class="staff-title">! Haroun.13K</div>
+            <div class="staff-sub">@off_marseille</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # 2. Founders
+    st.subheader("👑 Founders")
+    f1, _ = st.columns([1, 2])
+    with f1:
+        st.markdown("""
+        <div class="card-box" style="border-color: #0088ff;">
+            <div class="role-badge">👑 FOUNDER</div>
+            <div class="staff-title">VL · ADLANE HB</div>
+            <div class="staff-sub">@adlanehb</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # 3. Co-Owners
+    st.subheader("🟣 Co-Owners")
+    c1, _ = st.columns([1, 2])
+    with c1:
+        st.markdown("""
+        <div class="card-box">
+            <div class="role-badge">🟣 CO-OWNER</div>
+            <div class="staff-title">VL · SIDO</div>
+            <div class="staff-sub">@sido_sido_18</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # 4. Management & Server Development
+    st.subheader("⚙️ Server Management & Development")
+    m1, m2, m3 = st.columns(3)
+    
+    with m1:
+        st.markdown("""
+        <div class="card-box">
+            <div class="role-badge">⭐ SERVER MANAGER</div>
+            <div class="staff-title">VL · Johane</div>
+            <div class="staff-sub">@yb.johane</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with m2:
+        st.markdown("""
+        <div class="card-box">
+            <div class="role-badge">🔵 SERVER DEVELOPER</div>
+            <div class="staff-title">VL · ZR</div>
+            <div class="staff-sub">@zr_rr011</div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+    with m3:
+        st.markdown("""
+        <div class="card-box">
+            <div class="role-badge">🔵 SERVER DEV / HIGH STAFF</div>
+            <div class="staff-title">VL · PIROx99.</div>
+            <div class="staff-sub">@piro.fps20.</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    # 5. Discord Development
+    st.subheader("🤖 Discord Development")
+    d1, _ = st.columns([1, 2])
+    with d1:
+        st.markdown("""
+        <div class="card-box">
+            <div class="role-badge">⭐ DEV DISCORD</div>
+            <div class="staff-title">VL · ZAKI VEX</div>
+            <div class="staff-sub">@closedaccount1_</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+elif "Rules" in page:
+    st.header("📜 Server Rules")
+    st.markdown("1. **Respect All Members:** Toxic behavior is strictly prohibited.")
+    st.markdown("2. **No RDM / VDM:** Follow Roleplay standards at all times.")
+    st.markdown("3. **Value Your Life:** Fear RP is mandatory.")
+
+elif "Staff Application" in page:
+    st.header("📝 Staff Application")
+    st.text_input("Discord Tag")
+    st.text_area("Why do you want to join our staff?")
+    st.button("Submit Application")
+
+elif "Discord" in page:
+    st.header("💬 Join Our Discord Server")
+    st.markdown("<br><a href='https://discord.gg/WC9NFNVFS' target='_blank' class='btn-action'>Open Discord Invite ➔</a>", unsafe_allow_html=True)

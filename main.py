@@ -93,26 +93,28 @@ div[role="radiogroup"] label p {
     background-color: #161b22;
     border: 1px solid #21262d;
     border-radius: 12px;
-    padding: 20px;
+    padding: 15px 8px;
     text-align: center;
     margin-bottom: 15px;
+    min-height: 110px;
 }
 .role-badge {
     color: #00a2ff;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: bold;
-    letter-spacing: 1px;
 }
 .staff-title {
     color: #ffffff;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
-    margin-top: 8px;
+    margin-top: 6px;
+    word-break: break-word;
 }
 .staff-sub {
     color: #64748b;
-    font-size: 13px;
-    margin-top: 4px;
+    font-size: 11px;
+    margin-top: 2px;
+    word-break: break-word;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -163,84 +165,22 @@ elif "Staff Team" in page:
     st.caption("Meet our official management and leadership team.")
     st.write("---")
     
-    # 1. Owner
-    st.subheader("👑 Owner")
-    o1, _ = st.columns([1, 2])
-    with o1:
-        st.markdown("""
-        <div class="card-box" style="border-color: #0088ff;">
-            <div class="role-badge">👑 OWNER</div>
-            <div class="staff-title">! Haroun.13K</div>
-            <div class="staff-sub">@off_marseille</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    # 2. Founders
-    st.subheader("👑 Founders")
-    f1, _ = st.columns([1, 2])
-    with f1:
-        st.markdown("""
-        <div class="card-box" style="border-color: #0088ff;">
-            <div class="role-badge">👑 FOUNDER</div>
-            <div class="staff-title">VL · ADLANE HB</div>
-            <div class="staff-sub">@adlanehb</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    # 3. Co-Owners
-    st.subheader("🟣 Co-Owners")
-    c1, _ = st.columns([1, 2])
-    with c1:
-        st.markdown("""
-        <div class="card-box">
-            <div class="role-badge">🟣 CO-OWNER</div>
-            <div class="staff-title">VL · SIDO</div>
-            <div class="staff-sub">@sido_sido_18</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    # 4. Management & Server Development
-    st.subheader("⚙️ Server Management & Development")
-    m1, m2, m3 = st.columns(3)
+    c1, c2, c3, c4, c5, c6, c7 = st.columns(7)
     
-    with m1:
-        st.markdown("""
-        <div class="card-box">
-            <div class="role-badge">⭐ SERVER MANAGER</div>
-            <div class="staff-title">VL · Johane</div>
-            <div class="staff-sub">@yb.johane</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with m2:
-        st.markdown("""
-        <div class="card-box">
-            <div class="role-badge">🔵 SERVER DEVELOPER</div>
-            <div class="staff-title">VL · ZR</div>
-            <div class="staff-sub">@zr_rr011</div>
-        </div>
-        """, unsafe_allow_html=True)
-        
-    with m3:
-        st.markdown("""
-        <div class="card-box">
-            <div class="role-badge">🔵 SERVER DEV / HIGH STAFF</div>
-            <div class="staff-title">VL · PIROx99.</div>
-            <div class="staff-sub">@piro.fps20.</div>
-        </div>
-        """, unsafe_allow_html=True)
-
-    # 5. Discord Development
-    st.subheader("🤖 Discord Development")
-    d1, _ = st.columns([1, 2])
-    with d1:
-        st.markdown("""
-        <div class="card-box">
-            <div class="role-badge">⭐ DEV DISCORD</div>
-            <div class="staff-title">VL · ZAKI VEX</div>
-            <div class="staff-sub">@closedaccount1_</div>
-        </div>
-        """, unsafe_allow_html=True)
+    with c1:
+        st.markdown("<div class='card-box' style='border-color:#0088ff;'><div class='role-badge'>👑 OWNER</div><div class='staff-title'>! Haroun.13K</div><div class='staff-sub'>@off_marseille</div></div>", unsafe_allow_html=True)
+    with c2:
+        st.markdown("<div class='card-box' style='border-color:#0088ff;'><div class='role-badge'>👑 FOUNDER</div><div class='staff-title'>ADLANE HB</div><div class='staff-sub'>@adlanehb</div></div>", unsafe_allow_html=True)
+    with c3:
+        st.markdown("<div class='card-box'><div class='role-badge'>🟣 CO-OWNER</div><div class='staff-title'>SIDO</div><div class='staff-sub'>@sido_sido_18</div></div>", unsafe_allow_html=True)
+    with c4:
+        st.markdown("<div class='card-box'><div class='role-badge'>⭐ MANAGER</div><div class='staff-title'>Johane</div><div class='staff-sub'>@yb.johane</div></div>", unsafe_allow_html=True)
+    with c5:
+        st.markdown("<div class='card-box'><div class='role-badge'>🔵 DEV</div><div class='staff-title'>ZR</div><div class='staff-sub'>@zr_rr011</div></div>", unsafe_allow_html=True)
+    with c6:
+        st.markdown("<div class='card-box'><div class='role-badge'>🔵 DEV</div><div class='staff-title'>PIROx99.</div><div class='staff-sub'>@piro.fps20.</div></div>", unsafe_allow_html=True)
+    with c7:
+        st.markdown("<div class='card-box'><div class='role-badge'>⭐ DEV DISCORD</div><div class='staff-title'>ZAKI VEX</div><div class="staff-sub">@closedaccount1_</div></div>", unsafe_allow_html=True)
 
 elif "Rules" in page:
     st.header("📜 Server Rules")

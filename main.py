@@ -28,89 +28,23 @@ else:
     bg_style = "https://images.alphacoders.com/131/1318498.jpeg"
 
 # 2. Advanced Premium CSS & Hide Streamlit Toolbar/Fork
-css_style = """
-<style>
-#MainMenu {visibility: hidden;}
-header[data-testid="stHeader"] {display: none !important;}
-footer {visibility: hidden;}
-div[data-testid="stDecoration"] {display: none !important;}
-div[data-testid="stToolbar"] {display: none !important;}
-
-.stApp {
-    background-color: #0b0e14;
-    color: #ffffff;
-}
-
-section[data-testid="stSidebar"] {
-    background-color: #11151c !important;
-    border-right: 1px solid #1e2430;
-}
-
-div[role="radiogroup"] label div[data-testid="stRadioButtonCustomIcon"],
-div[role="radiogroup"] label input[type="radio"] {
-    display: none !important;
-}
-
-div[role="radiogroup"] > label {
-    background: #161b22;
-    padding: 12px 18px;
-    border-radius: 12px;
-    margin-bottom: 8px;
-    border: 1px solid #21262d;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-div[role="radiogroup"] > label:hover {
-    border-color: #0088ff;
-    background: #1c212a;
-    transform: translateX(4px);
-}
-
-div[role="radiogroup"] label p {
-    color: #cbd5e1 !important;
-    font-size: 15px !important;
-    font-weight: 600;
-}
-
-.hero-title {
-    font-size: 52px;
-    font-weight: 900;
-    color: #ffffff;
-    margin: 5px 0;
-    letter-spacing: 2px;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.9);
-}
-
-.hero-tag {
-    color: #0088ff;
-    font-weight: bold;
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-shadow: 0 2px 10px rgba(0,136,255,0.4);
-}
-
-.btn-action {
-    display: inline-block;
-    background: linear-gradient(90deg, #0066ff 0%, #00a2ff 100%);
-    color: white !important;
-    text-decoration: none !important;
-    border-radius: 12px;
-    padding: 12px 28px;
-    font-weight: bold;
-    margin-right: 15px;
-    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4);
-    transition: all 0.3s ease;
-}
-
-.btn-action:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(0, 136, 255, 0.7);
-}
-
-.btn-secondary-action {
-    display: inline-block;
-    background: #161b22;
-    color: #ffffff !important;
-    text-decoration: none !important;
-    border:
+st.markdown(
+    "<style>"
+    "#MainMenu {visibility: hidden;}"
+    "header[data-testid='stHeader'] {display: none !important;}"
+    "footer {visibility: hidden;}"
+    "div[data-testid='stDecoration'] {display: none !important;}"
+    "div[data-testid='stToolbar'] {display: none !important;}"
+    ".stApp { background-color: #0b0e14; color: #ffffff; }"
+    "section[data-testid='stSidebar'] { background-color: #11151c !important; border-right: 1px solid #1e2430; }"
+    "div[role='radiogroup'] label div[data-testid='stRadioButtonCustomIcon'], div[role='radiogroup'] label input[type='radio'] { display: none !important; }"
+    "div[role='radiogroup'] > label { background: #161b22; padding: 12px 18px; border-radius: 12px; margin-bottom: 8px; border: 1px solid #21262d; transition: all 0.3s ease; cursor: pointer; }"
+    "div[role='radiogroup'] > label:hover { border-color: #0088ff; background: #1c212a; transform: translateX(4px); }"
+    "div[role='radiogroup'] label p { color: #cbd5e1 !important; font-size: 15px !important; font-weight: 600; }"
+    ".hero-title { font-size: 52px; font-weight: 900; color: #ffffff; margin: 5px 0; letter-spacing: 2px; text-shadow: 0 4px 20px rgba(0,0,0,0.9); }"
+    ".hero-tag { color: #0088ff; font-weight: bold; font-size: 13px; letter-spacing: 2px; text-shadow: 0 2px 10px rgba(0,136,255,0.4); }"
+    ".btn-action { display: inline-block; background: linear-gradient(90deg, #0066ff 0%, #00a2ff 100%); color: white !important; text-decoration: none !important; border-radius: 12px; padding: 12px 28px; font-weight: bold; margin-right: 15px; box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4); transition: all 0.3s ease; }"
+    ".btn-action:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(0, 136, 255, 0.7); }"
+    ".btn-secondary-action { display: inline-block; background: #161b22; color: #ffffff !important; text-decoration: none !important; border: 1px solid #21262d; border-radius: 12px; padding: 12px 28px; font-weight: bold; transition: all 0.3s ease; }"
+    ".btn-secondary-action:hover { border-color: #0088ff; background: #1c212a; transform: translateY(-2px); }"
+    ".staff-card { background: linear-gradient(145deg, #11151c 0%, #

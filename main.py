@@ -215,7 +215,7 @@ elif "Staff Team" in page:
     f1, f2, f3, f4 = st.columns(4)
     
     with f1:
-        st.markdown('<div class="staff-card staff-card-owner"><span class="staff-role">👑 FOUNDER</span><div class="staff-name">VL · Johane</div><div class="staff-tag">@yb.johane</div></div>', unsafe_allow_html=True)
+        st.markdown('<div class="staff-card staff-card-owner"><span class="staff-role">👑 SERVER MANAGER</span><div class="staff-name">VL · Johane</div><div class="staff-tag">@yb.johane</div></div>', unsafe_allow_html=True)
 
     with f2:
         st.markdown('<div class="staff-card staff-card-owner"><span class="staff-role">👑 OWNER</span><div class="staff-name">! Haroun.13K</div><div class="staff-tag">@off_marseille</div></div>', unsafe_allow_html=True)

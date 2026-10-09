@@ -30,7 +30,6 @@ else:
 # 2. Advanced Premium CSS & Hide Streamlit Toolbar/Fork
 css_style = """
 <style>
-/* Hide Streamlit Header, Main Menu & Fork Toolbar */
 #MainMenu {visibility: hidden;}
 header[data-testid="stHeader"] {display: none !important;}
 footer {visibility: hidden;}
@@ -100,4 +99,4 @@ div[role="radiogroup"] label p {
     padding: 12px 28px;
     font-weight: bold;
     margin-right: 15px;
-    box-shadow: 0 4px 1
+    box-shadow: 0 4px 15px rgba(0, 10

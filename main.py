@@ -31,7 +31,7 @@ if "login" in st.query_params:
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-# 2. Modern Ultra-Red Theme CSS & Styles (100% Hide Circles Fix)
+# 2. Modern Ultra-Red Theme CSS & Styles (Absolute Removal of Radio Circles)
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -50,21 +50,16 @@ section[data-testid="stSidebar"] {
 div[role="radiogroup"] {
     gap: 8px;
 }
-
-/* إخفاء الدوائر بشكل مطلق وبدون أي أثر */
-div[role="radiogroup"] label > div:first-child {
+/* إخفاء تام وجذري لأي دائرة أو أيقونة افتراضية للـ Radio Buttons */
+div[role="radiogroup"] label div[data-testid="stRadioButtonCustomIcon"],
+div[role="radiogroup"] label input[type="radio"],
+div[role="radiogroup"] label div:has(> input[type="radio"]),
+div[role="radiogroup"] label span {
     display: none !important;
-    width: 0px !important;
-    height: 0px !important;
+    width: 0 !important;
+    height: 0 !important;
 }
-div[role="radiogroup"] label input[type="radio"] {
-    display: none !important;
-}
-div[role="radiogroup"] label div[data-testid="stRadioButtonCustomIcon"] {
-    display: none !important;
-}
-
-div[role="radiogroup"] > label {
+div[role="radiogroup"] label {
     background: rgba(18, 22, 32, 0.7);
     padding: 12px 18px !important;
     border-radius: 12px;
@@ -73,14 +68,13 @@ div[role="radiogroup"] > label {
     transition: all 0.3s ease;
     display: flex !important;
     align-items: center !important;
-    justify-content: flex-start !important;
 }
-div[role="radiogroup"] > label:hover {
+div[role="radiogroup"] label:hover {
     border-color: #ff1e38;
     background: rgba(255, 30, 56, 0.1);
     transform: translateX(4px);
 }
-div[role="radiogroup"] > label[data-checked="true"] {
+div[role="radiogroup"] label[data-checked="true"] {
     border-color: #ff1e38;
     background: linear-gradient(135deg, rgba(230, 0, 35, 0.25) 0%, rgba(255, 30, 56, 0.35) 100%);
     box-shadow: 0 4px 15px rgba(255, 30, 56, 0.25);

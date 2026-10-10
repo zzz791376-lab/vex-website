@@ -317,38 +317,34 @@ page = st.session_state.active_page
 
 if page == "Home":
     st.markdown(
-        """
-        <div class="hero-banner">
-            <div class="hero-portal-badge">🔴 OFFICIAL COMMUNITY PORTAL • VILLAGE RF / 2026</div>
-            <h1 class="hero-title">VILLAGE RF</h1>
-            <p class="hero-tag">MORE THAN JUST A SERVER.</p>
-            <p style="color: #94a3b8; font-size: 14px; max-width: 550px; line-height: 1.6; margin-bottom: 25px;">Welcome to the official VILLAGE RF community portal. Stay connected, check the latest events, meet the team and keep your Discord access verified.</p>
-            <div style="margin-top: 20px;">
-                <a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Join Community ➔</a>
-            </div>
-            <div class="hero-stats-row">
-                <div class="stat-item"><div class="stat-value">128 / 256</div><div class="stat-label">PLAYERS ONLINE</div></div>
-                <div class="stat-item"><div class="stat-value">24/7</div><div class="stat-label">SERVER AVAILABILITY</div></div>
-                <div class="stat-item"><div class="stat-value" style="color: #00ff88;">ONLINE</div><div class="stat-label">COMMUNITY STATUS</div></div>
-            </div>
-        </div>
-        """,
+        '<div class="hero-banner">'
+        '<div class="hero-portal-badge">🔴 OFFICIAL COMMUNITY PORTAL • VILLAGE RF / 2026</div>'
+        '<h1 class="hero-title">VILLAGE RF</h1>'
+        '<p class="hero-tag">MORE THAN JUST A SERVER.</p>'
+        '<p style="color: #94a3b8; font-size: 14px; max-width: 550px; line-height: 1.6; margin-bottom: 25px;">Welcome to the official VILLAGE RF community portal. Stay connected, check the latest events, meet the team and keep your Discord access verified.</p>'
+        '<div style="margin-top: 20px;">'
+        '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Join Community ➔</a>'
+        '</div>'
+        '<div class="hero-stats-row">'
+        '<div class="stat-item"><div class="stat-value">128 / 256</div><div class="stat-label">PLAYERS ONLINE</div></div>'
+        '<div class="stat-item"><div class="stat-value">24/7</div><div class="stat-label">SERVER AVAILABILITY</div></div>'
+        '<div class="stat-item"><div class="stat-value" style="color: #00ff88;">ONLINE</div><div class="stat-label">COMMUNITY STATUS</div></div>'
+        '</div>'
+        '</div>',
         unsafe_allow_html=True
     )
 
 elif page == "Server":
     st.markdown(
-        """
-        <div class="glass-card">
-            <h2 style="color: white; margin-bottom: 5px;">🖥️ Direct Connect IP</h2>
-            <p style="color: #64748b; font-size: 14px;">Copy the IP below or launch directly via FiveM application.</p>
-            <div class="code-ip-box">
-                <span>connect 217.160.240.61</span>
-                <span style="color: #ff1e38; font-size: 12px; font-weight: bold;">[LIVE ONLINE]</span>
-            </div>
-            <a href="fivem://connect/217.160.240.61" class="btn-action">Connect Directly to FiveM 🚀</a>
-        </div>
-        """,
+        '<div class="glass-card">'
+        '<h2 style="color: white; margin-bottom: 5px;">🖥️ Direct Connect IP</h2>'
+        '<p style="color: #64748b; font-size: 14px;">Copy the IP below or launch directly via FiveM application.</p>'
+        '<div class="code-ip-box">'
+        '<span>connect 217.160.240.61</span>'
+        '<span style="color: #ff1e38; font-size: 12px; font-weight: bold;">[LIVE ONLINE]</span>'
+        '</div>'
+        '<a href="fivem://connect/217.160.240.61" class="btn-action">Connect Directly to FiveM 🚀</a>'
+        '</div>',
         unsafe_allow_html=True
     )
 
@@ -376,25 +372,21 @@ elif page == "Staff Team":
 
 elif page == "Rules":
     st.markdown(
-        """
-        <div class="glass-card">
-            <h2 style="color: white; margin-bottom: 20px;">📜 Server Guidelines & Rules</h2>
-            <div class="rule-card"><b>1. Respect All Members:</b> Toxic behavior, racism, and harassment are strictly prohibited.</div>
-            <div class="rule-card"><b>2. No RDM / VDM:</b> Random Killing or using vehicles as weapons is strictly forbidden.</div>
-            <div class="rule-card"><b>3. Value Your Life (Fear RP):</b> You must value your character's life at all times during Roleplay scenarios.</div>
-        </div>
-        """,
+        '<div class="glass-card">'
+        '<h2 style="color: white; margin-bottom: 20px;">📜 Server Guidelines & Rules</h2>'
+        '<div class="rule-card"><b>1. Respect All Members:</b> Toxic behavior, racism, and harassment are strictly prohibited.</div>'
+        '<div class="rule-card"><b>2. No RDM / VDM:</b> Random Killing or using vehicles as weapons is strictly forbidden.</div>'
+        '<div class="rule-card"><b>3. Value Your Life (Fear RP):</b> You must value your character\'s life at all times during Roleplay scenarios.</div>'
+        '</div>',
         unsafe_allow_html=True
     )
 
 elif page == "Events":
     st.markdown(
-        """
-        <div class="glass-card">
-            <h2 style="color: white; margin-bottom: 10px;">🎉 Upcoming Events</h2>
-            <p style="color: #94a3b8;">Stay tuned for the official VILLAGE RF launch and community events!</p>
-        </div>
-        """,
+        '<div class="glass-card">'
+        '<h2 style="color: white; margin-bottom: 10px;">🎉 Upcoming Events</h2>'
+        '<p style="color: #94a3b8;">Stay tuned for the official VILLAGE RF launch and community events!</p>'
+        '</div>',
         unsafe_allow_html=True
     )
 
@@ -408,6 +400,10 @@ elif page == "Staff Application":
 
 elif page == "Discord":
     st.markdown(
-        """
-        <div class="glass-card" style="text-align: center;">
-            <h2 style="color: white; margin-bottom: 10px
+        '<div class="glass-card" style="text-align: center;">'
+        '<h2 style="color: white; margin-bottom: 10px;">💬 VILLAGE RF Discord Server</h2>'
+        '<p style="color: #64748b; margin-bottom: 25px;">Click below to join our official active Discord server and stay up to date!</p>'
+        '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Open Discord Invite ➔</a>'
+        '</div>',
+        unsafe_allow_html=True
+    )

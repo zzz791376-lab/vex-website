@@ -39,7 +39,7 @@ if "logged_in" not in st.session_state:
 if "active_page" not in st.session_state:
     st.session_state.active_page = "Home"
 
-# 2. Modern Ultra-Red Dark Theme CSS & Top Navbar Layout Styling
+# 2. Modern Ultra-Red Dark Theme CSS & Fixed Top Buttons Styling
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -79,38 +79,40 @@ section[data-testid="stSidebar"] div.stButton > button:hover {
     transform: translateX(4px) !important;
 }
 
-/* تنسيق أزرار الشريط العلوي لتعمل بـ Streamlit Buttons أفقية نظيفة */
+/* القضاء التام على اللون الأبيض في أزرار الشريط العلوي وتحويلها لأسود داكن فخم */
 div[data-testid="column"] div.stButton > button {
     width: 100% !important;
-    background: rgba(18, 22, 32, 0.85) !important;
+    background: rgba(18, 22, 32, 0.9) !important;
     color: #94a3b8 !important;
     border: 1px solid #1f293d !important;
     border-radius: 12px !important;
-    padding: 10px 14px !important;
+    padding: 10px 12px !important;
     font-size: 13px !important;
     font-weight: 700 !important;
+    box-shadow: none !important;
     transition: all 0.3s ease !important;
 }
 
 div[data-testid="column"] div.stButton > button:hover {
     border-color: #ff1e38 !important;
     color: #ffffff !important;
-    background: rgba(255, 30, 56, 0.15) !important;
+    background: rgba(255, 30, 56, 0.2) !important;
 }
 
 .user-pill {
     background: rgba(18, 22, 32, 0.9);
     border: 1px solid #1f293d;
     border-radius: 12px;
-    padding: 9px 15px;
+    padding: 8px 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    font-size: 13px;
+    gap: 8px;
+    font-size: 12px;
     font-weight: bold;
     color: #ffffff;
     height: 42px;
+    white-space: nowrap;
 }
 
 .logout-btn {
@@ -118,7 +120,7 @@ div[data-testid="column"] div.stButton > button:hover {
     background: rgba(230, 0, 35, 0.15);
     border: 1px solid #ff1e38;
     color: #ff1e38 !important;
-    padding: 10px 0;
+    padding: 9px 0;
     border-radius: 12px;
     font-weight: bold;
     font-size: 13px;
@@ -126,7 +128,7 @@ div[data-testid="column"] div.stButton > button:hover {
     transition: all 0.3s ease;
     text-align: center;
     height: 42px;
-    line-height: 20px;
+    line-height: 22px;
 }
 
 .logout-btn:hover {
@@ -373,7 +375,7 @@ with st.sidebar:
         unsafe_allow_html=True
     )
 
-# --- TOP NAVIGATION BAR (Instant State Switch - No Flash) ---
+# --- TOP NAVIGATION BAR (Instant State Switch & Dark Styling) ---
 top_cols = st.columns([1, 1, 1, 1, 1.4, 1, 1.6, 1])
 
 with top_cols[0]:

@@ -320,16 +320,45 @@ elif "Staff Team" in page:
     c1, c2, c3, c4, c5, c6, c7 = st.columns(7)
     
     with c1:
-        st.markdown("<div class='card-box'><div class='role-badge'>👑 OWNER</div><div class='staff-title'>! Haroun.13K</div><div class='staff-sub'>@off_marseille</div></div>", unsafe_allow_html=True)
+        st.markdown("""<div class="card-box"><div class="role-badge">👑 OWNER</div><div class="staff-title">! Haroun.13K</div><div class="staff-sub">@off_marseille</div></div>""", unsafe_allow_html=True)
     with c2:
-        st.markdown("<div class='card-box'><div class='role-badge'>👑 FOUNDER</div><div class='staff-title'>ADLANE HB</div><div class='staff-sub'>@adlanehb</div></div>", unsafe_allow_html=True)
+        st.markdown("""<div class="card-box"><div class="role-badge">👑 FOUNDER</div><div class="staff-title">ADLANE HB</div><div class="staff-sub">@adlanehb</div></div>""", unsafe_allow_html=True)
     with c3:
-        st.markdown("<div class='card-box'><div class='role-badge'>🟣 CO-OWNER</div><div class='staff-title'>SIDO</div><div class='staff-sub'>@sido_sido_18</div></div>", unsafe_allow_html=True)
+        st.markdown("""<div class="card-box"><div class="role-badge">🟣 CO-OWNER</div><div class="staff-title">SIDO</div><div class="staff-sub">@sido_sido_18</div></div>""", unsafe_allow_html=True)
     with c4:
-        st.markdown("<div class='card-box'><div class='role-badge'>⭐ MANAGER</div><div class='staff-title'>Johane</div><div class='staff-sub'>@yb.johane</div></div>", unsafe_allow_html=True)
+        st.markdown("""<div class="card-box"><div class="role-badge">⭐ MANAGER</div><div class="staff-title">Johane</div><div class="staff-sub">@yb.johane</div></div>""", unsafe_allow_html=True)
     with c5:
-        st.markdown("<div class='card-box'><div class='role-badge'>🔵 DEV</div><div class='staff-title'>ZR</div><div class='staff-sub'>@zr_rr011</div></div>", unsafe_allow_html=True)
+        st.markdown("""<div class="card-box"><div class="role-badge">🔵 DEV</div><div class="staff-title">ZR</div><div class="staff-sub">@zr_rr011</div></div>""", unsafe_allow_html=True)
     with c6:
-        st.markdown("<div class='card-box'><div class='role-badge'>🔵 DEV</div><div class='staff-title'>PIROx99.</div><div class='staff-sub'>@piro.fps20.</div></div>", unsafe_allow_html=True)
+        st.markdown("""<div class="card-box"><div class="role-badge">🔵 DEV</div><div class="staff-title">PIROx99.</div><div class="staff-sub">@piro.fps20.</div></div>""", unsafe_allow_html=True)
     with c7:
-        st.markdown("<div class='card-box'><div class='role-badge'>⭐ DEV DISCORD</div><div class='staff-title'>ZAKI VEX</div><div class='staff-sub'>
+        st.markdown("""<div class="card-box"><div class="role-badge">⭐ DEV DISCORD</div><div class="staff-title">ZAKI VEX</div><div class="staff-sub">@closedaccount1_</div></div>""", unsafe_allow_html=True)
+
+elif "Rules" in page:
+    st.markdown(
+        '<div class="glass-card">'
+        '<h2 style="color: white; margin-bottom: 20px;">📜 Server Guidelines & Rules</h2>'
+        '<div class="rule-card"><b>1. Respect All Members:</b> Toxic behavior, racism, and harassment are strictly prohibited.</div>'
+        '<div class="rule-card"><b>2. No RDM / VDM:</b> Random Killing or using vehicles as weapons is strictly forbidden.</div>'
+        '<div class="rule-card"><b>3. Value Your Life (Fear RP):</b> You must value your character\'s life at all times during Roleplay scenarios.</div>'
+        '</div>',
+        unsafe_allow_html=True
+    )
+
+elif "Staff Application" in page:
+    st.markdown('<div class="glass-card"><h2 style="color: white; margin-bottom: 15px;">📝 Staff Application</h2>', unsafe_allow_html=True)
+    st.text_input("Discord Tag (e.g. zaki_vex)")
+    st.text_area("Why do you want to join VILLAGE RF Staff Team?")
+    if st.button("Submit Application ➔"):
+        st.success("Your application has been submitted successfully!")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+elif "Discord" in page:
+    st.markdown(
+        '<div class="glass-card" style="text-align: center;">'
+        '<h2 style="color: white; margin-bottom: 10px;">💬 VILLAGE RF Discord Server</h2>'
+        '<p style="color: #64748b; margin-bottom: 25px;">Click below to join our official active Discord server and stay up to date!</p>'
+        '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Open Discord Invite ➔</a>'
+        '</div>',
+        unsafe_allow_html=True
+    )

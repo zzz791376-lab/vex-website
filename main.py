@@ -79,67 +79,54 @@ section[data-testid="stSidebar"] div.stButton > button:hover {
     transform: translateX(4px) !important;
 }
 
-/* تصميم الشريط العلوي الاحترافي تماماً مثل الصورة */
-.top-navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(11, 14, 20, 0.95);
-    border: 1px solid #1f293d;
-    border-radius: 16px;
-    padding: 10px 25px;
-    margin-bottom: 25px;
-    backdrop-filter: blur(10px);
+/* تنسيق أزرار الشريط العلوي لتعمل بـ Streamlit Buttons أفقية نظيفة */
+div[data-testid="column"] div.stButton > button {
+    width: 100% !important;
+    background: rgba(18, 22, 32, 0.85) !important;
+    color: #94a3b8 !important;
+    border: 1px solid #1f293d !important;
+    border-radius: 12px !important;
+    padding: 10px 14px !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    transition: all 0.3s ease !important;
 }
 
-.top-nav-links {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-}
-
-.top-nav-links a {
-    color: #94a3b8;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
-    transition: color 0.3s ease;
-}
-
-.top-nav-links a.active, .top-nav-links a:hover {
+div[data-testid="column"] div.stButton > button:hover {
+    border-color: #ff1e38 !important;
     color: #ffffff !important;
-    text-shadow: 0 0 10px rgba(255, 30, 56, 0.5);
-}
-
-.top-user-box {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    background: rgba(255, 30, 56, 0.15) !important;
 }
 
 .user-pill {
     background: rgba(18, 22, 32, 0.9);
     border: 1px solid #1f293d;
     border-radius: 12px;
-    padding: 8px 15px;
+    padding: 9px 15px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     font-size: 13px;
     font-weight: bold;
     color: #ffffff;
+    height: 42px;
 }
 
 .logout-btn {
+    display: block;
     background: rgba(230, 0, 35, 0.15);
     border: 1px solid #ff1e38;
     color: #ff1e38 !important;
-    padding: 8px 20px;
+    padding: 10px 0;
     border-radius: 12px;
     font-weight: bold;
     font-size: 13px;
     text-decoration: none;
     transition: all 0.3s ease;
+    text-align: center;
+    height: 42px;
+    line-height: 20px;
 }
 
 .logout-btn:hover {
@@ -386,33 +373,39 @@ with st.sidebar:
         unsafe_allow_html=True
     )
 
-# --- TOP NAVBAR (Query Params Navigation for Top Links) ---
-if "page" in st.query_params:
-    p = st.query_params["page"]
-    if p in ["Home", "Rules", "Staff Team", "Events", "Staff Application", "Discord"]:
-        st.session_state.active_page = p
+# --- TOP NAVIGATION BAR (Instant State Switch - No Flash) ---
+top_cols = st.columns([1, 1, 1, 1, 1.4, 1, 1.6, 1])
 
-def nav_link(name, target):
-    active_class = 'active' if st.session_state.active_page == target else ''
-    return f'<a href="?page={target}" target="_self" class="{active_class}">{name}</a>'
+with top_cols[0]:
+    if st.button("Home", key="top_home"):
+        st.session_state.active_page = "Home"
+        st.rerun()
+with top_cols[1]:
+    if st.button("Rules", key="top_rules"):
+        st.session_state.active_page = "Rules"
+        st.rerun()
+with top_cols[2]:
+    if st.button("Staff", key="top_staff"):
+        st.session_state.active_page = "Staff Team"
+        st.rerun()
+with top_cols[3]:
+    if st.button("Events", key="top_events"):
+        st.session_state.active_page = "Events"
+        st.rerun()
+with top_cols[4]:
+    if st.button("Staff App", key="top_app"):
+        st.session_state.active_page = "Staff Application"
+        st.rerun()
+with top_cols[5]:
+    if st.button("Discord", key="top_discord"):
+        st.session_state.active_page = "Discord"
+        st.rerun()
+with top_cols[6]:
+    st.markdown('<div class="user-pill">👤 ZAKI VEX | <span style="color: #00ff88;">Member</span></div>', unsafe_allow_html=True)
+with top_cols[7]:
+    st.markdown('<a href="?logout=true" target="_self" class="logout-btn">Logout</a>', unsafe_allow_html=True)
 
-top_bar_html = f"""
-<div class="top-navbar">
-    <div class="top-nav-links">
-        {nav_link("Home", "Home")}
-        {nav_link("Rules", "Rules")}
-        {nav_link("Staff", "Staff Team")}
-        {nav_link("Events", "Events")}
-        {nav_link("Staff Application", "Staff Application")}
-        {nav_link("Discord", "Discord")}
-    </div>
-    <div class="top-user-box">
-        <div class="user-pill">👤 ZAKI VEX &nbsp;|&nbsp; <span style="color: #00ff88;">Member</span></div>
-        <a href="?logout=true" target="_self" class="logout-btn">Logout</a>
-    </div>
-</div>
-"""
-st.markdown(top_bar_html, unsafe_allow_html=True)
+st.write("---")
 
 # 4. Main Content Pages
 page = st.session_state.active_page

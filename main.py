@@ -31,7 +31,7 @@ if "login" in st.query_params:
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-# 2. Modern Ultra-Red Theme CSS & Styles (Complete Fix for Radio Buttons)
+# 2. Modern Ultra-Red Theme CSS & Styles (Completely Removed Radio Circles)
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -50,14 +50,15 @@ section[data-testid="stSidebar"] {
 div[role="radiogroup"] {
     gap: 8px;
 }
-/* إخفاء الدوائر والـ Radio Buttons تماماً من الجذور */
+/* إخفاء الدوائر ومخلفات الـ Radio بالكامل وتغطيتها */
 div[role="radiogroup"] label input[type="radio"] {
-    position: absolute !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
+    display: none !important;
 }
 div[role="radiogroup"] label div[data-testid="stMarkdownContainer"] {
-    margin-left: -20px !important;
+    margin-left: -24px !important;
+}
+div[role="radiogroup"] label div[data-testid="stMarkdownContainer"] p {
+    margin-left: 0px !important;
 }
 div[role="radiogroup"] > label {
     background: rgba(18, 22, 32, 0.7);
@@ -68,6 +69,7 @@ div[role="radiogroup"] > label {
     transition: all 0.3s ease;
     display: flex !important;
     align-items: center !important;
+    overflow: hidden !important;
 }
 div[role="radiogroup"] > label:hover {
     border-color: #ff1e38;

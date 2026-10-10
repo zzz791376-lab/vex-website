@@ -346,22 +346,7 @@ elif page == "Rules":
         unsafe_allow_html=True
     )
 
-elif page == "Events":
-    st.markdown(
-        '<div class="glass-card">'
-        '<h2 style="color: white; margin-bottom: 10px;">🎉 Upcoming Events</h2>'
-        '<p style="color: #94a3b8;">Stay tuned for the official VILLAGE RF launch and community events!</p>'
-        '</div>',
-        unsafe_allow_html=True
-    )
 
-elif page == "Staff Application":
-    st.markdown('<div class="glass-card"><h2 style="color: white; margin-bottom: 15px;">📝 Staff Application</h2>', unsafe_allow_html=True)
-    st.text_input("Discord Tag (e.g. zaki_vex)")
-    st.text_area("Why do you want to join VILLAGE RF Staff Team?")
-    if st.button("Submit Application ➔"):
-        st.success("Your application has been submitted successfully!")
-    st.markdown('</div>', unsafe_allow_html=True)
 
 elif page == "Discord":
     st.markdown(

@@ -31,7 +31,7 @@ if "login" in st.query_params:
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-# 2. Modern Ultra-Red Theme CSS & Styles
+# 2. Modern Ultra-Red Theme CSS & Styles (Enhanced Sidebar)
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -42,31 +42,41 @@ st.markdown("""
                 url('https://i.gifer.com/76YS.gif') center/cover no-repeat fixed !important;
     color: #ffffff;
 }
+/* Enhanced Modern Sidebar */
 section[data-testid="stSidebar"] {
-    background-color: rgba(14, 17, 23, 0.92) !important;
-    border-right: 1px solid #1a202c;
+    background-color: rgba(11, 14, 20, 0.95) !important;
+    border-right: 1px solid #1f293d;
+    padding-top: 10px;
+}
+div[role="radiogroup"] {
+    gap: 8px;
 }
 div[role="radiogroup"] label div[data-testid="stRadioButtonCustomIcon"],
 div[role="radiogroup"] label input[type="radio"] {
     display: none !important;
 }
 div[role="radiogroup"] > label {
-    background: #121620;
-    padding: 12px 18px;
-    border-radius: 14px;
-    margin-bottom: 8px;
+    background: rgba(18, 22, 32, 0.7);
+    padding: 12px 16px;
+    border-radius: 12px;
     border: 1px solid #1f293d;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 div[role="radiogroup"] > label:hover {
     border-color: #ff1e38;
-    background: #1b1216;
+    background: rgba(255, 30, 56, 0.1);
+    transform: translateX(4px);
+}
+div[role="radiogroup"] > label[data-checked="true"] {
+    border-color: #ff1e38;
+    background: linear-gradient(135deg, rgba(230, 0, 35, 0.2) 0%, rgba(255, 30, 56, 0.3) 100%);
+    box-shadow: 0 4px 15px rgba(255, 30, 56, 0.25);
 }
 div[role="radiogroup"] label p {
-    color: #cbd5e1 !important;
+    color: #e2e8f0 !important;
     font-size: 15px !important;
-    font-weight: 600;
+    font-weight: 700;
 }
 .hero-title {
     font-size: 56px;
@@ -198,7 +208,6 @@ div[role="radiogroup"] label p {
     margin-bottom: 12px;
     font-size: 15px;
 }
-/* Style Streamlit Inputs */
 div[data-baseweb="input"] > div, div[data-baseweb="textarea"] > div {
     background-color: #090c10 !important;
     border: 1px solid #1f293d !important;
@@ -230,8 +239,8 @@ if not st.session_state.logged_in:
 
 # 3. Sidebar Navigation
 with st.sidebar:
-    st.markdown("<h2 style='color: white; font-weight: 900;'>🎮 VILLAGE RF</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='color: #64748b; font-size: 12px; margin-bottom: 15px;'>MAIN MENU</p>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color: white; font-weight: 900; margin-bottom: 0px;'>🎮 VILLAGE RF</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='color: #ff1e38; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 20px;'>MAIN MENU</p>", unsafe_allow_html=True)
     
     page = st.radio(
         "Navigation",
@@ -242,9 +251,9 @@ with st.sidebar:
     
     st.markdown("---")
     st.markdown(
-        "<div style='background: rgba(18, 22, 32, 0.85); padding: 15px; border-radius: 14px; border: 1px solid #1f293d;'>"
+        "<div style='background: rgba(18, 22, 32, 0.85); padding: 15px; border-radius: 14px; border: 1px solid #1f293d; text-align: center;'>"
         "<div style='color: #ff1e38; font-weight: bold; font-size: 14px;'>🔴 VILLAGE RF</div>"
-        "<div style='color: #64748b; font-size: 12px; margin-top: 2px;'>Server Online — LIVE</div>"
+        "<div style='color: #00ff88; font-size: 12px; font-weight: bold; margin-top: 4px;'>● Server Online — LIVE</div>"
         "</div>",
         unsafe_allow_html=True
     )

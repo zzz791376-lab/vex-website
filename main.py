@@ -34,7 +34,7 @@ if "logged_in" not in st.session_state:
 if "active_page" not in st.session_state:
     st.session_state.active_page = "Home"
 
-# 2. Modern Ultra-Red Dark Theme CSS & Clean Sidebar Buttons
+# 2. Modern Ultra-Red Dark Theme CSS & Fixed Dark Buttons Styling
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -51,10 +51,10 @@ section[data-testid="stSidebar"] {
     padding-top: 15px;
 }
 
-/* القضاء النهائي على الخلفيات البيضاء وجعل الأزرار داكنة وفخمة 100% */
-div[data-testid="stSidebar"] div.stButton > button {
+/* القضاء التام على الأزرار البيضاء وتحويلها لأسود داكن متناسق مع الثيم */
+section[data-testid="stSidebar"] div.stButton > button {
     width: 100% !important;
-    background: rgba(18, 22, 32, 0.85) !important;
+    background: rgba(18, 22, 32, 0.9) !important;
     color: #e2e8f0 !important;
     border: 1px solid #1f293d !important;
     border-radius: 12px !important;
@@ -68,21 +68,14 @@ div[data-testid="stSidebar"] div.stButton > button {
     box-shadow: none !important;
 }
 
-div[data-testid="stSidebar"] div.stButton > button:hover {
+section[data-testid="stSidebar"] div.stButton > button:hover {
     border-color: #ff1e38 !important;
     background: rgba(255, 30, 56, 0.15) !important;
     color: #ffffff !important;
     transform: translateX(4px) !important;
 }
 
-div[data-testid="stSidebar"] div.stButton > button:focus,
-div[data-testid="stSidebar"] div.stButton > button:active {
-    border-color: #ff1e38 !important;
-    background: linear-gradient(135deg, rgba(230, 0, 35, 0.35) 0%, rgba(255, 30, 56, 0.45) 100%) !important;
-    color: #ffffff !important;
-    box-shadow: 0 4px 15px rgba(255, 30, 56, 0.3) !important;
-}
-
+/* تخصيص الزر النشط حالياً ليكون أحمر داكن وفخم */
 .hero-title {
     font-size: 46px;
     font-weight: 900;
@@ -229,7 +222,7 @@ if not st.session_state.logged_in:
 
 # --- MAIN WEBSITE (After Login) ---
 
-# 3. Sidebar Navigation (Pure Clean Buttons - NO Circles)
+# 3. Sidebar Navigation
 with st.sidebar:
     st.markdown(
         f'<div style="text-align: center; margin-bottom: 20px;">'
@@ -250,8 +243,21 @@ with st.sidebar:
     }
     
     for key, label in pages.items():
-        if st.button(label, key=f"menu_btn_{key}"):
+        is_active = (st.session_state.active_page == key)
+        # تخصيص لون الزر النشط ليكون أحمر داكن مميز
+        btn_style = (
+            "border: 1px solid #ff1e38 !important; "
+            "background: linear-gradient(135deg, rgba(230, 0, 35, 0.35) 0%, rgba(255, 30, 56, 0.5) 100%) !important; "
+            "box-shadow: 0 0 15px rgba(255, 30, 56, 0.3) !important;"
+        ) if is_active else ""
+        
+        # استخدام st.markdown مع الزر لتطبيق الـ Style المخصص مباشرة
+        if is_active:
+            st.markdown(f'<style>div[data-testid="stSidebar"] div.stButton > button[kind="secondary"][key*="{key}"] {{ {btn_style} }}</style>', unsafe_allow_html=True)
+
+        if st.button(label, key=f"sidebar_btn_{key}"):
             st.session_state.active_page = key
+            st.rerun()
 
     st.markdown("---")
     st.markdown(

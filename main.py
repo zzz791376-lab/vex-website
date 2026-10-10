@@ -31,7 +31,10 @@ if "login" in st.query_params:
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-# 2. Modern Ultra-Red Theme CSS & Sleek Dark Radio Navigation
+if "active_page" not in st.session_state:
+    st.session_state.active_page = "Home"
+
+# 2. Modern Ultra-Red Dark Theme CSS & Clean Sidebar Buttons
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -48,44 +51,36 @@ section[data-testid="stSidebar"] {
     padding-top: 15px;
 }
 
-/* إخفاء دوائر الـ Radio بالكامل وتحويلها إلى كاردات داكنة وفخمة */
-div[role="radiogroup"] {
-    gap: 8px !important;
-}
-div[role="radiogroup"] label > div:first-child,
-div[role="radiogroup"] label input[type="radio"],
-div[role="radiogroup"] label div[data-testid="stRadioButtonCustomIcon"],
-div[role="radiogroup"] label svg {
-    display: none !important;
-    width: 0px !important;
-    height: 0px !important;
-}
-div[role="radiogroup"] > label {
-    background: rgba(18, 22, 32, 0.85) !important;
-    padding: 12px 18px !important;
-    border-radius: 12px !important;
-    border: 1px solid #1f293d !important;
-    cursor: pointer !important;
-    transition: all 0.3s ease !important;
-    display: flex !important;
-    align-items: center !important;
+/* القضاء النهائي على الخلفيات البيضاء وجعل الأزرار داكنة وفخمة 100% */
+div[data-testid="stSidebar"] div.stButton > button {
     width: 100% !important;
-}
-div[role="radiogroup"] > label:hover {
-    border-color: #ff1e38 !important;
-    background: rgba(255, 30, 56, 0.15) !important;
-    transform: translateX(4px);
-}
-div[role="radiogroup"] > label[data-checked="true"] {
-    border-color: #ff1e38 !important;
-    background: linear-gradient(135deg, rgba(230, 0, 35, 0.3) 0%, rgba(255, 30, 56, 0.45) 100%) !important;
-    box-shadow: 0 4px 20px rgba(255, 30, 56, 0.35) !important;
-}
-div[role="radiogroup"] label p {
-    color: #ffffff !important;
+    background: rgba(18, 22, 32, 0.85) !important;
+    color: #e2e8f0 !important;
+    border: 1px solid #1f293d !important;
+    border-radius: 12px !important;
+    padding: 12px 16px !important;
     font-size: 15px !important;
     font-weight: 700 !important;
-    margin: 0 !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+    transition: all 0.3s ease !important;
+    margin-bottom: 4px !important;
+    box-shadow: none !important;
+}
+
+div[data-testid="stSidebar"] div.stButton > button:hover {
+    border-color: #ff1e38 !important;
+    background: rgba(255, 30, 56, 0.15) !important;
+    color: #ffffff !important;
+    transform: translateX(4px) !important;
+}
+
+div[data-testid="stSidebar"] div.stButton > button:focus,
+div[data-testid="stSidebar"] div.stButton > button:active {
+    border-color: #ff1e38 !important;
+    background: linear-gradient(135deg, rgba(230, 0, 35, 0.35) 0%, rgba(255, 30, 56, 0.45) 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(255, 30, 56, 0.3) !important;
 }
 
 .hero-title {
@@ -234,23 +229,30 @@ if not st.session_state.logged_in:
 
 # --- MAIN WEBSITE (After Login) ---
 
-# 3. Sidebar Navigation
+# 3. Sidebar Navigation (Pure Clean Buttons - NO Circles)
 with st.sidebar:
     st.markdown(
         f'<div style="text-align: center; margin-bottom: 20px;">'
-        f'<img src="{logo_style}" style="max-width: 100px; max-height: 70px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(255, 30, 56, 0.5));">'
+        f'<img src="{logo_style}" style="max-width: 110px; max-height: 75px; object-fit: contain; filter: drop-shadow(0 0 12px rgba(255, 30, 56, 0.6));">'
         f'</div>',
         unsafe_allow_html=True
     )
     st.markdown('<p style="color: #ff1e38; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 15px; padding-left: 5px;">MAIN MENU</p>', unsafe_allow_html=True)
     
-    page = st.radio(
-        "Navigation",
-        ["🏠  Home", "🖥️  Server", "👥  Staff Team", "📜  Rules", "🎉  Events", "📝  Staff Application", "💬  Discord"],
-        index=0,
-        label_visibility="collapsed"
-    )
+    pages = {
+        "Home": "🏠  Home",
+        "Server": "🖥️  Server",
+        "Staff Team": "👥  Staff Team",
+        "Rules": "📜  Rules",
+        "Events": "🎉  Events",
+        "Staff Application": "📝  Staff Application",
+        "Discord": "💬  Discord"
+    }
     
+    for key, label in pages.items():
+        if st.button(label, key=f"menu_btn_{key}"):
+            st.session_state.active_page = key
+
     st.markdown("---")
     st.markdown(
         '<div style="background: rgba(18, 22, 32, 0.85); padding: 15px; border-radius: 14px; border: 1px solid #1f293d; text-align: center;">'
@@ -261,7 +263,9 @@ with st.sidebar:
     )
 
 # 4. Main Content Pages
-if "Home" in page:
+page = st.session_state.active_page
+
+if page == "Home":
     col1, col2 = st.columns(2)
     with col1:
         st.markdown(
@@ -289,7 +293,7 @@ if "Home" in page:
             unsafe_allow_html=True
         )
 
-elif "Server" in page:
+elif page == "Server":
     st.markdown(
         '<div class="glass-card">'
         '<h2 style="color: white; margin-bottom: 5px;">🖥️ Direct Connect IP</h2>'
@@ -303,7 +307,7 @@ elif "Server" in page:
         unsafe_allow_html=True
     )
 
-elif "Staff Team" in page:
+elif page == "Staff Team":
     st.header("👥 Staff Team — VILLAGE RF")
     st.caption("Meet our official management and leadership team.")
     st.write("---")
@@ -325,7 +329,7 @@ elif "Staff Team" in page:
     with c7:
         st.markdown("""<div class="card-box"><div class="role-badge">⭐ DEV DISCORD</div><div class="staff-title">ZAKI VEX</div><div class="staff-sub">@closedaccount1_</div></div>""", unsafe_allow_html=True)
 
-elif "Rules" in page:
+elif page == "Rules":
     st.markdown(
         '<div class="glass-card">'
         '<h2 style="color: white; margin-bottom: 20px;">📜 Server Guidelines & Rules</h2>'
@@ -336,7 +340,7 @@ elif "Rules" in page:
         unsafe_allow_html=True
     )
 
-elif "Events" in page:
+elif page == "Events":
     st.markdown(
         '<div class="glass-card">'
         '<h2 style="color: white; margin-bottom: 10px;">🎉 Upcoming Events</h2>'
@@ -345,7 +349,7 @@ elif "Events" in page:
         unsafe_allow_html=True
     )
 
-elif "Staff Application" in page:
+elif page == "Staff Application":
     st.markdown('<div class="glass-card"><h2 style="color: white; margin-bottom: 15px;">📝 Staff Application</h2>', unsafe_allow_html=True)
     st.text_input("Discord Tag (e.g. zaki_vex)")
     st.text_area("Why do you want to join VILLAGE RF Staff Team?")
@@ -353,7 +357,7 @@ elif "Staff Application" in page:
         st.success("Your application has been submitted successfully!")
     st.markdown('</div>', unsafe_allow_html=True)
 
-elif "Discord" in page:
+elif page == "Discord":
     st.markdown(
         '<div class="glass-card" style="text-align: center;">'
         '<h2 style="color: white; margin-bottom: 10px;">💬 VILLAGE RF Discord Server</h2>'

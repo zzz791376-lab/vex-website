@@ -45,7 +45,7 @@ if "page" in st.query_params:
     if p in ["Home", "Server", "Staff Team", "Rules", "Events", "Staff Application", "Discord"]:
         st.session_state.active_page = p
 
-# 2. Modern Ultra-Red Dark Theme CSS & Perfect Top Navbar Links Styling
+# 2. Modern Ultra-Red Dark Theme CSS & Perfect Top Navbar Links
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -85,7 +85,6 @@ section[data-testid="stSidebar"] div.stButton > button:hover {
     transform: translateX(4px) !important;
 }
 
-/* شريط التنقل العلوي الفخم والمحافظ على نفس اللون والتنسيق الداكن تماماً */
 .top-navbar {
     display: flex;
     justify-content: space-between;
@@ -162,7 +161,6 @@ section[data-testid="stSidebar"] div.stButton > button:hover {
     color: #ffffff !important;
 }
 
-/* Hero Banner Card With FiveM Background Image */
 .hero-banner {
     background: linear-gradient(90deg, rgba(8, 10, 15, 0.96) 0%, rgba(8, 10, 15, 0.82) 55%, rgba(8, 10, 15, 0.4) 100%), 
                 url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
@@ -381,4 +379,18 @@ with st.sidebar:
         is_active = (st.session_state.active_page == key)
         btn_style = (
             "border: 1px solid #ff1e38 !important; "
-            "background: linear-gradient(135deg, rgba(230, 0, 35, 0.35) 0%, rgba
+            "background: linear-gradient(135deg, rgba(230, 0, 35, 0.35) 0%, rgba(255, 30, 56, 0.5) 100%) !important; "
+            "box-shadow: 0 0 15px rgba(255, 30, 56, 0.3) !important;"
+        ) if is_active else ""
+        
+        if is_active:
+            st.markdown(f'<style>div[data-testid="stSidebar"] div.stButton > button[kind="secondary"][key*="{key}"] {{ {btn_style} }}</style>', unsafe_allow_html=True)
+
+        if st.button(label, key=f"sidebar_btn_{key}"):
+            st.session_state.active_page = key
+            st.rerun()
+
+    st.markdown("---")
+    st.markdown(
+        '<div style="background: rgba(18, 22, 32, 0.85); padding: 15px; border-radius: 14px; border: 1px solid #1f293d; text-align: center;">'
+        '<div style="color: #ff1e38; font-weight: bold; font

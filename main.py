@@ -34,7 +34,7 @@ if "logged_in" not in st.session_state:
 if "active_page" not in st.session_state:
     st.session_state.active_page = "Home"
 
-# 2. Modern Ultra-Red Theme CSS & VILLAGE RF Sidebar Style
+# 2. Modern Ultra-Red Theme CSS & Custom Icon Sidebar Style
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -51,14 +51,14 @@ section[data-testid="stSidebar"] {
     padding-top: 15px;
 }
 
-/* تنسيق أزرار القائمة الجانبية بنمط VILLAGE RF الفخم */
+/* تنسيق أزرار القائمة الجانبية بنمط الأيقونات المربعة الفخمة */
 div[data-testid="stSidebar"] .stButton > button {
     width: 100% !important;
-    background: rgba(18, 22, 32, 0.75) !important;
+    background: rgba(18, 22, 32, 0.85) !important;
     color: #94a3b8 !important;
     border: 1px solid #1f293d !important;
     border-radius: 12px !important;
-    padding: 12px 18px !important;
+    padding: 12px 16px !important;
     font-size: 14px !important;
     font-weight: 700 !important;
     text-align: left !important;
@@ -69,7 +69,7 @@ div[data-testid="stSidebar"] .stButton > button {
 
 div[data-testid="stSidebar"] .stButton > button:hover {
     border-color: #ff1e38 !important;
-    background: rgba(255, 30, 56, 0.1) !important;
+    background: rgba(255, 30, 56, 0.15) !important;
     color: #ffffff !important;
     transform: translateX(4px);
 }
@@ -220,7 +220,7 @@ if not st.session_state.logged_in:
 
 # --- MAIN WEBSITE (After Login) ---
 
-# 3. Sidebar Navigation (VILLAGE RF Clean Buttons)
+# 3. Sidebar Navigation (VILLAGE RF Custom Icon Buttons)
 with st.sidebar:
     st.markdown(
         f'<div style="text-align: center; margin-bottom: 20px;">'
@@ -231,13 +231,13 @@ with st.sidebar:
     st.markdown('<p style="color: #ff1e38; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 15px; padding-left: 5px;">MAIN MENU</p>', unsafe_allow_html=True)
     
     pages = {
-        "Home": "🏠 Home",
-        "Server": "🖥️ Server",
-        "Staff Team": "👥 Staff Team",
-        "Rules": "📜 Rules",
-        "Events": "🎉 Events",
-        "Staff Application": "📝 Staff Application",
-        "Discord": "💬 Discord"
+        "Home": "🏠  Home",
+        "Server": "🖥️  Server",
+        "Staff Team": "👥  Staff Team",
+        "Rules": "📜  Rules",
+        "Events": "🎉  Events",
+        "Staff Application": "📝  Staff Application",
+        "Discord": "💬  Discord"
     }
     
     for key, label in pages.items():

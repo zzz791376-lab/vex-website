@@ -2,7 +2,7 @@ import streamlit as st
 import base64
 import os
 
-# 1. Page Config (Sidebar دائماً مفتوحة إجبارياً)
+# 1. Page Config
 st.set_page_config(
     page_title="VILLAGE RF — Official Portal",
     page_icon="🎮",
@@ -34,7 +34,7 @@ if "logged_in" not in st.session_state:
 if "active_page" not in st.session_state:
     st.session_state.active_page = "Home"
 
-# 2. Modern Ultra-Red Dark Theme CSS & Pure Dark Sidebar Styling
+# 2. Modern Ultra-Red Dark Theme CSS & Fixed Dark Buttons Styling
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -45,48 +45,37 @@ st.markdown("""
                 url('https://i.gifer.com/76YS.gif') center/cover no-repeat fixed !important;
     color: #ffffff;
 }
-
-/* تثبيت الـ Sidebar لتظهر دائماً وبشكل واضح */
 section[data-testid="stSidebar"] {
     background-color: rgba(11, 14, 20, 0.98) !important;
     border-right: 1px solid #1f293d;
     padding-top: 15px;
-    display: block !important;
-    visibility: visible !important;
 }
 
-/* تنسيق أزرار القائمة الجانبية لتكون داكنة وأنيقة تماماً مثل الصورة 2 */
-div[data-testid="stSidebar"] div.stButton > button {
+/* القضاء التام على الأزرار البيضاء وتحويلها لأسود داكن متناسق مع الثيم */
+section[data-testid="stSidebar"] div.stButton > button {
     width: 100% !important;
-    background: rgba(18, 22, 32, 0.85) !important;
-    color: #ffffff !important;
+    background: rgba(18, 22, 32, 0.9) !important;
+    color: #e2e8f0 !important;
     border: 1px solid #1f293d !important;
     border-radius: 12px !important;
-    padding: 12px 18px !important;
+    padding: 12px 16px !important;
     font-size: 15px !important;
     font-weight: 700 !important;
     text-align: left !important;
     justify-content: flex-start !important;
     transition: all 0.3s ease !important;
-    margin-bottom: 8px !important;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+    margin-bottom: 4px !important;
+    box-shadow: none !important;
 }
 
-div[data-testid="stSidebar"] div.stButton > button:hover {
+section[data-testid="stSidebar"] div.stButton > button:hover {
     border-color: #ff1e38 !important;
     background: rgba(255, 30, 56, 0.15) !important;
     color: #ffffff !important;
     transform: translateX(4px) !important;
 }
 
-div[data-testid="stSidebar"] div.stButton > button:focus,
-div[data-testid="stSidebar"] div.stButton > button:active {
-    border-color: #ff1e38 !important;
-    background: linear-gradient(135deg, rgba(230, 0, 35, 0.35) 0%, rgba(255, 30, 56, 0.5) 100%) !important;
-    color: #ffffff !important;
-    box-shadow: 0 0 15px rgba(255, 30, 56, 0.35) !important;
-}
-
+/* تخصيص الزر النشط حالياً ليكون أحمر داكن وفخم */
 .hero-title {
     font-size: 46px;
     font-weight: 900;
@@ -233,11 +222,11 @@ if not st.session_state.logged_in:
 
 # --- MAIN WEBSITE (After Login) ---
 
-# 3. Sidebar Navigation (Dark Custom Glass Buttons)
+# 3. Sidebar Navigation
 with st.sidebar:
     st.markdown(
         f'<div style="text-align: center; margin-bottom: 20px;">'
-        f'<img src="{logo_style}" style="max-width: 120px; max-height: 80px; object-fit: contain; filter: drop-shadow(0 0 12px rgba(255, 30, 56, 0.6));">'
+        f'<img src="{logo_style}" style="max-width: 110px; max-height: 75px; object-fit: contain; filter: drop-shadow(0 0 12px rgba(255, 30, 56, 0.6));">'
         f'</div>',
         unsafe_allow_html=True
     )
@@ -254,7 +243,19 @@ with st.sidebar:
     }
     
     for key, label in pages.items():
-        if st.button(label, key=f"sidebar_{key}"):
+        is_active = (st.session_state.active_page == key)
+        # تخصيص لون الزر النشط ليكون أحمر داكن مميز
+        btn_style = (
+            "border: 1px solid #ff1e38 !important; "
+            "background: linear-gradient(135deg, rgba(230, 0, 35, 0.35) 0%, rgba(255, 30, 56, 0.5) 100%) !important; "
+            "box-shadow: 0 0 15px rgba(255, 30, 56, 0.3) !important;"
+        ) if is_active else ""
+        
+        # استخدام st.markdown مع الزر لتطبيق الـ Style المخصص مباشرة
+        if is_active:
+            st.markdown(f'<style>div[data-testid="stSidebar"] div.stButton > button[kind="secondary"][key*="{key}"] {{ {btn_style} }}</style>', unsafe_allow_html=True)
+
+        if st.button(label, key=f"sidebar_btn_{key}"):
             st.session_state.active_page = key
             st.rerun()
 

@@ -31,7 +31,7 @@ if "login" in st.query_params:
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-# 2. Modern Ultra-Red Theme CSS & Clean Radio Styling
+# 2. Modern Ultra-Red Theme CSS & Sleek Dark Radio Navigation
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -43,46 +43,48 @@ st.markdown("""
     color: #ffffff;
 }
 section[data-testid="stSidebar"] {
-    background-color: rgba(11, 14, 20, 0.95) !important;
+    background-color: rgba(11, 14, 20, 0.98) !important;
     border-right: 1px solid #1f293d;
-    padding-top: 10px;
+    padding-top: 15px;
 }
 
-/* Masquer complètement les cercles des radio buttons */
+/* إخفاء دوائر الـ Radio بالكامل وتحويلها إلى كاردات داكنة وفخمة */
 div[role="radiogroup"] {
-    gap: 8px;
+    gap: 8px !important;
 }
 div[role="radiogroup"] label > div:first-child,
 div[role="radiogroup"] label input[type="radio"],
-div[role="radiogroup"] label div[data-testid="stRadioButtonCustomIcon"] {
+div[role="radiogroup"] label div[data-testid="stRadioButtonCustomIcon"],
+div[role="radiogroup"] label svg {
     display: none !important;
     width: 0px !important;
     height: 0px !important;
 }
 div[role="radiogroup"] > label {
-    background: rgba(18, 22, 32, 0.7);
+    background: rgba(18, 22, 32, 0.85) !important;
     padding: 12px 18px !important;
-    border-radius: 12px;
-    border: 1px solid #1f293d;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    border-radius: 12px !important;
+    border: 1px solid #1f293d !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
     display: flex !important;
     align-items: center !important;
+    width: 100% !important;
 }
 div[role="radiogroup"] > label:hover {
-    border-color: #ff1e38;
-    background: rgba(255, 30, 56, 0.1);
+    border-color: #ff1e38 !important;
+    background: rgba(255, 30, 56, 0.15) !important;
     transform: translateX(4px);
 }
 div[role="radiogroup"] > label[data-checked="true"] {
-    border-color: #ff1e38;
-    background: linear-gradient(135deg, rgba(230, 0, 35, 0.25) 0%, rgba(255, 30, 56, 0.35) 100%);
-    box-shadow: 0 4px 15px rgba(255, 30, 56, 0.25);
+    border-color: #ff1e38 !important;
+    background: linear-gradient(135deg, rgba(230, 0, 35, 0.3) 0%, rgba(255, 30, 56, 0.45) 100%) !important;
+    box-shadow: 0 4px 20px rgba(255, 30, 56, 0.35) !important;
 }
 div[role="radiogroup"] label p {
-    color: #e2e8f0 !important;
+    color: #ffffff !important;
     font-size: 15px !important;
-    font-weight: 700;
+    font-weight: 700 !important;
     margin: 0 !important;
 }
 
@@ -232,14 +234,19 @@ if not st.session_state.logged_in:
 
 # --- MAIN WEBSITE (After Login) ---
 
-# 3. Sidebar Navigation (Using stable st.radio)
+# 3. Sidebar Navigation
 with st.sidebar:
-    st.markdown('<h2 style="color: white; font-weight: 900; margin-bottom: 0px;">🎮 VILLAGE RF</h2>', unsafe_allow_html=True)
-    st.markdown('<p style="color: #ff1e38; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 15px;">MAIN MENU</p>', unsafe_allow_html=True)
+    st.markdown(
+        f'<div style="text-align: center; margin-bottom: 20px;">'
+        f'<img src="{logo_style}" style="max-width: 100px; max-height: 70px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(255, 30, 56, 0.5));">'
+        f'</div>',
+        unsafe_allow_html=True
+    )
+    st.markdown('<p style="color: #ff1e38; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 15px; padding-left: 5px;">MAIN MENU</p>', unsafe_allow_html=True)
     
     page = st.radio(
         "Navigation",
-        ["🏠 Home", "🖥️ Server", "👥 Staff Team", "📜 Rules", "🎉 Events", "📝 Staff Application", "💬 Discord"],
+        ["🏠  Home", "🖥️  Server", "👥  Staff Team", "📜  Rules", "🎉  Events", "📝  Staff Application", "💬  Discord"],
         index=0,
         label_visibility="collapsed"
     )
@@ -247,8 +254,8 @@ with st.sidebar:
     st.markdown("---")
     st.markdown(
         '<div style="background: rgba(18, 22, 32, 0.85); padding: 15px; border-radius: 14px; border: 1px solid #1f293d; text-align: center;">'
-        '<div style="color: #ff1e38; font-weight: bold; font-size: 14px;">🔴 VILLAGE RF</div>'
-        '<div style="color: #00ff88; font-size: 12px; font-weight: bold; margin-top: 4px;">● Server Online — LIVE</div>'
+        '<div style="color: #ff1e38; font-weight: bold; font-size: 13px;">🔴 VILLAGE RF</div>'
+        '<div style="color: #00ff88; font-size: 11px; font-weight: bold; margin-top: 4px;">● Server online — LIVE</div>'
         '</div>',
         unsafe_allow_html=True
     )

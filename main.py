@@ -236,9 +236,6 @@ with st.sidebar:
         "Home": "🏠  Home",
         "Server": "🖥️  Server",
         "Staff Team": "👥  Staff Team",
-        "Rules": "📜  Rules",
-        "Events": "🎉  Events",
-        "Staff Application": "📝  Staff Application",
         "Discord": "💬  Discord"
     }
     

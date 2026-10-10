@@ -2,7 +2,7 @@ import streamlit as st
 import base64
 import os
 
-# 1. Page Config
+# 1. Page Config (Sidebar toujours ouverte)
 st.set_page_config(
     page_title="VILLAGE RF — Official Portal",
     page_icon="🎮",
@@ -45,13 +45,17 @@ st.markdown("""
                 url('https://i.gifer.com/76YS.gif') center/cover no-repeat fixed !important;
     color: #ffffff;
 }
+
+/* Sidebar toujours visible et fixée */
 section[data-testid="stSidebar"] {
     background-color: rgba(11, 14, 20, 0.95) !important;
     border-right: 1px solid #1f293d;
     padding-top: 10px;
+    display: block !important;
+    visibility: visible !important;
 }
 
-/* Custom Navigation Buttons Styling */
+/* Boutons de navigation personnalisés */
 div[data-testid="stSidebar"] .stButton > button {
     width: 100% !important;
     background: rgba(18, 22, 32, 0.7) !important;
@@ -64,7 +68,7 @@ div[data-testid="stSidebar"] .stButton > button {
     text-align: left !important;
     justify-content: flex-start !important;
     transition: all 0.3s ease !important;
-    margin-bottom: 4px !important;
+    margin-bottom: 6px !important;
 }
 
 div[data-testid="stSidebar"] .stButton > button:hover {
@@ -217,21 +221,4 @@ if not st.session_state.logged_in:
         '<div style="color: #ff1e38; font-size: 11px; font-weight: 900; letter-spacing: 3px; margin-bottom: 10px;">VILLAGE RF COMMUNITY PORTAL</div>'
         '<h1 style="color: #ffffff; font-size: 30px; font-weight: 900; margin-bottom: 10px;">Enter the <span style="color: #ff1e38;">VILLAGE</span> world.</h1>'
         '<p style="color: #64748b; font-size: 13px; line-height: 1.5; margin-bottom: 25px;">Connect your Discord account to access the official website and verify your community access.</p>'
-        '<a href="?login=true" target="_self" class="btn-discord-login">🔗 Continue with Discord ➔</a>'
-        '</div></div>'
-    )
-    st.markdown(login_html, unsafe_allow_html=True)
-    st.stop()
-
-# --- MAIN WEBSITE (After Login) ---
-
-# 3. Sidebar Navigation (Pure Clean Buttons - ZERO Radio Circles)
-with st.sidebar:
-    st.markdown('<h2 style="color: white; font-weight: 900; margin-bottom: 0px;">🎮 VILLAGE RF</h2>', unsafe_allow_html=True)
-    st.markdown('<p style="color: #ff1e38; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 15px;">MAIN MENU</p>', unsafe_allow_html=True)
-    
-    pages = ["🏠 Home", "🖥️ Server", "👥 Staff Team", "📜 Rules", "🎉 Events", "📝 Staff Application", "💬 Discord"]
-    
-    for p in pages:
-        if st.button(p, key=f"nav_{p}"):
-            st
+        '<a href="?login=true" target="_self" class="btn-

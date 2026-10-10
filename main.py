@@ -222,16 +222,17 @@ div[data-baseweb="input"] > div:focus-within, div[data-baseweb="textarea"] > div
 
 # --- LOGIN / WELCOME GATEWAY ---
 if not st.session_state.logged_in:
-    login_html = (
-        f'<div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; z-index: 99999;">'
-        f'<div style="background: rgba(14, 17, 23, 0.90); backdrop-filter: blur(15px); border: 1px solid #1f293d; border-radius: 24px; padding: 40px; width: 460px; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.9);">'
-        f'<img src="{logo_style}" style="max-width: 170px; max-height: 110px; object-fit: contain; margin-bottom: 15px; filter: drop-shadow(0 0 15px rgba(255, 30, 56, 0.6));">'
-        '<div style="color: #ff1e38; font-size: 11px; font-weight: 900; letter-spacing: 3px; margin-bottom: 10px;">VILLAGE RF COMMUNITY PORTAL</div>'
-        '<h1 style="color: #ffffff; font-size: 30px; font-weight: 900; margin-bottom: 10px;">Enter the <span style="color: #ff1e38;">VILLAGE</span> world.</h1>'
-        '<p style="color: #64748b; font-size: 13px; line-height: 1.5; margin-bottom: 25px;">Connect your Discord account to access the official website and verify your community access.</p>'
-        '<a href="?login=true" target="_self" class="btn-discord-login">🔗 Continue with Discord ➔</a>'
-        '</div></div>'
-    )
+    login_html = f'''
+    <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; z-index: 99999;">
+        <div style="background: rgba(14, 17, 23, 0.90); backdrop-filter: blur(15px); border: 1px solid #1f293d; border-radius: 24px; padding: 40px; width: 460px; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.9);">
+            <img src="{logo_style}" style="max-width: 170px; max-height: 110px; object-fit: contain; margin-bottom: 15px; filter: drop-shadow(0 0 15px rgba(255, 30, 56, 0.6));">
+            <div style="color: #ff1e38; font-size: 11px; font-weight: 900; letter-spacing: 3px; margin-bottom: 10px;">VILLAGE RF COMMUNITY PORTAL</div>
+            <h1 style="color: #ffffff; font-size: 30px; font-weight: 900; margin-bottom: 10px;">Enter the <span style="color: #ff1e38;">VILLAGE</span> world.</h1>
+            <p style="color: #64748b; font-size: 13px; line-height: 1.5; margin-bottom: 25px;">Connect your Discord account to access the official website and verify your community access.</p>
+            <a href="?login=true" target="_self" class="btn-discord-login">🔗 Continue with Discord ➔</a>
+        </div>
+    </div>
+    '''
     st.markdown(login_html, unsafe_allow_html=True)
     st.stop()
 
@@ -260,32 +261,31 @@ with st.sidebar:
 
 # 4. Main Content Pages
 if "Home" in page:
-    st.markdown(
-        '<div class="glass-card">'
-        '<span class="hero-tag">🔴 OFFICIAL COMMUNITY PORTAL • VILLAGE RF / 2026</span>'
-        '<h1 class="hero-title">VILLAGE RF</h1>'
-        '<p style="color: #ff1e38; font-weight: bold; font-size: 17px; margin-top: -5px;">MORE THAN JUST A SERVER.</p>'
-        '<p style="color: #94a3b8; font-size: 15px; max-width: 650px; line-height: 1.6;">Welcome to the official VILLAGE RF community portal. Stay connected, check the latest events, meet the team and keep your Discord access verified.</p>'
-        '<div style="margin-top: 25px;">'
-        '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Join Community ➔</a>'
-        '<a href="fivem://connect/217.160.240.61" class="btn-secondary-action">Connect Server 🚀</a>'
-        '</div></div>',
-        unsafe_allow_html=True
-    )
+    st.markdown('''
+    <div class="glass-card">
+        <span class="hero-tag">🔴 OFFICIAL COMMUNITY PORTAL • VILLAGE RF / 2026</span>
+        <h1 class="hero-title">VILLAGE RF</h1>
+        <p style="color: #ff1e38; font-weight: bold; font-size: 17px; margin-top: -5px;">MORE THAN JUST A SERVER.</p>
+        <p style="color: #94a3b8; font-size: 15px; max-width: 650px; line-height: 1.6;">Welcome to the official VILLAGE RF community portal. Stay connected, check the latest events, meet the team and keep your Discord access verified.</p>
+        <div style="margin-top: 25px;">
+            <a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Join Community ➔</a>
+            <a href="fivem://connect/217.160.240.61" class="btn-secondary-action">Connect Server 🚀</a>
+        </div>
+    </div>
+    ''', unsafe_allow_html=True)
 
 elif "Server" in page:
-    st.markdown(
-        '<div class="glass-card">'
-        '<h2 style="color: white; margin-bottom: 5px;">🖥️ Direct Connect IP</h2>'
-        '<p style="color: #64748b; font-size: 14px;">Copy the IP below or launch directly via FiveM application.</p>'
-        '<div class="code-ip-box">'
-        '<span>connect 217.160.240.61</span>'
-        '<span style="color: #ff1e38; font-size: 12px; font-weight: bold;">[LIVE ONLINE]</span>'
-        '</div>'
-        '<a href="fivem://connect/217.160.240.61" class="btn-action">Connect Directly to FiveM 🚀</a>'
-        '</div>',
-        unsafe_allow_html=True
-    )
+    st.markdown('''
+    <div class="glass-card">
+        <h2 style="color: white; margin-bottom: 5px;">🖥️ Direct Connect IP</h2>
+        <p style="color: #64748b; font-size: 14px;">Copy the IP below or launch directly via FiveM application.</p>
+        <div class="code-ip-box">
+            <span>connect 217.160.240.61</span>
+            <span style="color: #ff1e38; font-size: 12px; font-weight: bold;">[LIVE ONLINE]</span>
+        </div>
+        <a href="fivem://connect/217.160.240.61" class="btn-action">Connect Directly to FiveM 🚀</a>
+    </div>
+    ''', unsafe_allow_html=True)
 
 elif "Staff Team" in page:
     st.header("👥 Staff Team — VILLAGE RF")
@@ -310,5 +310,28 @@ elif "Staff Team" in page:
         st.markdown("<div class='card-box'><div class='role-badge'>⭐ DEV DISCORD</div><div class='staff-title'>ZAKI VEX</div><div class='staff-sub'>@closedaccount1_</div></div>", unsafe_allow_html=True)
 
 elif "Rules" in page:
-    st.markdown(
-        '<div class="glass-card">'
+    st.markdown('''
+    <div class="glass-card">
+        <h2 style="color: white; margin-bottom: 20px;">📜 Server Guidelines & Rules</h2>
+        <div class="rule-card"><b>1. Respect All Members:</b> Toxic behavior, racism, and harassment are strictly prohibited.</div>
+        <div class="rule-card"><b>2. No RDM / VDM:</b> Random Killing or using vehicles as weapons is strictly forbidden.</div>
+        <div class="rule-card"><b>3. Value Your Life (Fear RP):</b> You must value your character's life at all times during Roleplay scenarios.</div>
+    </div>
+    ''', unsafe_allow_html=True)
+
+elif "Staff Application" in page:
+    st.markdown('<div class="glass-card"><h2 style="color: white; margin-bottom: 15px;">📝 Staff Application</h2>', unsafe_allow_html=True)
+    st.text_input("Discord Tag (e.g. zaki_vex)")
+    st.text_area("Why do you want to join VILLAGE RF Staff Team?")
+    if st.button("Submit Application ➔"):
+        st.success("Your application has been submitted successfully!")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+elif "Discord" in page:
+    st.markdown('''
+    <div class="glass-card" style="text-align: center;">
+        <h2 style="color: white; margin-bottom: 10px;">💬 VILLAGE RF Discord Server</h2>
+        <p style="color: #64748b; margin-bottom: 25px;">Click below to join our official active Discord server and stay up to date!</p>
+        <a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Open Discord Invite ➔</a>
+    </div>
+    ''', unsafe_allow_html=True)

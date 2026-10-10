@@ -26,7 +26,7 @@ logo_b64 = get_base64_image("logo.png")
 bg_style = f"data:image/jpeg;base64,{banner_b64}" if banner_b64 else "https://images.alphacoders.com/131/1318498.jpeg"
 logo_style = f"data:image/png;base64,{logo_b64}" if logo_b64 else "https://cdn-icons-png.flaticon.com/512/124/124010.png"
 
-# Check URL Query Params or Session for Login Status
+# Check Login Status via Query Parameters
 if "login" in st.query_params:
     st.session_state.logged_in = True
 
@@ -138,7 +138,7 @@ div[role="radiogroup"] label p {
     padding: 14px 20px;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 136, 255, 0.4);
-    transition: all 0.3s ease;
+    text-align: center;
     border: none;
     cursor: pointer;
 }
@@ -151,6 +151,35 @@ div[role="radiogroup"] label p {
 
 # --- LOGIN / WELCOME GATEWAY ---
 if not st.session_state.logged_in:
-    st.markdown(f"""
-    <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(180deg, rgba(11, 14, 20, 0.85) 0%, rgba(11, 14, 20, 0.95) 100%), url('{bg_style}'); background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center; z-index: 99999;">
-        <div style="background: #11151c; border: 1px solid #1e293b; border-radius: 24px; padding:
+    login_html = (
+        f"<div style=\"position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(180deg, rgba(11, 14, 20, 0.85) 0%, rgba(11, 14, 20, 0.95) 100%), url('{bg_style}'); background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center; z-index: 99999;\">"
+        f"<div style=\"background: #11151c; border: 1px solid #1e293b; border-radius: 24px; padding: 40px; width: 460px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.8);\">"
+        f"<img src=\"{logo_style}\" style=\"width: 85px; height: 85px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #0088ff;\">"
+        "<div style=\"color: #0088ff; font-size: 11px; font-weight: bold; letter-spacing: 2px; margin-bottom: 10px;\">VILLAGE RF COMMUNITY PORTAL</div>"
+        "<h1 style=\"color: #ffffff; font-size: 30px; font-weight: 900; margin-bottom: 10px;\">Enter the <span style=\"color: #0088ff;\">VILLAGE</span> world.</h1>"
+        "<p style=\"color: #64748b; font-size: 13px; line-height: 1.5; margin-bottom: 25px;\">Connect your Discord account to access the official website and verify your community access.</p>"
+        "<a href=\"?login=true\" target=\"_self\" class=\"btn-discord-login\">🔗 Continue with Discord ➔</a>"
+        "</div></div>"
+    )
+    st.markdown(login_html, unsafe_allow_html=True)
+    st.stop()
+
+# --- MAIN WEBSITE (After Login) ---
+
+# 3. Sidebar Navigation
+with st.sidebar:
+    st.markdown("<h2 style='color: white;'>🎮 VILLAGE RF</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='color: #64748b; font-size: 12px; margin-bottom: 15px;'>MAIN MENU</p>", unsafe_allow_html=True)
+    
+    page = st.radio(
+        "Navigation",
+        ["🏠 Home", "🖥️ Server", "👥 Staff Team", "📜 Rules", "🎉 Events", "📝 Staff Application", "💬 Discord"],
+        index=0,
+        label_visibility="collapsed"
+    )
+    
+    st.markdown("---")
+    st.markdown("""
+    <div style='background: #161b22; padding: 15px; border-radius: 12px; border: 1px solid #21262d;'>
+        <div style='color: #00a2ff; font-weight: bold; font-size: 14px;'>🔵 VILLAGE RF</div>
+        <div style='color: #64748b; font-size:

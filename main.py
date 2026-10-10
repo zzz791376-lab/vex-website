@@ -31,7 +31,7 @@ if "login" in st.query_params:
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-# 2. Modern Ultra-Red Theme CSS & Clean Radio Styling
+# 2. Modern Ultra-Red Theme CSS & Complete Icon Removal
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -48,17 +48,19 @@ section[data-testid="stSidebar"] {
     padding-top: 10px;
 }
 
-/* Masquer complètement les cercles des radio buttons */
+/* إخفاء المربعات والأيقونات الجانبية الخاصة بالـ Radio بالكامل */
 div[role="radiogroup"] {
     gap: 8px;
 }
-div[role="radiogroup"] label > div:first-child,
-div[role="radiogroup"] label input[type="radio"],
-div[role="radiogroup"] label div[data-testid="stRadioButtonCustomIcon"] {
+div[role="radiogroup"] label svg,
+div[role="radiogroup"] label span,
+div[role="radiogroup"] label div[data-baseweb="radio"],
+div[role="radiogroup"] label div:has(> svg) {
     display: none !important;
     width: 0px !important;
     height: 0px !important;
 }
+
 div[role="radiogroup"] > label {
     background: rgba(18, 22, 32, 0.7);
     padding: 12px 18px !important;
@@ -232,7 +234,7 @@ if not st.session_state.logged_in:
 
 # --- MAIN WEBSITE (After Login) ---
 
-# 3. Sidebar Navigation (Using stable st.radio)
+# 3. Sidebar Navigation
 with st.sidebar:
     st.markdown('<h2 style="color: white; font-weight: 900; margin-bottom: 0px;">🎮 VILLAGE RF</h2>', unsafe_allow_html=True)
     st.markdown('<p style="color: #ff1e38; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 15px;">MAIN MENU</p>', unsafe_allow_html=True)

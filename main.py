@@ -74,7 +74,6 @@ section[data-testid="stSidebar"] div.stButton > button:hover {
     transform: translateX(4px) !important;
 }
 
-/* تنسيق أزرار الشريط العلوي لتكون تفاعلية وفخمة */
 div[data-testid="column"] div.stButton > button {
     width: 100% !important;
     background: rgba(11, 14, 20, 0.95) !important;
@@ -112,7 +111,6 @@ div[data-testid="column"] div.stButton > button:hover {
     color: #ffffff !important;
 }
 
-/* Hero Banner Card With FiveM / GTA V Car Background Image */
 .hero-banner {
     background: linear-gradient(90deg, rgba(8, 10, 15, 0.96) 0%, rgba(8, 10, 15, 0.82) 55%, rgba(8, 10, 15, 0.4) 100%), 
                 url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
@@ -359,4 +357,56 @@ with nav_col1:
         st.session_state.active_page = "Home"
         st.rerun()
 with nav_col2:
-    if st.button("Rules", key
+    if st.button("Rules", key="top_rules"):
+        st.session_state.active_page = "Rules"
+        st.rerun()
+with nav_col3:
+    if st.button("Staff", key="top_staff"):
+        st.session_state.active_page = "Staff Team"
+        st.rerun()
+with nav_col4:
+    if st.button("Events", key="top_events"):
+        st.session_state.active_page = "Events"
+        st.rerun()
+with nav_col5:
+    if st.button("Staff App", key="top_app"):
+        st.session_state.active_page = "Staff Application"
+        st.rerun()
+with nav_col6:
+    if st.button("Discord", key="top_discord"):
+        st.session_state.active_page = "Discord"
+        st.rerun()
+with nav_col7:
+    st.markdown('<div style="background: rgba(18, 22, 32, 0.9); border: 1px solid #1f293d; border-radius: 12px; padding: 9px 12px; text-align: center; font-size: 12px; font-weight: bold; color: #ffffff;">👤 ZAKI VEX | <span style="color: #00ff88;">Member</span></div>', unsafe_allow_html=True)
+with nav_col8:
+    st.markdown('<a href="?logout=true" target="_self" class="logout-btn">Logout</a>', unsafe_allow_html=True)
+
+st.write("---")
+
+# 4. Main Content Pages
+page = st.session_state.active_page
+
+if page == "Home":
+    st.markdown(
+        '<div class="hero-banner">'
+        '<div class="hero-portal-badge">🔴 OFFICIAL COMMUNITY PORTAL • VILLAGE RF / 2026</div>'
+        '<h1 class="hero-title">VILLAGE RF</h1>'
+        '<p class="hero-tag">MORE THAN JUST A SERVER.</p>'
+        '<p style="color: #94a3b8; font-size: 14px; max-width: 550px; line-height: 1.6; margin-bottom: 25px;">Welcome to the official VILLAGE RF community portal. Stay connected, check the latest events, meet the team and keep your Discord access verified.</p>'
+        '<div style="margin-top: 20px;">'
+        '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Join Community ➔</a>'
+        '</div>'
+        '<div class="hero-stats-row">'
+        '<div class="stat-item"><div class="stat-value">128 / 256</div><div class="stat-label">PLAYERS ONLINE</div></div>'
+        '<div class="stat-item"><div class="stat-value">24/7</div><div class="stat-label">SERVER AVAILABILITY</div></div>'
+        '<div class="stat-item"><div class="stat-value" style="color: #00ff88;">ONLINE</div><div class="stat-label">COMMUNITY STATUS</div></div>'
+        '</div>'
+        '</div>',
+        unsafe_allow_html=True
+    )
+
+elif page == "Server":
+    st.markdown(
+        '<div class="glass-card">'
+        '<h2 style="color: white; margin-bottom: 5px;">🖥️ Direct Connect IP</h2>'
+        '<p

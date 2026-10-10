@@ -34,7 +34,7 @@ if "logged_in" not in st.session_state:
 if "active_page" not in st.session_state:
     st.session_state.active_page = "Home"
 
-# 2. Modern Ultra-Red Dark Theme CSS & FiveM Banner Styling
+# 2. Modern Ultra-Red Dark Theme CSS & Top Bar Button Styling
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -74,54 +74,37 @@ section[data-testid="stSidebar"] div.stButton > button:hover {
     transform: translateX(4px) !important;
 }
 
-/* شريط التنقل العلوي الفخم */
-.top-navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(11, 14, 20, 0.95);
-    border: 1px solid #1f293d;
-    border-radius: 16px;
-    padding: 12px 25px;
-    margin-bottom: 25px;
-    backdrop-filter: blur(10px);
+/* تنسيق أزرار الشريط العلوي لتكون تفاعلية وفخمة */
+div[data-testid="column"] div.stButton > button {
+    width: 100% !important;
+    background: rgba(11, 14, 20, 0.95) !important;
+    color: #94a3b8 !important;
+    border: 1px solid #1f293d !important;
+    border-radius: 12px !important;
+    padding: 10px 15px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    transition: all 0.3s ease !important;
 }
 
-.top-nav-links {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-}
-
-.top-user-box {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.user-pill {
-    background: rgba(18, 22, 32, 0.9);
-    border: 1px solid #1f293d;
-    border-radius: 12px;
-    padding: 8px 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 13px;
-    font-weight: bold;
-    color: #ffffff;
+div[data-testid="column"] div.stButton > button:hover {
+    border-color: #ff1e38 !important;
+    color: #ffffff !important;
+    background: rgba(255, 30, 56, 0.15) !important;
 }
 
 .logout-btn {
+    display: inline-block;
     background: rgba(230, 0, 35, 0.15);
     border: 1px solid #ff1e38;
     color: #ff1e38 !important;
-    padding: 8px 18px;
+    padding: 10px 20px;
     border-radius: 12px;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 14px;
     text-decoration: none;
     transition: all 0.3s ease;
+    text-align: center;
 }
 
 .logout-btn:hover {
@@ -368,124 +351,12 @@ with st.sidebar:
         unsafe_allow_html=True
     )
 
-# --- TOP NAVIGATION BAR ---
-home_color = "#ffffff" if st.session_state.active_page == "Home" else "#94a3b8"
-rules_color = "#ffffff" if st.session_state.active_page == "Rules" else "#94a3b8"
-staff_color = "#ffffff" if st.session_state.active_page == "Staff Team" else "#94a3b8"
-events_color = "#ffffff" if st.session_state.active_page == "Events" else "#94a3b8"
-app_color = "#ffffff" if st.session_state.active_page == "Staff Application" else "#94a3b8"
-discord_color = "#ffffff" if st.session_state.active_page == "Discord" else "#94a3b8"
+# --- TOP NAVIGATION BAR (Interactive Streamlit Buttons) ---
+nav_col1, nav_col2, nav_col3, nav_col4, nav_col5, nav_col6, nav_col7, nav_col8 = st.columns([1.1, 1.1, 1.1, 1.1, 1.6, 1.1, 1.5, 1.1])
 
-top_nav_html = f"""
-<div class="top-navbar">
-    <div class="top-nav-links">
-        <a href="#" style="color: {home_color};">Home</a>
-        <a href="#" style="color: {rules_color};">Rules</a>
-        <a href="#" style="color: {staff_color};">Staff</a>
-        <a href="#" style="color: {events_color};">Events</a>
-        <a href="#" style="color: {app_color};">Staff Application</a>
-        <a href="#" style="color: {discord_color};">Discord</a>
-    </div>
-    <div class="top-user-box">
-        <div class="user-pill">👤 ZAKI VEX &nbsp;|&nbsp; <span style="color: #00ff88;">Member</span></div>
-        <a href="?logout=true" target="_self" class="logout-btn">Logout</a>
-    </div>
-</div>
-"""
-st.markdown(top_nav_html, unsafe_allow_html=True)
-
-# 4. Main Content Pages
-page = st.session_state.active_page
-
-if page == "Home":
-    st.markdown(
-        '<div class="hero-banner">'
-        '<div class="hero-portal-badge">🔴 OFFICIAL COMMUNITY PORTAL • VILLAGE RF / 2026</div>'
-        '<h1 class="hero-title">VILLAGE RF</h1>'
-        '<p class="hero-tag">MORE THAN JUST A SERVER.</p>'
-        '<p style="color: #94a3b8; font-size: 14px; max-width: 550px; line-height: 1.6; margin-bottom: 25px;">Welcome to the official VILLAGE RF community portal. Stay connected, check the latest events, meet the team and keep your Discord access verified.</p>'
-        '<div style="margin-top: 20px;">'
-        '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Join Community ➔</a>'
-        '</div>'
-        '<div class="hero-stats-row">'
-        '<div class="stat-item"><div class="stat-value">128 / 256</div><div class="stat-label">PLAYERS ONLINE</div></div>'
-        '<div class="stat-item"><div class="stat-value">24/7</div><div class="stat-label">SERVER AVAILABILITY</div></div>'
-        '<div class="stat-item"><div class="stat-value" style="color: #00ff88;">ONLINE</div><div class="stat-label">COMMUNITY STATUS</div></div>'
-        '</div>'
-        '</div>',
-        unsafe_allow_html=True
-    )
-
-elif page == "Server":
-    st.markdown(
-        '<div class="glass-card">'
-        '<h2 style="color: white; margin-bottom: 5px;">🖥️ Direct Connect IP</h2>'
-        '<p style="color: #64748b; font-size: 14px;">Copy the IP below or launch directly via FiveM application.</p>'
-        '<div class="code-ip-box">'
-        '<span>connect 217.160.240.61</span>'
-        '<span style="color: #ff1e38; font-size: 12px; font-weight: bold;">[LIVE ONLINE]</span>'
-        '</div>'
-        '<a href="fivem://connect/217.160.240.61" class="btn-action">Connect Directly to FiveM 🚀</a>'
-        '</div>',
-        unsafe_allow_html=True
-    )
-
-elif page == "Staff Team":
-    st.header("👥 Staff Team — VILLAGE RF")
-    st.caption("Meet our official management and leadership team.")
-    st.write("---")
-    
-    c1, c2, c3, c4, c5, c6, c7 = st.columns(7)
-    
-    with c1:
-        st.markdown("""<div class="card-box"><div class="role-badge">👑 OWNER</div><div class="staff-title">! Haroun.13K</div><div class="staff-sub">@off_marseille</div></div>""", unsafe_allow_html=True)
-    with c2:
-        st.markdown("""<div class="card-box"><div class="role-badge">👑 FOUNDER</div><div class="staff-title">ADLANE HB</div><div class="staff-sub">@adlanehb</div></div>""", unsafe_allow_html=True)
-    with c3:
-        st.markdown("""<div class="card-box"><div class="role-badge">🟣 CO-OWNER</div><div class="staff-title">SIDO</div><div class="staff-sub">@sido_sido_18</div></div>""", unsafe_allow_html=True)
-    with c4:
-        st.markdown("""<div class="card-box"><div class="role-badge">⭐ MANAGER</div><div class="staff-title">Johane</div><div class="staff-sub">@yb.johane</div></div>""", unsafe_allow_html=True)
-    with c5:
-        st.markdown("""<div class="card-box"><div class="role-badge">🔵 DEV</div><div class="staff-title">ZR</div><div class="staff-sub">@zr_rr011</div></div>""", unsafe_allow_html=True)
-    with c6:
-        st.markdown("""<div class="card-box"><div class="role-badge">🔵 DEV</div><div class="staff-title">PIROx99.</div><div class="staff-sub">@piro.fps20.</div></div>""", unsafe_allow_html=True)
-    with c7:
-        st.markdown("""<div class="card-box"><div class="role-badge">⭐ DEV DISCORD</div><div class="staff-title">ZAKI VEX</div><div class="staff-sub">@closedaccount1_</div></div>""", unsafe_allow_html=True)
-
-elif page == "Rules":
-    st.markdown(
-        '<div class="glass-card">'
-        '<h2 style="color: white; margin-bottom: 20px;">📜 Server Guidelines & Rules</h2>'
-        '<div class="rule-card"><b>1. Respect All Members:</b> Toxic behavior, racism, and harassment are strictly prohibited.</div>'
-        '<div class="rule-card"><b>2. No RDM / VDM:</b> Random Killing or using vehicles as weapons is strictly forbidden.</div>'
-        '<div class="rule-card"><b>3. Value Your Life (Fear RP):</b> You must value your character\'s life at all times during Roleplay scenarios.</div>'
-        '</div>',
-        unsafe_allow_html=True
-    )
-
-elif page == "Events":
-    st.markdown(
-        '<div class="glass-card">'
-        '<h2 style="color: white; margin-bottom: 10px;">🎉 Upcoming Events</h2>'
-        '<p style="color: #94a3b8;">Stay tuned for the official VILLAGE RF launch and community events!</p>'
-        '</div>',
-        unsafe_allow_html=True
-    )
-
-elif page == "Staff Application":
-    st.markdown('<div class="glass-card"><h2 style="color: white; margin-bottom: 15px;">📝 Staff Application</h2>', unsafe_allow_html=True)
-    st.text_input("Discord Tag (e.g. zaki_vex)")
-    st.text_area("Why do you want to join VILLAGE RF Staff Team?")
-    if st.button("Submit Application ➔"):
-        st.success("Your application has been submitted successfully!")
-    st.markdown('</div>', unsafe_allow_html=True)
-
-elif page == "Discord":
-    st.markdown(
-        '<div class="glass-card" style="text-align: center;">'
-        '<h2 style="color: white; margin-bottom: 10px;">💬 VILLAGE RF Discord Server</h2>'
-        '<p style="color: #64748b; margin-bottom: 25px;">Click below to join our official active Discord server and stay up to date!</p>'
-        '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Open Discord Invite ➔</a>'
-        '</div>',
-        unsafe_allow_html=True
-    )
+with nav_col1:
+    if st.button("Home", key="top_home"):
+        st.session_state.active_page = "Home"
+        st.rerun()
+with nav_col2:
+    if st.button("Rules", key

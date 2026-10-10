@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Function to encode local banner
+# Function to encode local images
 def get_base64_image(image_path):
     try:
         if os.path.exists(image_path):
@@ -20,8 +20,15 @@ def get_base64_image(image_path):
         return None
     return None
 
-img_b64 = get_base64_image("banner.jpg")
-bg_style = f"data:image/jpeg;base64,{img_b64}" if img_b64 else "https://images.alphacoders.com/131/1318498.jpeg"
+banner_b64 = get_base64_image("banner.jpg")
+logo_b64 = get_base64_image("logo.png")
+
+bg_style = f"data:image/jpeg;base64,{banner_b64}" if banner_b64 else "https://images.alphacoders.com/131/1318498.jpeg"
+logo_style = f"data:image/png;base64,{logo_b64}" if logo_b64 else "https://cdn-icons-png.flaticon.com/512/124/124010.png"
+
+# Session State for Authentication / Entry
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
 
 # 2. CSS Styles
 st.markdown("""
@@ -71,13 +78,14 @@ div[role="radiogroup"] label p {
 }
 .btn-action {
     display: inline-block;
-    background: #0088ff;
+    background: linear-gradient(90deg, #0066ff 0%, #00a2ff 100%);
     color: white !important;
     text-decoration: none !important;
     border-radius: 12px;
     padding: 12px 28px;
     font-weight: bold;
     margin-right: 15px;
+    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4);
 }
 .btn-secondary-action {
     display: inline-block;
@@ -119,6 +127,30 @@ div[role="radiogroup"] label p {
 </style>
 """, unsafe_allow_html=True)
 
+# --- LOGIN / WELCOME GATEWAY ---
+if not st.session_state.logged_in:
+    st.markdown(f"""
+    <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(180deg, rgba(11, 14, 20, 0.85) 0%, rgba(11, 14, 20, 0.95) 100%), url('{bg_style}'); background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center; z-index: 99999;">
+        <div style="background: #11151c; border: 1px solid #1e293b; border-radius: 24px; padding: 40px; width: 480px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
+            <img src="{logo_style}" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #0088ff;">
+            <div style="color: #0088ff; font-size: 12px; font-weight: bold; letter-spacing: 2px; margin-bottom: 10px;">VILLAGE RF COMMUNITY PORTAL</div>
+            <h1 style="color: #ffffff; font-size: 32px; font-weight: 900; margin-bottom: 10px;">Enter the <span style="color: #0088ff;">VILLAGE</span> world.</h1>
+            <p style="color: #64748b; font-size: 13px; line-height: 1.5; margin-bottom: 30px;">Connect your Discord account to access the official website and verify your community access.</p>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Invisible layout spacer to position the Streamlit button over the gateway box
+    col1, col2, col3 = st.columns([1, 1.2, 1])
+    with col2:
+        st.markdown("<br><br><br><br><br><br><br><br><br><br>", unsafe_allow_html=True)
+        if st.button("🔗 Continue with Discord", use_container_width=True):
+            st.session_state.logged_in = True
+            st.rerun()
+    st.stop()
+
+# --- MAIN WEBSITE (After Login) ---
+
 # 3. Sidebar Navigation
 with st.sidebar:
     st.markdown("<h2 style='color: white;'>🎮 VILLAGE RF</h2>", unsafe_allow_html=True)
@@ -139,7 +171,7 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
-# 4. Main Content
+# 4. Main Content Pages
 if "Home" in page:
     st.markdown(f"""
     <div style="background: linear-gradient(180deg, rgba(11, 14, 20, 0.3) 0%, rgba(11, 14, 20, 1) 100%), url('{bg_style}'); background-size: cover; background-position: center; border-radius: 20px; padding: 55px 45px; border: 1px solid #1e293b; margin-bottom: 25px;">

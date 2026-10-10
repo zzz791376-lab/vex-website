@@ -34,7 +34,7 @@ if "logged_in" not in st.session_state:
 if "active_page" not in st.session_state:
     st.session_state.active_page = "Home"
 
-# 2. Modern Ultra-Red Theme CSS & Custom Icon Sidebar Style
+# 2. Modern Ultra-Red Dark Theme CSS & Fixed Sidebar Buttons Style
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -51,11 +51,11 @@ section[data-testid="stSidebar"] {
     padding-top: 15px;
 }
 
-/* تنسيق أزرار القائمة الجانبية بنمط الأيقونات المربعة الفخمة */
+/* تعديل أزرار القائمة الجانبية لتكون داكنة ومتناسقة 100% مع الثيم الأسود والأحمر */
 div[data-testid="stSidebar"] .stButton > button {
     width: 100% !important;
     background: rgba(18, 22, 32, 0.85) !important;
-    color: #94a3b8 !important;
+    color: #e2e8f0 !important;
     border: 1px solid #1f293d !important;
     border-radius: 12px !important;
     padding: 12px 16px !important;
@@ -220,7 +220,7 @@ if not st.session_state.logged_in:
 
 # --- MAIN WEBSITE (After Login) ---
 
-# 3. Sidebar Navigation (VILLAGE RF Custom Icon Buttons)
+# 3. Sidebar Navigation
 with st.sidebar:
     st.markdown(
         f'<div style="text-align: center; margin-bottom: 20px;">'

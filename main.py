@@ -20,10 +20,7 @@ def get_base64_image(image_path):
         return None
     return None
 
-banner_b64 = get_base64_image("banner.jpg")
 logo_b64 = get_base64_image("logo.png")
-
-bg_style = f"data:image/jpeg;base64,{banner_b64}" if banner_b64 else "https://images.alphacoders.com/131/1318498.jpeg"
 logo_style = f"data:image/png;base64,{logo_b64}" if logo_b64 else "https://cdn-icons-png.flaticon.com/512/124/124010.png"
 
 # Check Login Status via Query Parameters
@@ -33,19 +30,39 @@ if "login" in st.query_params:
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-# 2. Modern Red Theme CSS Styles
+# 2. Modern Red Theme CSS & Animated Video Background Styles
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
     display: none !important;
 }
 .stApp {
-    background-color: #080a0f;
+    background-color: transparent !important;
     color: #ffffff;
+}
+/* Animated Video Background Styling */
+.bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -9999;
+}
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(180deg, rgba(8, 10, 15, 0.85) 0%, rgba(8, 10, 15, 0.95) 100%);
+    z-index: -9988;
 }
 section[data-testid="stSidebar"] {
     background-color: #0e1117 !important;
     border-right: 1px solid #1a202c;
+    z-index: 99;
 }
 div[role="radiogroup"] label div[data-testid="stRadioButtonCustomIcon"],
 div[role="radiogroup"] label input[type="radio"] {
@@ -168,12 +185,18 @@ div[role="radiogroup"] label p {
     box-shadow: 0 6px 30px rgba(255, 30, 56, 0.8);
 }
 </style>
+
+<!-- Background Video (GTA V / FiveM Loop Animation) -->
+<video autoplay muted loop class="bg-video">
+    <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-and-numbers-31955-large.mp4" type="video/mp4">
+</video>
+<div class="bg-overlay"></div>
 """, unsafe_allow_html=True)
 
 # --- LOGIN / WELCOME GATEWAY ---
 if not st.session_state.logged_in:
     login_html = (
-        f'<div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(180deg, rgba(8, 10, 15, 0.85) 0%, rgba(8, 10, 15, 0.96) 100%), url(\'{bg_style}\'); background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center; z-index: 99999;">'
+        f'<div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; z-index: 99999;">'
         f'<div style="background: #0e1117; border: 1px solid #1f293d; border-radius: 24px; padding: 40px; width: 460px; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.9);">'
         f'<img src="{logo_style}" style="width: 85px; height: 85px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #ff1e38; box-shadow: 0 0 20px rgba(255,30,56,0.4);">'
         '<div style="color: #ff1e38; font-size: 11px; font-weight: 900; letter-spacing: 3px; margin-bottom: 10px;">VILLAGE RF COMMUNITY PORTAL</div>'
@@ -211,7 +234,7 @@ with st.sidebar:
 # 4. Main Content Pages
 if "Home" in page:
     home_html = (
-        f'<div style="background: linear-gradient(180deg, rgba(8, 10, 15, 0.4) 0%, rgba(8, 10, 15, 1) 100%), url(\'{bg_style}\'); background-size: cover; background-position: center; border-radius: 20px; padding: 55px 45px; border: 1px solid #1f293d; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">'
+        '<div style="background: rgba(14, 17, 23, 0.75); backdrop-filter: blur(10px); border-radius: 20px; padding: 55px 45px; border: 1px solid #1f293d; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">'
         '<span class="hero-tag">🔴 OFFICIAL COMMUNITY PORTAL • VILLAGE RF / 2026</span>'
         '<h1 class="hero-title">VILLAGE RF</h1>'
         '<p style="color: #ff1e38; font-weight: bold; font-size: 17px; margin-top: -5px;">MORE THAN JUST A SERVER.</p>'

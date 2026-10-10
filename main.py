@@ -42,7 +42,6 @@ st.markdown("""
                 url('https://i.gifer.com/76YS.gif') center/cover no-repeat fixed !important;
     color: #ffffff;
 }
-/* Enhanced Modern Sidebar */
 section[data-testid="stSidebar"] {
     background-color: rgba(11, 14, 20, 0.95) !important;
     border-right: 1px solid #1f293d;
@@ -261,7 +260,7 @@ with st.sidebar:
 
 # 4. Main Content Pages
 if "Home" in page:
-    home_html = (
+    st.markdown(
         '<div class="glass-card">'
         '<span class="hero-tag">🔴 OFFICIAL COMMUNITY PORTAL • VILLAGE RF / 2026</span>'
         '<h1 class="hero-title">VILLAGE RF</h1>'
@@ -270,12 +269,12 @@ if "Home" in page:
         '<div style="margin-top: 25px;">'
         '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Join Community ➔</a>'
         '<a href="fivem://connect/217.160.240.61" class="btn-secondary-action">Connect Server 🚀</a>'
-        '</div></div>'
+        '</div></div>',
+        unsafe_allow_html=True
     )
-    st.markdown(home_html, unsafe_allow_html=True)
 
 elif "Server" in page:
-    server_html = (
+    st.markdown(
         '<div class="glass-card">'
         '<h2 style="color: white; margin-bottom: 5px;">🖥️ Direct Connect IP</h2>'
         '<p style="color: #64748b; font-size: 14px;">Copy the IP below or launch directly via FiveM application.</p>'
@@ -284,9 +283,9 @@ elif "Server" in page:
         '<span style="color: #ff1e38; font-size: 12px; font-weight: bold;">[LIVE ONLINE]</span>'
         '</div>'
         '<a href="fivem://connect/217.160.240.61" class="btn-action">Connect Directly to FiveM 🚀</a>'
-        '</div>'
+        '</div>',
+        unsafe_allow_html=True
     )
-    st.markdown(server_html, unsafe_allow_html=True)
 
 elif "Staff Team" in page:
     st.header("👥 Staff Team — VILLAGE RF")
@@ -311,26 +310,5 @@ elif "Staff Team" in page:
         st.markdown("<div class='card-box'><div class='role-badge'>⭐ DEV DISCORD</div><div class='staff-title'>ZAKI VEX</div><div class='staff-sub'>@closedaccount1_</div></div>", unsafe_allow_html=True)
 
 elif "Rules" in page:
-    rules_html = (
+    st.markdown(
         '<div class="glass-card">'
-        '<h2 style="color: white; margin-bottom: 20px;">📜 Server Guidelines & Rules</h2>'
-        '<div class="rule-card"><b>1. Respect All Members:</b> Toxic behavior, racism, and harassment are strictly prohibited.</div>'
-        '<div class="rule-card"><b>2. No RDM / VDM:</b> Random Killing or using vehicles as weapons is strictly forbidden.</div>'
-        '<div class="rule-card"><b>3. Value Your Life (Fear RP):</b> You must value your character\'s life at all times during Roleplay scenarios.</div>'
-        '</div>'
-    )
-    st.markdown(rules_html, unsafe_allow_html=True)
-
-elif "Staff Application" in page:
-    st.markdown('<div class="glass-card"><h2 style="color: white; margin-bottom: 15px;">📝 Staff Application</h2>', unsafe_allow_html=True)
-    st.text_input("Discord Tag (e.g. zaki_vex)")
-    st.text_area("Why do you want to join VILLAGE RF Staff Team?")
-    if st.button("Submit Application ➔"):
-        st.success("Your application has been submitted successfully!")
-    st.markdown('</div>', unsafe_allow_html=True)
-
-elif "Discord" in page:
-    discord_html = (
-        '<div class="glass-card" style="text-align: center;">'
-        '<h2 style="color: white; margin-bottom: 10px;">💬 VILLAGE RF Discord Server</h2>'
-        '<p style="color: #647

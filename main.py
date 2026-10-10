@@ -110,6 +110,7 @@ div[role="radiogroup"] label p {
     padding: 12px 28px;
     font-weight: bold;
     margin-right: 15px;
+    margin-bottom: 10px;
     box-shadow: 0 4px 20px rgba(230, 0, 35, 0.5);
     transition: all 0.3s ease;
 }
@@ -126,6 +127,8 @@ div[role="radiogroup"] label p {
     border-radius: 12px;
     padding: 12px 28px;
     font-weight: bold;
+    margin-right: 15px;
+    margin-bottom: 10px;
     transition: all 0.3s ease;
 }
 .btn-secondary-action:hover {
@@ -271,32 +274,18 @@ with st.sidebar:
 
 # 4. Main Content Pages
 if "Home" in page:
-    col1, col2 = st.columns([1, 1])
-    with col1:
-        st.markdown(
-            '<div class="glass-card">'
-            '<span class="hero-tag">🔴 OFFICIAL COMMUNITY PORTAL • VILLAGE RF / 2026</span>'
-            '<h1 class="hero-title">VILLAGE RF</h1>'
-            '<p style="color: #ff1e38; font-weight: bold; font-size: 17px; margin-top: -5px;">MORE THAN JUST A SERVER.</p>'
-            '<p style="color: #94a3b8; font-size: 15px; line-height: 1.6;">Welcome to the official VILLAGE RF community portal. Stay connected, check the latest events, meet the team and keep your Discord access verified.</p>'
-            '<div style="margin-top: 25px;">'
-            '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Join Community ➔</a>'
-            '</div></div>',
-            unsafe_allow_html=True
-        )
-    with col2:
-        st.markdown(
-            '<div class="glass-card">'
-            '<h2 style="color: white; margin-bottom: 5px;">🖥️ Direct Connect IP</h2>'
-            '<p style="color: #64748b; font-size: 14px;">Quick launch directly via FiveM application.</p>'
-            '<div class="code-ip-box">'
-            '<span>connect 217.160.240.61</span>'
-            '<span style="color: #ff1e38; font-size: 12px; font-weight: bold;">[ONLINE]</span>'
-            '</div>'
-            '<a href="fivem://connect/217.160.240.61" class="btn-action">Connect Server 🚀</a>'
-            '</div>',
-            unsafe_allow_html=True
-        )
+    st.markdown(
+        '<div class="glass-card">'
+        '<span class="hero-tag">🔴 OFFICIAL COMMUNITY PORTAL • VILLAGE RF / 2026</span>'
+        '<h1 class="hero-title">VILLAGE RF</h1>'
+        '<p style="color: #ff1e38; font-weight: bold; font-size: 17px; margin-top: -5px;">MORE THAN JUST A SERVER.</p>'
+        '<p style="color: #94a3b8; font-size: 15px; max-width: 650px; line-height: 1.6;">Welcome to the official VILLAGE RF community portal. Stay connected, check the latest events, meet the team and keep your Discord access verified.</p>'
+        '<div style="margin-top: 25px;">'
+        '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Join Community ➔</a>'
+        '<a href="fivem://connect/217.160.240.61" class="btn-secondary-action">Connect Server 🚀</a>'
+        '</div></div>',
+        unsafe_allow_html=True
+    )
 
 elif "Server" in page:
     st.markdown(

@@ -26,7 +26,10 @@ logo_b64 = get_base64_image("logo.png")
 bg_style = f"data:image/jpeg;base64,{banner_b64}" if banner_b64 else "https://images.alphacoders.com/131/1318498.jpeg"
 logo_style = f"data:image/png;base64,{logo_b64}" if logo_b64 else "https://cdn-icons-png.flaticon.com/512/124/124010.png"
 
-# Session State for Authentication / Entry
+# Check URL Query Params or Session for Login Status
+if "login" in st.query_params:
+    st.session_state.logged_in = True
+
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
@@ -124,6 +127,25 @@ div[role="radiogroup"] label p {
     margin-top: 2px;
     word-break: break-word;
 }
+.btn-discord-login {
+    display: block;
+    width: 100%;
+    background: linear-gradient(90deg, #0066ff 0%, #00a2ff 100%);
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 14px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 136, 255, 0.4);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+.btn-discord-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 136, 255, 0.6);
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -131,15 +153,4 @@ div[role="radiogroup"] label p {
 if not st.session_state.logged_in:
     st.markdown(f"""
     <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(180deg, rgba(11, 14, 20, 0.85) 0%, rgba(11, 14, 20, 0.95) 100%), url('{bg_style}'); background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center; z-index: 99999;">
-        <div style="background: #11151c; border: 1px solid #1e293b; border-radius: 24px; padding: 40px; width: 480px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
-            <img src="{logo_style}" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #0088ff;">
-            <div style="color: #0088ff; font-size: 12px; font-weight: bold; letter-spacing: 2px; margin-bottom: 10px;">VILLAGE RF COMMUNITY PORTAL</div>
-            <h1 style="color: #ffffff; font-size: 32px; font-weight: 900; margin-bottom: 10px;">Enter the <span style="color: #0088ff;">VILLAGE</span> world.</h1>
-            <p style="color: #64748b; font-size: 13px; line-height: 1.5; margin-bottom: 20px;">Connect your Discord account to access the official website and verify your community access.</p>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    col1, col2, col3 = st.columns([1, 1.2, 1])
-    with col2:
-        st
+        <div style="background: #11151c; border: 1px solid #1e293b; border-radius: 24px; padding:

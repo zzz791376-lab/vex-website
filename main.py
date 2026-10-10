@@ -31,7 +31,7 @@ if "login" in st.query_params:
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-# 2. Modern Ultra-Red Theme CSS & Styles (Absolute Removal of Radio Circles)
+# 2. Modern Ultra-Red Theme CSS & Styles
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -50,16 +50,18 @@ section[data-testid="stSidebar"] {
 div[role="radiogroup"] {
     gap: 8px;
 }
-/* إخفاء تام وجذري لأي دائرة أو أيقونة افتراضية للـ Radio Buttons */
-div[role="radiogroup"] label div[data-testid="stRadioButtonCustomIcon"],
-div[role="radiogroup"] label input[type="radio"],
-div[role="radiogroup"] label div:has(> input[type="radio"]),
-div[role="radiogroup"] label span {
+div[role="radiogroup"] label > div:first-child {
     display: none !important;
-    width: 0 !important;
-    height: 0 !important;
+    width: 0px !important;
+    height: 0px !important;
 }
-div[role="radiogroup"] label {
+div[role="radiogroup"] label input[type="radio"] {
+    display: none !important;
+}
+div[role="radiogroup"] label div[data-testid="stRadioButtonCustomIcon"] {
+    display: none !important;
+}
+div[role="radiogroup"] > label {
     background: rgba(18, 22, 32, 0.7);
     padding: 12px 18px !important;
     border-radius: 12px;
@@ -68,13 +70,14 @@ div[role="radiogroup"] label {
     transition: all 0.3s ease;
     display: flex !important;
     align-items: center !important;
+    justify-content: flex-start !important;
 }
-div[role="radiogroup"] label:hover {
+div[role="radiogroup"] > label:hover {
     border-color: #ff1e38;
     background: rgba(255, 30, 56, 0.1);
     transform: translateX(4px);
 }
-div[role="radiogroup"] label[data-checked="true"] {
+div[role="radiogroup"] > label[data-checked="true"] {
     border-color: #ff1e38;
     background: linear-gradient(135deg, rgba(230, 0, 35, 0.25) 0%, rgba(255, 30, 56, 0.35) 100%);
     box-shadow: 0 4px 15px rgba(255, 30, 56, 0.25);
@@ -268,18 +271,32 @@ with st.sidebar:
 
 # 4. Main Content Pages
 if "Home" in page:
-    st.markdown(
-        '<div class="glass-card">'
-        '<span class="hero-tag">🔴 OFFICIAL COMMUNITY PORTAL • VILLAGE RF / 2026</span>'
-        '<h1 class="hero-title">VILLAGE RF</h1>'
-        '<p style="color: #ff1e38; font-weight: bold; font-size: 17px; margin-top: -5px;">MORE THAN JUST A SERVER.</p>'
-        '<p style="color: #94a3b8; font-size: 15px; max-width: 650px; line-height: 1.6;">Welcome to the official VILLAGE RF community portal. Stay connected, check the latest events, meet the team and keep your Discord access verified.</p>'
-        '<div style="margin-top: 25px;">'
-        '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Join Community ➔</a>'
-        '<a href="fivem://connect/217.160.240.61" class="btn-secondary-action">Connect Server 🚀</a>'
-        '</div></div>',
-        unsafe_allow_html=True
-    )
+    col1, col2 = st.columns([1, 1])
+    with col1:
+        st.markdown(
+            '<div class="glass-card">'
+            '<span class="hero-tag">🔴 OFFICIAL COMMUNITY PORTAL • VILLAGE RF / 2026</span>'
+            '<h1 class="hero-title">VILLAGE RF</h1>'
+            '<p style="color: #ff1e38; font-weight: bold; font-size: 17px; margin-top: -5px;">MORE THAN JUST A SERVER.</p>'
+            '<p style="color: #94a3b8; font-size: 15px; line-height: 1.6;">Welcome to the official VILLAGE RF community portal. Stay connected, check the latest events, meet the team and keep your Discord access verified.</p>'
+            '<div style="margin-top: 25px;">'
+            '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Join Community ➔</a>'
+            '</div></div>',
+            unsafe_allow_html=True
+        )
+    with col2:
+        st.markdown(
+            '<div class="glass-card">'
+            '<h2 style="color: white; margin-bottom: 5px;">🖥️ Direct Connect IP</h2>'
+            '<p style="color: #64748b; font-size: 14px;">Quick launch directly via FiveM application.</p>'
+            '<div class="code-ip-box">'
+            '<span>connect 217.160.240.61</span>'
+            '<span style="color: #ff1e38; font-size: 12px; font-weight: bold;">[ONLINE]</span>'
+            '</div>'
+            '<a href="fivem://connect/217.160.240.61" class="btn-action">Connect Server 🚀</a>'
+            '</div>',
+            unsafe_allow_html=True
+        )
 
 elif "Server" in page:
     st.markdown(
@@ -315,33 +332,4 @@ elif "Staff Team" in page:
     with c6:
         st.markdown("<div class='card-box'><div class='role-badge'>🔵 DEV</div><div class='staff-title'>PIROx99.</div><div class='staff-sub'>@piro.fps20.</div></div>", unsafe_allow_html=True)
     with c7:
-        st.markdown("<div class='card-box'><div class='role-badge'>⭐ DEV DISCORD</div><div class='staff-title'>ZAKI VEX</div><div class='staff-sub'>@closedaccount1_</div></div>", unsafe_allow_html=True)
-
-elif "Rules" in page:
-    st.markdown(
-        '<div class="glass-card">'
-        '<h2 style="color: white; margin-bottom: 20px;">📜 Server Guidelines & Rules</h2>'
-        '<div class="rule-card"><b>1. Respect All Members:</b> Toxic behavior, racism, and harassment are strictly prohibited.</div>'
-        '<div class="rule-card"><b>2. No RDM / VDM:</b> Random Killing or using vehicles as weapons is strictly forbidden.</div>'
-        '<div class="rule-card"><b>3. Value Your Life (Fear RP):</b> You must value your character\'s life at all times during Roleplay scenarios.</div>'
-        '</div>',
-        unsafe_allow_html=True
-    )
-
-elif "Staff Application" in page:
-    st.markdown('<div class="glass-card"><h2 style="color: white; margin-bottom: 15px;">📝 Staff Application</h2>', unsafe_allow_html=True)
-    st.text_input("Discord Tag (e.g. zaki_vex)")
-    st.text_area("Why do you want to join VILLAGE RF Staff Team?")
-    if st.button("Submit Application ➔"):
-        st.success("Your application has been submitted successfully!")
-    st.markdown('</div>', unsafe_allow_html=True)
-
-elif "Discord" in page:
-    st.markdown(
-        '<div class="glass-card" style="text-align: center;">'
-        '<h2 style="color: white; margin-bottom: 10px;">💬 VILLAGE RF Discord Server</h2>'
-        '<p style="color: #64748b; margin-bottom: 25px;">Click below to join our official active Discord server and stay up to date!</p>'
-        '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Open Discord Invite ➔</a>'
-        '</div>',
-        unsafe_allow_html=True
-    )
+        st.markdown("<div class='card-box'><div class='role-badge'>⭐ DEV DISCORD</div><div class='staff-title'>ZAKI VEX</div><div class='staff-sub'>

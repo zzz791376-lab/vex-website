@@ -31,8 +31,8 @@ if "login" in st.query_params:
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-# 2. Modern Ultra-Red Theme CSS & Styles
-css_code = """
+# 2. Modern Ultra-Red Theme CSS & Styles (Clean Version)
+st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
     display: none !important;
@@ -120,4 +120,227 @@ div[role="radiogroup"] label p {
     text-decoration: none !important;
     border: 1px solid #1f293d;
     border-radius: 12px;
-    padding: 1
+    padding: 12px 28px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+.btn-secondary-action:hover {
+    border-color: #ff1e38;
+    background: #1b1216;
+}
+.card-box {
+    background-color: rgba(18, 22, 32, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 30, 56, 0.3);
+    border-radius: 16px;
+    padding: 18px 8px;
+    text-align: center;
+    margin-bottom: 15px;
+    min-height: 120px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+}
+.card-box:hover {
+    border-color: #ff1e38;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(255, 30, 56, 0.3);
+}
+.role-badge {
+    color: #ff1e38;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+.staff-title {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 6px;
+    word-break: break-word;
+}
+.staff-sub {
+    color: #94a3b8;
+    font-size: 11px;
+    margin-top: 2px;
+    word-break: break-word;
+}
+.btn-discord-login {
+    display: block;
+    width: 100%;
+    background: linear-gradient(135deg, #e60023 0%, #ff1e38 100%);
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 14px 20px;
+    border-radius: 14px;
+    box-shadow: 0 4px 25px rgba(230, 0, 35, 0.5);
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-discord-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(255, 30, 56, 0.8);
+}
+.glass-card {
+    background: rgba(14, 17, 23, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid #1f293d;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin-bottom: 25px;
+}
+.code-ip-box {
+    background: #090c10;
+    border: 1px solid #ff1e38;
+    border-radius: 12px;
+    padding: 15px 20px;
+    font-family: monospace;
+    font-size: 18px;
+    color: #00ff88;
+    margin: 15px 0 25px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(255, 30, 56, 0.2);
+}
+.rule-card {
+    background: rgba(18, 22, 32, 0.85);
+    border-left: 4px solid #ff1e38;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+div[data-baseweb="input"] > div, div[data-baseweb="textarea"] > div {
+    background-color: #090c10 !important;
+    border: 1px solid #1f293d !important;
+    color: white !important;
+    border-radius: 10px !important;
+}
+div[data-baseweb="input"] > div:focus-within, div[data-baseweb="textarea"] > div:focus-within {
+    border-color: #ff1e38 !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# --- LOGIN / WELCOME GATEWAY ---
+if not st.session_state.logged_in:
+    login_html = (
+        '<div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; z-index: 99999;">'
+        '<div style="background: rgba(14, 17, 23, 0.90); backdrop-filter: blur(15px); border: 1px solid #1f293d; border-radius: 24px; padding: 40px; width: 460px; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.9);">'
+        f'<img src="{logo_style}" style="max-width: 170px; max-height: 110px; object-fit: contain; margin-bottom: 15px; filter: drop-shadow(0 0 15px rgba(255, 30, 56, 0.6));">'
+        '<div style="color: #ff1e38; font-size: 11px; font-weight: 900; letter-spacing: 3px; margin-bottom: 10px;">VILLAGE RF COMMUNITY PORTAL</div>'
+        '<h1 style="color: #ffffff; font-size: 30px; font-weight: 900; margin-bottom: 10px;">Enter the <span style="color: #ff1e38;">VILLAGE</span> world.</h1>'
+        '<p style="color: #64748b; font-size: 13px; line-height: 1.5; margin-bottom: 25px;">Connect your Discord account to access the official website and verify your community access.</p>'
+        '<a href="?login=true" target="_self" class="btn-discord-login">🔗 Continue with Discord ➔</a>'
+        '</div></div>'
+    )
+    st.markdown(login_html, unsafe_allow_html=True)
+    st.stop()
+
+# --- MAIN WEBSITE (After Login) ---
+
+# 3. Sidebar Navigation
+with st.sidebar:
+    st.markdown('<h2 style="color: white; font-weight: 900; margin-bottom: 0px;">🎮 VILLAGE RF</h2>', unsafe_allow_html=True)
+    st.markdown('<p style="color: #ff1e38; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 20px;">MAIN MENU</p>', unsafe_allow_html=True)
+    
+    page = st.radio(
+        "Navigation",
+        ["🏠 Home", "🖥️ Server", "👥 Staff Team", "📜 Rules", "🎉 Events", "📝 Staff Application", "💬 Discord"],
+        index=0,
+        label_visibility="collapsed"
+    )
+    
+    st.markdown("---")
+    st.markdown(
+        '<div style="background: rgba(18, 22, 32, 0.85); padding: 15px; border-radius: 14px; border: 1px solid #1f293d; text-align: center;">'
+        '<div style="color: #ff1e38; font-weight: bold; font-size: 14px;">🔴 VILLAGE RF</div>'
+        '<div style="color: #00ff88; font-size: 12px; font-weight: bold; margin-top: 4px;">● Server Online — LIVE</div>'
+        '</div>',
+        unsafe_allow_html=True
+    )
+
+# 4. Main Content Pages
+if "Home" in page:
+    st.markdown(
+        '<div class="glass-card">'
+        '<span class="hero-tag">🔴 OFFICIAL COMMUNITY PORTAL • VILLAGE RF / 2026</span>'
+        '<h1 class="hero-title">VILLAGE RF</h1>'
+        '<p style="color: #ff1e38; font-weight: bold; font-size: 17px; margin-top: -5px;">MORE THAN JUST A SERVER.</p>'
+        '<p style="color: #94a3b8; font-size: 15px; max-width: 650px; line-height: 1.6;">Welcome to the official VILLAGE RF community portal. Stay connected, check the latest events, meet the team and keep your Discord access verified.</p>'
+        '<div style="margin-top: 25px;">'
+        '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Join Community ➔</a>'
+        '<a href="fivem://connect/217.160.240.61" class="btn-secondary-action">Connect Server 🚀</a>'
+        '</div></div>',
+        unsafe_allow_html=True
+    )
+
+elif "Server" in page:
+    st.markdown(
+        '<div class="glass-card">'
+        '<h2 style="color: white; margin-bottom: 5px;">🖥️ Direct Connect IP</h2>'
+        '<p style="color: #64748b; font-size: 14px;">Copy the IP below or launch directly via FiveM application.</p>'
+        '<div class="code-ip-box">'
+        '<span>connect 217.160.240.61</span>'
+        '<span style="color: #ff1e38; font-size: 12px; font-weight: bold;">[LIVE ONLINE]</span>'
+        '</div>'
+        '<a href="fivem://connect/217.160.240.61" class="btn-action">Connect Directly to FiveM 🚀</a>'
+        '</div>',
+        unsafe_allow_html=True
+    )
+
+elif "Staff Team" in page:
+    st.header("👥 Staff Team — VILLAGE RF")
+    st.caption("Meet our official management and leadership team.")
+    st.write("---")
+    
+    c1, c2, c3, c4, c5, c6, c7 = st.columns(7)
+    
+    with c1:
+        st.markdown("<div class='card-box'><div class='role-badge'>👑 OWNER</div><div class='staff-title'>! Haroun.13K</div><div class='staff-sub'>@off_marseille</div></div>", unsafe_allow_html=True)
+    with c2:
+        st.markdown("<div class='card-box'><div class='role-badge'>👑 FOUNDER</div><div class='staff-title'>ADLANE HB</div><div class='staff-sub'>@adlanehb</div></div>", unsafe_allow_html=True)
+    with c3:
+        st.markdown("<div class='card-box'><div class='role-badge'>🟣 CO-OWNER</div><div class='staff-title'>SIDO</div><div class='staff-sub'>@sido_sido_18</div></div>", unsafe_allow_html=True)
+    with c4:
+        st.markdown("<div class='card-box'><div class='role-badge'>⭐ MANAGER</div><div class='staff-title'>Johane</div><div class='staff-sub'>@yb.johane</div></div>", unsafe_allow_html=True)
+    with c5:
+        st.markdown("<div class='card-box'><div class='role-badge'>🔵 DEV</div><div class='staff-title'>ZR</div><div class='staff-sub'>@zr_rr011</div></div>", unsafe_allow_html=True)
+    with c6:
+        st.markdown("<div class='card-box'><div class='role-badge'>🔵 DEV</div><div class='staff-title'>PIROx99.</div><div class='staff-sub'>@piro.fps20.</div></div>", unsafe_allow_html=True)
+    with c7:
+        st.markdown("<div class='card-box'><div class='role-badge'>⭐ DEV DISCORD</div><div class='staff-title'>ZAKI VEX</div><div class='staff-sub'>@closedaccount1_</div></div>", unsafe_allow_html=True)
+
+elif "Rules" in page:
+    st.markdown(
+        '<div class="glass-card">'
+        '<h2 style="color: white; margin-bottom: 20px;">📜 Server Guidelines & Rules</h2>'
+        '<div class="rule-card"><b>1. Respect All Members:</b> Toxic behavior, racism, and harassment are strictly prohibited.</div>'
+        '<div class="rule-card"><b>2. No RDM / VDM:</b> Random Killing or using vehicles as weapons is strictly forbidden.</div>'
+        '<div class="rule-card"><b>3. Value Your Life (Fear RP):</b> You must value your character\'s life at all times during Roleplay scenarios.</div>'
+        '</div>',
+        unsafe_allow_html=True
+    )
+
+elif "Staff Application" in page:
+    st.markdown('<div class="glass-card"><h2 style="color: white; margin-bottom: 15px;">📝 Staff Application</h2>', unsafe_allow_html=True)
+    st.text_input("Discord Tag (e.g. zaki_vex)")
+    st.text_area("Why do you want to join VILLAGE RF Staff Team?")
+    if st.button("Submit Application ➔"):
+        st.success("Your application has been submitted successfully!")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+elif "Discord" in page:
+    st.markdown(
+        '<div class="glass-card" style="text-align: center;">'
+        '<h2 style="color: white; margin-bottom: 10px;">💬 VILLAGE RF Discord Server</h2>'
+        '<p style="color: #64748b; margin-bottom: 25px;">Click below to join our official active Discord server and stay up to date!</p>'
+        '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Open Discord Invite ➔</a>'
+        '</div>',
+        unsafe_allow_html=True
+    )

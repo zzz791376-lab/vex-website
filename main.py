@@ -34,7 +34,7 @@ if "logged_in" not in st.session_state:
 if "active_page" not in st.session_state:
     st.session_state.active_page = "Home"
 
-# 2. Modern Ultra-Red Dark Theme CSS & Top Navigation Bar Styling
+# 2. Modern Ultra-Red Dark Theme CSS & FiveM Banner Styling
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -74,7 +74,7 @@ section[data-testid="stSidebar"] div.stButton > button:hover {
     transform: translateX(4px) !important;
 }
 
-/* شريط التنقل العلوي الفخم (Top Navbar) */
+/* شريط التنقل العلوي الفخم */
 .top-navbar {
     display: flex;
     justify-content: space-between;
@@ -91,18 +91,6 @@ section[data-testid="stSidebar"] div.stButton > button:hover {
     display: flex;
     gap: 30px;
     align-items: center;
-}
-
-.top-nav-links a {
-    color: #94a3b8;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
-    transition: color 0.3s ease;
-}
-
-.top-nav-links a:hover, .top-nav-links a.active {
-    color: #ffffff;
 }
 
 .top-user-box {
@@ -141,11 +129,11 @@ section[data-testid="stSidebar"] div.stButton > button:hover {
     color: #ffffff !important;
 }
 
-/* Hero Banner Card With Server Background Image */
+/* Hero Banner Card With FiveM / GTA V Car Background Image */
 .hero-banner {
-    background: linear-gradient(90deg, rgba(10, 12, 18, 0.95) 0%, rgba(10, 12, 18, 0.75) 50%, rgba(10, 12, 18, 0.4) 100%), 
-                url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
-    border: 1px solid rgba(255, 30, 56, 0.35);
+    background: linear-gradient(90deg, rgba(8, 10, 15, 0.96) 0%, rgba(8, 10, 15, 0.82) 55%, rgba(8, 10, 15, 0.4) 100%), 
+                url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+    border: 1px solid rgba(255, 30, 56, 0.4);
     border-radius: 24px;
     padding: 50px 45px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.8), inset 0 0 50px rgba(0,0,0,0.5);
@@ -449,48 +437,4 @@ elif page == "Staff Team":
     with c3:
         st.markdown("""<div class="card-box"><div class="role-badge">🟣 CO-OWNER</div><div class="staff-title">SIDO</div><div class="staff-sub">@sido_sido_18</div></div>""", unsafe_allow_html=True)
     with c4:
-        st.markdown("""<div class="card-box"><div class="role-badge">⭐ MANAGER</div><div class="staff-title">Johane</div><div class="staff-sub">@yb.johane</div></div>""", unsafe_allow_html=True)
-    with c5:
-        st.markdown("""<div class="card-box"><div class="role-badge">🔵 DEV</div><div class="staff-title">ZR</div><div class="staff-sub">@zr_rr011</div></div>""", unsafe_allow_html=True)
-    with c6:
-        st.markdown("""<div class="card-box"><div class="role-badge">🔵 DEV</div><div class="staff-title">PIROx99.</div><div class="staff-sub">@piro.fps20.</div></div>""", unsafe_allow_html=True)
-    with c7:
-        st.markdown("""<div class="card-box"><div class="role-badge">⭐ DEV DISCORD</div><div class="staff-title">ZAKI VEX</div><div class="staff-sub">@closedaccount1_</div></div>""", unsafe_allow_html=True)
-
-elif page == "Rules":
-    st.markdown(
-        '<div class="glass-card">'
-        '<h2 style="color: white; margin-bottom: 20px;">📜 Server Guidelines & Rules</h2>'
-        '<div class="rule-card"><b>1. Respect All Members:</b> Toxic behavior, racism, and harassment are strictly prohibited.</div>'
-        '<div class="rule-card"><b>2. No RDM / VDM:</b> Random Killing or using vehicles as weapons is strictly forbidden.</div>'
-        '<div class="rule-card"><b>3. Value Your Life (Fear RP):</b> You must value your character\'s life at all times during Roleplay scenarios.</div>'
-        '</div>',
-        unsafe_allow_html=True
-    )
-
-elif page == "Events":
-    st.markdown(
-        '<div class="glass-card">'
-        '<h2 style="color: white; margin-bottom: 10px;">🎉 Upcoming Events</h2>'
-        '<p style="color: #94a3b8;">Stay tuned for the official VILLAGE RF launch and community events!</p>'
-        '</div>',
-        unsafe_allow_html=True
-    )
-
-elif page == "Staff Application":
-    st.markdown('<div class="glass-card"><h2 style="color: white; margin-bottom: 15px;">📝 Staff Application</h2>', unsafe_allow_html=True)
-    st.text_input("Discord Tag (e.g. zaki_vex)")
-    st.text_area("Why do you want to join VILLAGE RF Staff Team?")
-    if st.button("Submit Application ➔"):
-        st.success("Your application has been submitted successfully!")
-    st.markdown('</div>', unsafe_allow_html=True)
-
-elif page == "Discord":
-    st.markdown(
-        '<div class="glass-card" style="text-align: center;">'
-        '<h2 style="color: white; margin-bottom: 10px;">💬 VILLAGE RF Discord Server</h2>'
-        '<p style="color: #64748b; margin-bottom: 25px;">Click below to join our official active Discord server and stay up to date!</p>'
-        '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Open Discord Invite ➔</a>'
-        '</div>',
-        unsafe_allow_html=True
-    )
+        st.markdown("""<div class="

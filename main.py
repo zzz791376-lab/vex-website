@@ -31,10 +31,7 @@ if "login" in st.query_params:
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-if "active_page" not in st.session_state:
-    st.session_state.active_page = "🏠 Home"
-
-# 2. Modern Ultra-Red Theme CSS & Force Sidebar Open JS
+# 2. Modern Ultra-Red Theme CSS & Clean Radio Styling
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -45,36 +42,48 @@ st.markdown("""
                 url('https://i.gifer.com/76YS.gif') center/cover no-repeat fixed !important;
     color: #ffffff;
 }
-
-/* Forcer l'affichage de la Sidebar */
 section[data-testid="stSidebar"] {
     background-color: rgba(11, 14, 20, 0.95) !important;
     border-right: 1px solid #1f293d;
     padding-top: 10px;
-    min-width: 260px !important;
 }
 
-/* Boutons de navigation personnalisés */
-div[data-testid="stSidebar"] .stButton > button {
-    width: 100% !important;
-    background: rgba(18, 22, 32, 0.7) !important;
+/* Masquer complètement les cercles des radio buttons */
+div[role="radiogroup"] {
+    gap: 8px;
+}
+div[role="radiogroup"] label > div:first-child,
+div[role="radiogroup"] label input[type="radio"],
+div[role="radiogroup"] label div[data-testid="stRadioButtonCustomIcon"] {
+    display: none !important;
+    width: 0px !important;
+    height: 0px !important;
+}
+div[role="radiogroup"] > label {
+    background: rgba(18, 22, 32, 0.7);
+    padding: 12px 18px !important;
+    border-radius: 12px;
+    border: 1px solid #1f293d;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex !important;
+    align-items: center !important;
+}
+div[role="radiogroup"] > label:hover {
+    border-color: #ff1e38;
+    background: rgba(255, 30, 56, 0.1);
+    transform: translateX(4px);
+}
+div[role="radiogroup"] > label[data-checked="true"] {
+    border-color: #ff1e38;
+    background: linear-gradient(135deg, rgba(230, 0, 35, 0.25) 0%, rgba(255, 30, 56, 0.35) 100%);
+    box-shadow: 0 4px 15px rgba(255, 30, 56, 0.25);
+}
+div[role="radiogroup"] label p {
     color: #e2e8f0 !important;
-    border: 1px solid #1f293d !important;
-    border-radius: 12px !important;
-    padding: 12px 16px !important;
     font-size: 15px !important;
-    font-weight: 700 !important;
-    text-align: left !important;
-    justify-content: flex-start !important;
-    transition: all 0.3s ease !important;
-    margin-bottom: 6px !important;
-}
-
-div[data-testid="stSidebar"] .stButton > button:hover {
-    border-color: #ff1e38 !important;
-    background: rgba(255, 30, 56, 0.15) !important;
-    color: #ffffff !important;
-    transform: translateX(4px) !important;
+    font-weight: 700;
+    margin: 0 !important;
 }
 
 .hero-title {
@@ -223,17 +232,18 @@ if not st.session_state.logged_in:
 
 # --- MAIN WEBSITE (After Login) ---
 
-# 3. Sidebar Navigation (Clean Custom Buttons)
+# 3. Sidebar Navigation (Using stable st.radio)
 with st.sidebar:
     st.markdown('<h2 style="color: white; font-weight: 900; margin-bottom: 0px;">🎮 VILLAGE RF</h2>', unsafe_allow_html=True)
     st.markdown('<p style="color: #ff1e38; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 15px;">MAIN MENU</p>', unsafe_allow_html=True)
     
-    pages = ["🏠 Home", "🖥️ Server", "👥 Staff Team", "📜 Rules", "🎉 Events", "📝 Staff Application", "💬 Discord"]
+    page = st.radio(
+        "Navigation",
+        ["🏠 Home", "🖥️ Server", "👥 Staff Team", "📜 Rules", "🎉 Events", "📝 Staff Application", "💬 Discord"],
+        index=0,
+        label_visibility="collapsed"
+    )
     
-    for p in pages:
-        if st.button(p, key=f"nav_{p}"):
-            st.session_state.active_page = p
-
     st.markdown("---")
     st.markdown(
         '<div style="background: rgba(18, 22, 32, 0.85); padding: 15px; border-radius: 14px; border: 1px solid #1f293d; text-align: center;">'
@@ -244,8 +254,6 @@ with st.sidebar:
     )
 
 # 4. Main Content Pages
-page = st.session_state.active_page
-
 if "Home" in page:
     col1, col2 = st.columns(2)
     with col1:

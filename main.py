@@ -41,39 +41,40 @@ st.markdown("""
     display: none !important;
 }
 .stApp {
-    background: linear-gradient(180deg, rgba(8, 10, 15, 0.92) 0%, rgba(8, 10, 15, 0.98) 100%), 
+    background: linear-gradient(180deg, rgba(8, 10, 15, 0.88) 0%, rgba(8, 10, 15, 0.96) 100%), 
                 url('https://i.gifer.com/76YS.gif') center/cover no-repeat fixed !important;
     color: #ffffff;
 }
-
 section[data-testid="stSidebar"] {
     background-color: rgba(11, 14, 20, 0.98) !important;
     border-right: 1px solid #1f293d;
     padding-top: 15px;
 }
 
-div[data-testid="stSidebar"] div.stButton > button {
+section[data-testid="stSidebar"] div.stButton > button {
     width: 100% !important;
-    background: rgba(18, 22, 32, 0.85) !important;
-    color: #ffffff !important;
+    background: rgba(18, 22, 32, 0.9) !important;
+    color: #e2e8f0 !important;
     border: 1px solid #1f293d !important;
     border-radius: 12px !important;
-    padding: 12px 18px !important;
+    padding: 12px 16px !important;
     font-size: 15px !important;
     font-weight: 700 !important;
     text-align: left !important;
     justify-content: flex-start !important;
     transition: all 0.3s ease !important;
-    margin-bottom: 8px !important;
+    margin-bottom: 4px !important;
+    box-shadow: none !important;
 }
 
-div[data-testid="stSidebar"] div.stButton > button:hover {
+section[data-testid="stSidebar"] div.stButton > button:hover {
     border-color: #ff1e38 !important;
     background: rgba(255, 30, 56, 0.15) !important;
+    color: #ffffff !important;
     transform: translateX(4px) !important;
 }
 
-/* Hero Banner Card With Background Image */
+/* Hero Banner Card With Server Background Image */
 .hero-banner {
     background: linear-gradient(90deg, rgba(10, 12, 18, 0.95) 0%, rgba(10, 12, 18, 0.75) 50%, rgba(10, 12, 18, 0.4) 100%), 
                 url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
@@ -99,66 +100,42 @@ div[data-testid="stSidebar"] div.stButton > button:hover {
     margin-bottom: 15px;
 }
 
-.hero-main-title {
-    font-size: 58px;
+.hero-title {
+    font-size: 48px;
     font-weight: 900;
     color: #ffffff;
-    line-height: 1;
-    margin: 10px 0;
-    letter-spacing: -1px;
-}
-.hero-main-title span {
-    color: #ff1e38;
-    text-shadow: 0 0 25px rgba(255, 30, 56, 0.6);
+    margin: 5px 0;
+    text-shadow: 0 5px 25px rgba(255, 30, 56, 0.4);
 }
 
-.hero-subtitle {
+.hero-tag {
     color: #ff1e38;
-    font-size: 15px;
     font-weight: 800;
-    letter-spacing: 1.5px;
-    margin-bottom: 15px;
+    font-size: 13px;
+    letter-spacing: 1px;
 }
 
-.hero-desc {
-    color: #94a3b8;
-    font-size: 15px;
-    max-width: 580px;
-    line-height: 1.6;
-    margin-bottom: 30px;
-}
-
-.hero-btn-primary {
+.btn-action {
     display: inline-block;
     background: linear-gradient(135deg, #e60023 0%, #ff1e38 100%);
-    color: #ffffff !important;
+    color: white !important;
     text-decoration: none !important;
-    font-weight: 800;
-    font-size: 15px;
-    padding: 14px 32px;
-    border-radius: 14px;
-    box-shadow: 0 6px 25px rgba(255, 30, 56, 0.5);
-    transition: all 0.3s ease;
+    border-radius: 12px;
+    padding: 12px 28px;
+    font-weight: bold;
     margin-right: 15px;
-}
-
-.hero-btn-secondary {
-    display: inline-block;
-    background: rgba(18, 22, 32, 0.85);
-    border: 1px solid #1f293d;
-    color: #ffffff !important;
-    text-decoration: none !important;
-    font-weight: 700;
-    font-size: 15px;
-    padding: 14px 28px;
-    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(230, 0, 35, 0.5);
     transition: all 0.3s ease;
+}
+.btn-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 30, 56, 0.7);
 }
 
 .hero-stats-row {
     display: flex;
-    gap: 30px;
-    margin-top: 45px;
+    gap: 40px;
+    margin-top: 40px;
     padding-top: 25px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -239,6 +216,7 @@ div[data-testid="stSidebar"] div.stButton > button:hover {
     padding: 35px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     margin-bottom: 25px;
+    min-height: 280px;
 }
 .code-ip-box {
     background: #090c10;
@@ -262,10 +240,19 @@ div[data-testid="stSidebar"] div.stButton > button:hover {
     margin-bottom: 12px;
     font-size: 15px;
 }
+div[data-baseweb="input"] > div, div[data-baseweb="textarea"] > div {
+    background-color: #090c10 !important;
+    border: 1px solid #1f293d !important;
+    color: white !important;
+    border-radius: 10px !important;
+}
+div[data-baseweb="input"] > div:focus-within, div[data-baseweb="textarea"] > div:focus-within {
+    border-color: #ff1e38 !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
-# --- LOGIN GATEWAY ---
+# --- LOGIN / WELCOME GATEWAY ---
 if not st.session_state.logged_in:
     login_html = (
         '<div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; z-index: 99999;">'
@@ -280,13 +267,13 @@ if not st.session_state.logged_in:
     st.markdown(login_html, unsafe_allow_html=True)
     st.stop()
 
-# --- MAIN WEBSITE ---
+# --- MAIN WEBSITE (After Login) ---
 
 # 3. Sidebar Navigation
 with st.sidebar:
     st.markdown(
         f'<div style="text-align: center; margin-bottom: 20px;">'
-        f'<img src="{logo_style}" style="max-width: 120px; max-height: 80px; object-fit: contain; filter: drop-shadow(0 0 12px rgba(255, 30, 56, 0.6));">'
+        f'<img src="{logo_style}" style="max-width: 110px; max-height: 75px; object-fit: contain; filter: drop-shadow(0 0 12px rgba(255, 30, 56, 0.6));">'
         f'</div>',
         unsafe_allow_html=True
     )
@@ -303,7 +290,17 @@ with st.sidebar:
     }
     
     for key, label in pages.items():
-        if st.button(label, key=f"sb_{key}"):
+        is_active = (st.session_state.active_page == key)
+        btn_style = (
+            "border: 1px solid #ff1e38 !important; "
+            "background: linear-gradient(135deg, rgba(230, 0, 35, 0.35) 0%, rgba(255, 30, 56, 0.5) 100%) !important; "
+            "box-shadow: 0 0 15px rgba(255, 30, 56, 0.3) !important;"
+        ) if is_active else ""
+        
+        if is_active:
+            st.markdown(f'<style>div[data-testid="stSidebar"] div.stButton > button[kind="secondary"][key*="{key}"] {{ {btn_style} }}</style>', unsafe_allow_html=True)
+
+        if st.button(label, key=f"sidebar_btn_{key}"):
             st.session_state.active_page = key
             st.rerun()
 
@@ -323,11 +320,11 @@ if page == "Home":
     st.markdown(
         '<div class="hero-banner">'
         '<div class="hero-portal-badge">🔴 OFFICIAL COMMUNITY PORTAL • VILLAGE RF / 2026</div>'
-        '<h1 class="hero-main-title">VILLAGE <span>RF</span></h1>'
-        '<div class="hero-subtitle">MORE THAN JUST A SERVER.</div>'
-        '<p class="hero-desc">Welcome to the official VILLAGE RF community portal. Stay connected, check the latest events, meet the team and keep your Discord access verified.</p>'
-        '<div style="margin-bottom: 10px;">'
-        '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="hero-btn-primary">Join Community ➔</a>'
+        '<h1 class="hero-title">VILLAGE RF</h1>'
+        '<p class="hero-tag">MORE THAN JUST A SERVER.</p>'
+        '<p style="color: #94a3b8; font-size: 14px; max-width: 550px; line-height: 1.6; margin-bottom: 25px;">Welcome to the official VILLAGE RF community portal. Stay connected, check the latest events, meet the team and keep your Discord access verified.</p>'
+        '<div style="margin-top: 20px;">'
+        '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Join Community ➔</a>'
         '</div>'
         '<div class="hero-stats-row">'
         '<div class="stat-item"><div class="stat-value">128 / 256</div><div class="stat-label">PLAYERS ONLINE</div></div>'
@@ -347,7 +344,7 @@ elif page == "Server":
         '<span>connect 217.160.240.61</span>'
         '<span style="color: #ff1e38; font-size: 12px; font-weight: bold;">[LIVE ONLINE]</span>'
         '</div>'
-        '<a href="fivem://connect/217.160.240.61" class="hero-btn-primary">Connect Directly to FiveM 🚀</a>'
+        '<a href="fivem://connect/217.160.240.61" class="btn-action">Connect Directly to FiveM 🚀</a>'
         '</div>',
         unsafe_allow_html=True
     )
@@ -407,7 +404,7 @@ elif page == "Discord":
         '<div class="glass-card" style="text-align: center;">'
         '<h2 style="color: white; margin-bottom: 10px;">💬 VILLAGE RF Discord Server</h2>'
         '<p style="color: #64748b; margin-bottom: 25px;">Click below to join our official active Discord server and stay up to date!</p>'
-        '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="hero-btn-primary">Open Discord Invite ➔</a>'
+        '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Open Discord Invite ➔</a>'
         '</div>',
         unsafe_allow_html=True
     )

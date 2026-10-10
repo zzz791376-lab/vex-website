@@ -10,19 +10,19 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Function to encode local images
-def get_base64_image(image_path):
-    try:
-        if os.path.exists(image_path):
-            with open(image_path, "rb") as img_file:
-                return base64.b64encode(img_file.read()).decode()
-    except Exception:
-        return None
-    return None
+# Function to search and encode logo dynamically
+def get_logo_base64():
+    for ext in ["vilag2.png", "logo.png", "logo.jpg", "logo.jpeg", "vilag3.png"]:
+        if os.path.exists(ext):
+            try:
+                with open(ext, "rb") as img_file:
+                    mime = "image/png" if ext.endswith(".png") else "image/jpeg"
+                    return f"data:{mime};base64," + base64.b64encode(img_file.read()).decode()
+            except Exception:
+                pass
+    return "https://cdn-icons-png.flaticon.com/512/808/808439.png"
 
-logo_b64 = get_base64_image("logo.png")
-# شعار أحمر فخم محايد بدلاً من أيقونة الفيسبوك
-logo_style = f"data:image/png;base64,{logo_b64}" if logo_b64 else "https://cdn-icons-png.flaticon.com/512/808/808439.png"
+logo_style = get_logo_base64()
 
 # Check Login Status via Query Parameters
 if "login" in st.query_params:
@@ -174,7 +174,7 @@ if not st.session_state.logged_in:
     login_html = (
         f'<div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; z-index: 99999;">'
         f'<div style="background: #0e1117; border: 1px solid #1f293d; border-radius: 24px; padding: 40px; width: 460px; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.9);">'
-        f'<img src="{logo_style}" style="width: 85px; height: 85px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #ff1e38; box-shadow: 0 0 20px rgba(255,30,56,0.4);">'
+        f'<img src="{logo_style}" style="max-width: 170px; max-height: 110px; object-fit: contain; margin-bottom: 15px; filter: drop-shadow(0 0 15px rgba(255, 30, 56, 0.6));">'
         '<div style="color: #ff1e38; font-size: 11px; font-weight: 900; letter-spacing: 3px; margin-bottom: 10px;">VILLAGE RF COMMUNITY PORTAL</div>'
         '<h1 style="color: #ffffff; font-size: 30px; font-weight: 900; margin-bottom: 10px;">Enter the <span style="color: #ff1e38;">VILLAGE</span> world.</h1>'
         '<p style="color: #64748b; font-size: 13px; line-height: 1.5; margin-bottom: 25px;">Connect your Discord account to access the official website and verify your community access.</p>'

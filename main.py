@@ -31,19 +31,20 @@ if "login" in st.query_params:
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-# 2. Modern Red Theme CSS & Background Styles
+# 2. Modern Red Theme CSS & Full Animated Background Styles
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
     display: none !important;
 }
+/* خلفية متحركة شاملة لكل صفحات الموقع مع طبقة عتمة حمراء داكنة فخمة */
 .stApp {
-    background: linear-gradient(180deg, rgba(8, 10, 15, 0.88) 0%, rgba(8, 10, 15, 0.95) 100%), 
+    background: linear-gradient(180deg, rgba(8, 10, 15, 0.85) 0%, rgba(8, 10, 15, 0.94) 100%), 
                 url('https://i.gifer.com/76YS.gif') center/cover no-repeat fixed !important;
     color: #ffffff;
 }
 section[data-testid="stSidebar"] {
-    background-color: #0e1117 !important;
+    background-color: rgba(14, 17, 23, 0.92) !important;
     border-right: 1px solid #1a202c;
 }
 div[role="radiogroup"] label div[data-testid="stRadioButtonCustomIcon"],
@@ -113,7 +114,8 @@ div[role="radiogroup"] label p {
     background: #1b1216;
 }
 .card-box {
-    background-color: #121620;
+    background-color: rgba(18, 22, 32, 0.85);
+    backdrop-filter: blur(10px);
     border: 1px solid #1f293d;
     border-radius: 16px;
     padding: 18px 8px;
@@ -173,7 +175,7 @@ div[role="radiogroup"] label p {
 if not st.session_state.logged_in:
     login_html = (
         f'<div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; z-index: 99999;">'
-        f'<div style="background: #0e1117; border: 1px solid #1f293d; border-radius: 24px; padding: 40px; width: 460px; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.9);">'
+        f'<div style="background: rgba(14, 17, 23, 0.90); backdrop-filter: blur(15px); border: 1px solid #1f293d; border-radius: 24px; padding: 40px; width: 460px; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.9);">'
         f'<img src="{logo_style}" style="max-width: 170px; max-height: 110px; object-fit: contain; margin-bottom: 15px; filter: drop-shadow(0 0 15px rgba(255, 30, 56, 0.6));">'
         '<div style="color: #ff1e38; font-size: 11px; font-weight: 900; letter-spacing: 3px; margin-bottom: 10px;">VILLAGE RF COMMUNITY PORTAL</div>'
         '<h1 style="color: #ffffff; font-size: 30px; font-weight: 900; margin-bottom: 10px;">Enter the <span style="color: #ff1e38;">VILLAGE</span> world.</h1>'
@@ -200,7 +202,7 @@ with st.sidebar:
     
     st.markdown("---")
     st.markdown(
-        "<div style='background: #121620; padding: 15px; border-radius: 14px; border: 1px solid #1f293d;'>"
+        "<div style='background: rgba(18, 22, 32, 0.85); padding: 15px; border-radius: 14px; border: 1px solid #1f293d;'>"
         "<div style='color: #ff1e38; font-weight: bold; font-size: 14px;'>🔴 VILLAGE RF</div>"
         "<div style='color: #64748b; font-size: 12px; margin-top: 2px;'>Server Online — LIVE</div>"
         "</div>",
@@ -210,7 +212,7 @@ with st.sidebar:
 # 4. Main Content Pages
 if "Home" in page:
     home_html = (
-        '<div style="background: rgba(14, 17, 23, 0.85); backdrop-filter: blur(10px); border-radius: 20px; padding: 55px 45px; border: 1px solid #1f293d; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">'
+        '<div style="background: rgba(14, 17, 23, 0.80); backdrop-filter: blur(12px); border-radius: 20px; padding: 55px 45px; border: 1px solid #1f293d; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">'
         '<span class="hero-tag">🔴 OFFICIAL COMMUNITY PORTAL • VILLAGE RF / 2026</span>'
         '<h1 class="hero-title">VILLAGE RF</h1>'
         '<p style="color: #ff1e38; font-weight: bold; font-size: 17px; margin-top: -5px;">MORE THAN JUST A SERVER.</p>'

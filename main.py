@@ -26,12 +26,13 @@ logo_b64 = get_base64_image("logo.png")
 bg_style = f"data:image/jpeg;base64,{banner_b64}" if banner_b64 else "https://images.alphacoders.com/131/1318498.jpeg"
 logo_style = f"data:image/png;base64,{logo_b64}" if logo_b64 else "https://cdn-icons-png.flaticon.com/512/124/124010.png"
 
-# Check Login Status via Query Parameters
-if "login" in st.query_params:
-    st.session_state.logged_in = True
-
+# Initialize Session State securely
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
+
+# Check Query Params
+if "login" in st.query_params:
+    st.session_state.logged_in = True
 
 # 2. CSS Styles
 st.markdown("""
@@ -151,8 +152,6 @@ div[role="radiogroup"] label p {
 
 # --- LOGIN / WELCOME GATEWAY ---
 if not st.session_state.logged_in:
-    discord_oauth_url = "?login=true" 
-    
     login_html = (
         f'<div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(180deg, rgba(11, 14, 20, 0.85) 0%, rgba(11, 14, 20, 0.95) 100%), url(\'{bg_style}\'); background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center; z-index: 99999;">'
         f'<div style="background: #11151c; border: 1px solid #1e293b; border-radius: 24px; padding: 40px; width: 460px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">'
@@ -160,7 +159,7 @@ if not st.session_state.logged_in:
         '<div style="color: #0088ff; font-size: 11px; font-weight: bold; letter-spacing: 2px; margin-bottom: 10px;">VILLAGE RF COMMUNITY PORTAL</div>'
         '<h1 style="color: #ffffff; font-size: 30px; font-weight: 900; margin-bottom: 10px;">Enter the <span style="color: #0088ff;">VILLAGE</span> world.</h1>'
         '<p style="color: #64748b; font-size: 13px; line-height: 1.5; margin-bottom: 25px;">Connect your Discord account to access the official website and verify your community access.</p>'
-        f'<a href="{discord_oauth_url}" target="_self" class="btn-discord-login">🔗 Continue with Discord ➔</a>'
+        '<a href="?login=true" target="_self" class="btn-discord-login">🔗 Continue with Discord ➔</a>'
         '</div></div>'
     )
     st.markdown(login_html, unsafe_allow_html=True)
@@ -212,3 +211,38 @@ elif "Server" in page:
 
 elif "Staff Team" in page:
     st.header("👥 Staff Team — VILLAGE RF")
+    st.caption("Meet our official management and leadership team.")
+    st.write("---")
+    
+    c1, c2, c3, c4, c5, c6, c7 = st.columns(7)
+    
+    with c1:
+        st.markdown("<div class='card-box' style='border-color:#0088ff;'><div class='role-badge'>👑 OWNER</div><div class='staff-title'>! Haroun.13K</div><div class='staff-sub'>@off_marseille</div></div>", unsafe_allow_html=True)
+    with c2:
+        st.markdown("<div class='card-box' style='border-color:#0088ff;'><div class='role-badge'>👑 FOUNDER</div><div class='staff-title'>ADLANE HB</div><div class='staff-sub'>@adlanehb</div></div>", unsafe_allow_html=True)
+    with c3:
+        st.markdown("<div class='card-box'><div class='role-badge'>🟣 CO-OWNER</div><div class='staff-title'>SIDO</div><div class='staff-sub'>@sido_sido_18</div></div>", unsafe_allow_html=True)
+    with c4:
+        st.markdown("<div class='card-box'><div class='role-badge'>⭐ MANAGER</div><div class='staff-title'>Johane</div><div class='staff-sub'>@yb.johane</div></div>", unsafe_allow_html=True)
+    with c5:
+        st.markdown("<div class='card-box'><div class='role-badge'>🔵 DEV</div><div class='staff-title'>ZR</div><div class='staff-sub'>@zr_rr011</div></div>", unsafe_allow_html=True)
+    with c6:
+        st.markdown("<div class='card-box'><div class='role-badge'>🔵 DEV</div><div class='staff-title'>PIROx99.</div><div class='staff-sub'>@piro.fps20.</div></div>", unsafe_allow_html=True)
+    with c7:
+        st.markdown("<div class='card-box'><div class='role-badge'>⭐ DEV DISCORD</div><div class='staff-title'>ZAKI VEX</div><div class='staff-sub'>@closedaccount1_</div></div>", unsafe_allow_html=True)
+
+elif "Rules" in page:
+    st.header("📜 Server Rules")
+    st.markdown("1. **Respect All Members:** Toxic behavior is strictly prohibited.")
+    st.markdown("2. **No RDM / VDM:** Follow Roleplay standards at all times.")
+    st.markdown("3. **Value Your Life:** Fear RP is mandatory.")
+
+elif "Staff Application" in page:
+    st.header("📝 Staff Application")
+    st.text_input("Discord Tag")
+    st.text_area("Why do you want to join our staff?")
+    st.button("Submit Application")
+
+elif "Discord" in page:
+    st.header("💬 Join Our Discord Server")
+    st.markdown("<br><a href='https://discord.gg/WC9NFNVFS' target='_blank' class='btn-action'>Open Discord Invite ➔</a>", unsafe_allow_html=True)

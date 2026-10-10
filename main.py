@@ -32,9 +32,9 @@ if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 if "active_page" not in st.session_state:
-    st.session_state.active_page = "🏠 Home"
+    st.session_state.active_page = "Home"
 
-# 2. Modern Ultra-Red Theme CSS & Custom Sidebar Buttons Styling
+# 2. Modern Ultra-Red Theme CSS & VILLAGE RF Sidebar Style
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -46,20 +46,20 @@ st.markdown("""
     color: #ffffff;
 }
 section[data-testid="stSidebar"] {
-    background-color: rgba(11, 14, 20, 0.95) !important;
+    background-color: rgba(11, 14, 20, 0.98) !important;
     border-right: 1px solid #1f293d;
-    padding-top: 10px;
+    padding-top: 15px;
 }
 
-/* تصميم أزرار القائمة الجانبية باحترافية تامة */
+/* تنسيق أزرار القائمة الجانبية بنمط VILLAGE RF الفخم */
 div[data-testid="stSidebar"] .stButton > button {
     width: 100% !important;
-    background: rgba(18, 22, 32, 0.7) !important;
-    color: #e2e8f0 !important;
+    background: rgba(18, 22, 32, 0.75) !important;
+    color: #94a3b8 !important;
     border: 1px solid #1f293d !important;
     border-radius: 12px !important;
     padding: 12px 18px !important;
-    font-size: 15px !important;
+    font-size: 14px !important;
     font-weight: 700 !important;
     text-align: left !important;
     justify-content: flex-start !important;
@@ -69,9 +69,9 @@ div[data-testid="stSidebar"] .stButton > button {
 
 div[data-testid="stSidebar"] .stButton > button:hover {
     border-color: #ff1e38 !important;
-    background: rgba(255, 30, 56, 0.15) !important;
+    background: rgba(255, 30, 56, 0.1) !important;
     color: #ffffff !important;
-    transform: translateX(4px) !important;
+    transform: translateX(4px);
 }
 
 .hero-title {
@@ -220,22 +220,35 @@ if not st.session_state.logged_in:
 
 # --- MAIN WEBSITE (After Login) ---
 
-# 3. Sidebar Navigation (Pure Custom Buttons - NO Radio Icons/Boxes)
+# 3. Sidebar Navigation (VILLAGE RF Clean Buttons)
 with st.sidebar:
-    st.markdown('<h2 style="color: white; font-weight: 900; margin-bottom: 0px;">🎮 VILLAGE RF</h2>', unsafe_allow_html=True)
-    st.markdown('<p style="color: #ff1e38; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 15px;">MAIN MENU</p>', unsafe_allow_html=True)
+    st.markdown(
+        f'<div style="text-align: center; margin-bottom: 20px;">'
+        f'<img src="{logo_style}" style="max-width: 100px; max-height: 70px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(255, 30, 56, 0.5));">'
+        f'</div>',
+        unsafe_allow_html=True
+    )
+    st.markdown('<p style="color: #ff1e38; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 15px; padding-left: 5px;">MAIN MENU</p>', unsafe_allow_html=True)
     
-    pages = ["🏠 Home", "🖥️ Server", "👥 Staff Team", "📜 Rules", "🎉 Events", "📝 Staff Application", "💬 Discord"]
+    pages = {
+        "Home": "🏠 Home",
+        "Server": "🖥️ Server",
+        "Staff Team": "👥 Staff Team",
+        "Rules": "📜 Rules",
+        "Events": "🎉 Events",
+        "Staff Application": "📝 Staff Application",
+        "Discord": "💬 Discord"
+    }
     
-    for p in pages:
-        if st.button(p, key=f"btn_{p}"):
-            st.session_state.active_page = p
+    for key, label in pages.items():
+        if st.button(label, key=f"nav_{key}"):
+            st.session_state.active_page = key
 
     st.markdown("---")
     st.markdown(
         '<div style="background: rgba(18, 22, 32, 0.85); padding: 15px; border-radius: 14px; border: 1px solid #1f293d; text-align: center;">'
-        '<div style="color: #ff1e38; font-weight: bold; font-size: 14px;">🔴 VILLAGE RF</div>'
-        '<div style="color: #00ff88; font-size: 12px; font-weight: bold; margin-top: 4px;">● Server Online — LIVE</div>'
+        '<div style="color: #ff1e38; font-weight: bold; font-size: 13px;">🔴 VILLAGE RF</div>'
+        '<div style="color: #00ff88; font-size: 11px; font-weight: bold; margin-top: 4px;">● Server online — LIVE</div>'
         '</div>',
         unsafe_allow_html=True
     )
@@ -243,7 +256,7 @@ with st.sidebar:
 # 4. Main Content Pages
 page = st.session_state.active_page
 
-if "Home" in page:
+if page == "Home":
     col1, col2 = st.columns(2)
     with col1:
         st.markdown(
@@ -271,7 +284,7 @@ if "Home" in page:
             unsafe_allow_html=True
         )
 
-elif "Server" in page:
+elif page == "Server":
     st.markdown(
         '<div class="glass-card">'
         '<h2 style="color: white; margin-bottom: 5px;">🖥️ Direct Connect IP</h2>'
@@ -285,7 +298,7 @@ elif "Server" in page:
         unsafe_allow_html=True
     )
 
-elif "Staff Team" in page:
+elif page == "Staff Team":
     st.header("👥 Staff Team — VILLAGE RF")
     st.caption("Meet our official management and leadership team.")
     st.write("---")
@@ -307,7 +320,7 @@ elif "Staff Team" in page:
     with c7:
         st.markdown("""<div class="card-box"><div class="role-badge">⭐ DEV DISCORD</div><div class="staff-title">ZAKI VEX</div><div class="staff-sub">@closedaccount1_</div></div>""", unsafe_allow_html=True)
 
-elif "Rules" in page:
+elif page == "Rules":
     st.markdown(
         '<div class="glass-card">'
         '<h2 style="color: white; margin-bottom: 20px;">📜 Server Guidelines & Rules</h2>'
@@ -318,7 +331,7 @@ elif "Rules" in page:
         unsafe_allow_html=True
     )
 
-elif "Events" in page:
+elif page == "Events":
     st.markdown(
         '<div class="glass-card">'
         '<h2 style="color: white; margin-bottom: 10px;">🎉 Upcoming Events</h2>'
@@ -327,7 +340,7 @@ elif "Events" in page:
         unsafe_allow_html=True
     )
 
-elif "Staff Application" in page:
+elif page == "Staff Application":
     st.markdown('<div class="glass-card"><h2 style="color: white; margin-bottom: 15px;">📝 Staff Application</h2>', unsafe_allow_html=True)
     st.text_input("Discord Tag (e.g. zaki_vex)")
     st.text_area("Why do you want to join VILLAGE RF Staff Team?")
@@ -335,7 +348,7 @@ elif "Staff Application" in page:
         st.success("Your application has been submitted successfully!")
     st.markdown('</div>', unsafe_allow_html=True)
 
-elif "Discord" in page:
+elif page == "Discord":
     st.markdown(
         '<div class="glass-card" style="text-align: center;">'
         '<h2 style="color: white; margin-bottom: 10px;">💬 VILLAGE RF Discord Server</h2>'

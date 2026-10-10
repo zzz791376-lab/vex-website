@@ -39,7 +39,7 @@ if "logged_in" not in st.session_state:
 if "active_page" not in st.session_state:
     st.session_state.active_page = "Home"
 
-# 2. Modern Ultra-Red Dark Theme CSS & Fixed Top Buttons Styling
+# 2. Modern Ultra-Red Dark Theme CSS & Overriding Streamlit White Buttons
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -79,24 +79,28 @@ section[data-testid="stSidebar"] div.stButton > button:hover {
     transform: translateX(4px) !important;
 }
 
-/* القضاء التام على اللون الأبيض في أزرار الشريط العلوي وتحويلها لأسود داكن فخم */
-div[data-testid="column"] div.stButton > button {
-    width: 100% !important;
-    background: rgba(18, 22, 32, 0.9) !important;
+/* القضاء الجذري على اللون الأبيض في أزرار الأعمدة العلوية وتحويلها لأسود داكن متناسق */
+div[data-testid="column"] button, 
+div[data-testid="column"] .stButton > button,
+div[data-testid="column"] div[data-baseweb="button"] {
+    background: rgba(18, 22, 32, 0.95) !important;
+    background-color: rgba(18, 22, 32, 0.95) !important;
     color: #94a3b8 !important;
     border: 1px solid #1f293d !important;
     border-radius: 12px !important;
-    padding: 10px 12px !important;
+    padding: 10px 14px !important;
     font-size: 13px !important;
     font-weight: 700 !important;
     box-shadow: none !important;
     transition: all 0.3s ease !important;
 }
 
-div[data-testid="column"] div.stButton > button:hover {
+div[data-testid="column"] button:hover, 
+div[data-testid="column"] .stButton > button:hover {
     border-color: #ff1e38 !important;
     color: #ffffff !important;
     background: rgba(255, 30, 56, 0.2) !important;
+    background-color: rgba(255, 30, 56, 0.2) !important;
 }
 
 .user-pill {
@@ -375,7 +379,7 @@ with st.sidebar:
         unsafe_allow_html=True
     )
 
-# --- TOP NAVIGATION BAR (Instant State Switch & Dark Styling) ---
+# --- TOP NAVIGATION BAR (Instant State Switch & Clean Dark Buttons) ---
 top_cols = st.columns([1, 1, 1, 1, 1.4, 1, 1.6, 1])
 
 with top_cols[0]:

@@ -2,7 +2,7 @@ import streamlit as st
 import base64
 import os
 
-# 1. Page Config
+# 1. Page Config (Sidebar دائماً مفتوحة إجبارياً)
 st.set_page_config(
     page_title="VILLAGE RF — Official Portal",
     page_icon="🎮",
@@ -34,7 +34,7 @@ if "logged_in" not in st.session_state:
 if "active_page" not in st.session_state:
     st.session_state.active_page = "Home"
 
-# 2. Modern Ultra-Red Dark Theme CSS & Fixed Dark Buttons Styling
+# 2. Modern Ultra-Red Dark Theme CSS & Pure Dark Sidebar Styling
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -45,37 +45,48 @@ st.markdown("""
                 url('https://i.gifer.com/76YS.gif') center/cover no-repeat fixed !important;
     color: #ffffff;
 }
+
+/* تثبيت الـ Sidebar لتظهر دائماً وبشكل واضح */
 section[data-testid="stSidebar"] {
     background-color: rgba(11, 14, 20, 0.98) !important;
     border-right: 1px solid #1f293d;
     padding-top: 15px;
+    display: block !important;
+    visibility: visible !important;
 }
 
-/* القضاء التام على الأزرار البيضاء وتحويلها لأسود داكن متناسق مع الثيم */
-section[data-testid="stSidebar"] div.stButton > button {
+/* تنسيق أزرار القائمة الجانبية لتكون داكنة وأنيقة تماماً مثل الصورة 2 */
+div[data-testid="stSidebar"] div.stButton > button {
     width: 100% !important;
-    background: rgba(18, 22, 32, 0.9) !important;
-    color: #e2e8f0 !important;
+    background: rgba(18, 22, 32, 0.85) !important;
+    color: #ffffff !important;
     border: 1px solid #1f293d !important;
     border-radius: 12px !important;
-    padding: 12px 16px !important;
+    padding: 12px 18px !important;
     font-size: 15px !important;
     font-weight: 700 !important;
     text-align: left !important;
     justify-content: flex-start !important;
     transition: all 0.3s ease !important;
-    margin-bottom: 4px !important;
-    box-shadow: none !important;
+    margin-bottom: 8px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
 }
 
-section[data-testid="stSidebar"] div.stButton > button:hover {
+div[data-testid="stSidebar"] div.stButton > button:hover {
     border-color: #ff1e38 !important;
     background: rgba(255, 30, 56, 0.15) !important;
     color: #ffffff !important;
     transform: translateX(4px) !important;
 }
 
-/* تخصيص الزر النشط حالياً ليكون أحمر داكن وفخم */
+div[data-testid="stSidebar"] div.stButton > button:focus,
+div[data-testid="stSidebar"] div.stButton > button:active {
+    border-color: #ff1e38 !important;
+    background: linear-gradient(135deg, rgba(230, 0, 35, 0.35) 0%, rgba(255, 30, 56, 0.5) 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 15px rgba(255, 30, 56, 0.35) !important;
+}
+
 .hero-title {
     font-size: 46px;
     font-weight: 900;
@@ -222,11 +233,11 @@ if not st.session_state.logged_in:
 
 # --- MAIN WEBSITE (After Login) ---
 
-# 3. Sidebar Navigation
+# 3. Sidebar Navigation (Dark Custom Glass Buttons)
 with st.sidebar:
     st.markdown(
         f'<div style="text-align: center; margin-bottom: 20px;">'
-        f'<img src="{logo_style}" style="max-width: 110px; max-height: 75px; object-fit: contain; filter: drop-shadow(0 0 12px rgba(255, 30, 56, 0.6));">'
+        f'<img src="{logo_style}" style="max-width: 120px; max-height: 80px; object-fit: contain; filter: drop-shadow(0 0 12px rgba(255, 30, 56, 0.6));">'
         f'</div>',
         unsafe_allow_html=True
     )
@@ -236,23 +247,14 @@ with st.sidebar:
         "Home": "🏠  Home",
         "Server": "🖥️  Server",
         "Staff Team": "👥  Staff Team",
+        "Rules": "📜  Rules",
+        "Events": "🎉  Events",
+        "Staff Application": "📝  Staff Application",
         "Discord": "💬  Discord"
     }
     
     for key, label in pages.items():
-        is_active = (st.session_state.active_page == key)
-        # تخصيص لون الزر النشط ليكون أحمر داكن مميز
-        btn_style = (
-            "border: 1px solid #ff1e38 !important; "
-            "background: linear-gradient(135deg, rgba(230, 0, 35, 0.35) 0%, rgba(255, 30, 56, 0.5) 100%) !important; "
-            "box-shadow: 0 0 15px rgba(255, 30, 56, 0.3) !important;"
-        ) if is_active else ""
-        
-        # استخدام st.markdown مع الزر لتطبيق الـ Style المخصص مباشرة
-        if is_active:
-            st.markdown(f'<style>div[data-testid="stSidebar"] div.stButton > button[kind="secondary"][key*="{key}"] {{ {btn_style} }}</style>', unsafe_allow_html=True)
-
-        if st.button(label, key=f"sidebar_btn_{key}"):
+        if st.button(label, key=f"sidebar_{key}"):
             st.session_state.active_page = key
             st.rerun()
 
@@ -343,7 +345,22 @@ elif page == "Rules":
         unsafe_allow_html=True
     )
 
+elif page == "Events":
+    st.markdown(
+        '<div class="glass-card">'
+        '<h2 style="color: white; margin-bottom: 10px;">🎉 Upcoming Events</h2>'
+        '<p style="color: #94a3b8;">Stay tuned for the official VILLAGE RF launch and community events!</p>'
+        '</div>',
+        unsafe_allow_html=True
+    )
 
+elif page == "Staff Application":
+    st.markdown('<div class="glass-card"><h2 style="color: white; margin-bottom: 15px;">📝 Staff Application</h2>', unsafe_allow_html=True)
+    st.text_input("Discord Tag (e.g. zaki_vex)")
+    st.text_area("Why do you want to join VILLAGE RF Staff Team?")
+    if st.button("Submit Application ➔"):
+        st.success("Your application has been submitted successfully!")
+    st.markdown('</div>', unsafe_allow_html=True)
 
 elif page == "Discord":
     st.markdown(

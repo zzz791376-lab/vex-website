@@ -31,15 +31,14 @@ if "login" in st.query_params:
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
-# 2. Modern Red Theme CSS & Full Animated Background Styles
+# 2. Modern Ultra-Red Theme CSS & Styles
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
     display: none !important;
 }
-/* خلفية متحركة شاملة لكل صفحات الموقع مع طبقة عتمة حمراء داكنة فخمة */
 .stApp {
-    background: linear-gradient(180deg, rgba(8, 10, 15, 0.85) 0%, rgba(8, 10, 15, 0.94) 100%), 
+    background: linear-gradient(180deg, rgba(8, 10, 15, 0.88) 0%, rgba(8, 10, 15, 0.96) 100%), 
                 url('https://i.gifer.com/76YS.gif') center/cover no-repeat fixed !important;
     color: #ffffff;
 }
@@ -168,6 +167,47 @@ div[role="radiogroup"] label p {
     transform: translateY(-2px);
     box-shadow: 0 6px 30px rgba(255, 30, 56, 0.8);
 }
+.glass-card {
+    background: rgba(14, 17, 23, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid #1f293d;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin-bottom: 25px;
+}
+.code-ip-box {
+    background: #090c10;
+    border: 1px solid #ff1e38;
+    border-radius: 12px;
+    padding: 15px 20px;
+    font-family: monospace;
+    font-size: 18px;
+    color: #00ff88;
+    margin: 15px 0 25px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(255, 30, 56, 0.2);
+}
+.rule-card {
+    background: rgba(18, 22, 32, 0.85);
+    border-left: 4px solid #ff1e38;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+/* Style Streamlit Inputs */
+div[data-baseweb="input"] > div, div[data-baseweb="textarea"] > div {
+    background-color: #090c10 !important;
+    border: 1px solid #1f293d !important;
+    color: white !important;
+    border-radius: 10px !important;
+}
+div[data-baseweb="input"] > div:focus-within, div[data-baseweb="textarea"] > div:focus-within {
+    border-color: #ff1e38 !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -212,7 +252,7 @@ with st.sidebar:
 # 4. Main Content Pages
 if "Home" in page:
     home_html = (
-        '<div style="background: rgba(14, 17, 23, 0.80); backdrop-filter: blur(12px); border-radius: 20px; padding: 55px 45px; border: 1px solid #1f293d; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">'
+        '<div class="glass-card">'
         '<span class="hero-tag">🔴 OFFICIAL COMMUNITY PORTAL • VILLAGE RF / 2026</span>'
         '<h1 class="hero-title">VILLAGE RF</h1>'
         '<p style="color: #ff1e38; font-weight: bold; font-size: 17px; margin-top: -5px;">MORE THAN JUST A SERVER.</p>'
@@ -225,10 +265,18 @@ if "Home" in page:
     st.markdown(home_html, unsafe_allow_html=True)
 
 elif "Server" in page:
-    st.header("🖥️ Server Direct Connect")
-    st.info("Direct Connect IP: connect 217.160.240.61")
-    st.code("connect 217.160.240.61", language="bash")
-    st.markdown("<br><a href='fivem://connect/217.160.240.61' class='btn-action'>Connect Directly to FiveM 🚀</a>", unsafe_allow_html=True)
+    server_html = (
+        '<div class="glass-card">'
+        '<h2 style="color: white; margin-bottom: 5px;">🖥️ Direct Connect IP</h2>'
+        '<p style="color: #64748b; font-size: 14px;">Copy the IP below or launch directly via FiveM application.</p>'
+        '<div class="code-ip-box">'
+        '<span>connect 217.160.240.61</span>'
+        '<span style="color: #ff1e38; font-size: 12px; font-weight: bold;">[LIVE ONLINE]</span>'
+        '</div>'
+        '<a href="fivem://connect/217.160.240.61" class="btn-action">Connect Directly to FiveM 🚀</a>'
+        '</div>'
+    )
+    st.markdown(server_html, unsafe_allow_html=True)
 
 elif "Staff Team" in page:
     st.header("👥 Staff Team — VILLAGE RF")
@@ -253,17 +301,30 @@ elif "Staff Team" in page:
         st.markdown("<div class='card-box'><div class='role-badge'>⭐ DEV DISCORD</div><div class='staff-title'>ZAKI VEX</div><div class='staff-sub'>@closedaccount1_</div></div>", unsafe_allow_html=True)
 
 elif "Rules" in page:
-    st.header("📜 Server Rules")
-    st.markdown("1. **Respect All Members:** Toxic behavior is strictly prohibited.")
-    st.markdown("2. **No RDM / VDM:** Follow Roleplay standards at all times.")
-    st.markdown("3. **Value Your Life:** Fear RP is mandatory.")
+    rules_html = (
+        '<div class="glass-card">'
+        '<h2 style="color: white; margin-bottom: 20px;">📜 Server Guidelines & Rules</h2>'
+        '<div class="rule-card"><b>1. Respect All Members:</b> Toxic behavior, racism, and harassment are strictly prohibited.</div>'
+        '<div class="rule-card"><b>2. No RDM / VDM:</b> Random Killing or using vehicles as weapons is strictly forbidden.</div>'
+        '<div class="rule-card"><b>3. Value Your Life (Fear RP):</b> You must value your character\'s life at all times during Roleplay scenarios.</div>'
+        '</div>'
+    )
+    st.markdown(rules_html, unsafe_allow_html=True)
 
 elif "Staff Application" in page:
-    st.header("📝 Staff Application")
-    st.text_input("Discord Tag")
-    st.text_area("Why do you want to join our staff?")
-    st.button("Submit Application")
+    st.markdown('<div class="glass-card"><h2 style="color: white; margin-bottom: 15px;">📝 Staff Application</h2>', unsafe_allow_html=True)
+    st.text_input("Discord Tag (e.g. zaki_vex)")
+    st.text_area("Why do you want to join VILLAGE RF Staff Team?")
+    if st.button("Submit Application ➔"):
+        st.success("Your application has been submitted successfully!")
+    st.markdown('</div>', unsafe_allow_html=True)
 
 elif "Discord" in page:
-    st.header("💬 Join Our Discord Server")
-    st.markdown("<br><a href='https://discord.gg/WC9NFNVFS' target='_blank' class='btn-action'>Open Discord Invite ➔</a>", unsafe_allow_html=True)
+    discord_html = (
+        '<div class="glass-card" style="text-align: center;">'
+        '<h2 style="color: white; margin-bottom: 10px;">💬 VILLAGE RF Discord Server</h2>'
+        '<p style="color: #64748b; margin-bottom: 25px;">Click below to join our official active Discord server and stay up to date!</p>'
+        '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Open Discord Invite ➔</a>'
+        '</div>'
+    )
+    st.markdown(discord_html, unsafe_allow_html=True)

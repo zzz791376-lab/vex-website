@@ -26,43 +26,43 @@ logo_b64 = get_base64_image("logo.png")
 bg_style = f"data:image/jpeg;base64,{banner_b64}" if banner_b64 else "https://images.alphacoders.com/131/1318498.jpeg"
 logo_style = f"data:image/png;base64,{logo_b64}" if logo_b64 else "https://cdn-icons-png.flaticon.com/512/124/124010.png"
 
-# Initialize Session State securely
-if "logged_in" not in st.session_state:
-    st.session_state.logged_in = False
-
-# Check Query Params
+# Check Login Status via Query Parameters
 if "login" in st.query_params:
     st.session_state.logged_in = True
 
-# 2. CSS Styles
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+# 2. Modern Red Theme CSS Styles
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
     display: none !important;
 }
 .stApp {
-    background-color: #0b0e14;
+    background-color: #080a0f;
     color: #ffffff;
 }
 section[data-testid="stSidebar"] {
-    background-color: #11151c !important;
-    border-right: 1px solid #1e2430;
+    background-color: #0e1117 !important;
+    border-right: 1px solid #1a202c;
 }
 div[role="radiogroup"] label div[data-testid="stRadioButtonCustomIcon"],
 div[role="radiogroup"] label input[type="radio"] {
     display: none !important;
 }
 div[role="radiogroup"] > label {
-    background: #161b22;
+    background: #121620;
     padding: 12px 18px;
-    border-radius: 12px;
+    border-radius: 14px;
     margin-bottom: 8px;
-    border: 1px solid #21262d;
+    border: 1px solid #1f293d;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 div[role="radiogroup"] > label:hover {
-    border-color: #0088ff;
-    background: #1c212a;
+    border-color: #ff1e38;
+    background: #1b1216;
 }
 div[role="radiogroup"] label p {
     color: #cbd5e1 !important;
@@ -70,50 +70,69 @@ div[role="radiogroup"] label p {
     font-weight: 600;
 }
 .hero-title {
-    font-size: 52px;
+    font-size: 56px;
     font-weight: 900;
     color: #ffffff;
     margin: 5px 0;
+    text-shadow: 0 5px 25px rgba(255, 30, 56, 0.4);
 }
 .hero-tag {
-    color: #0088ff;
-    font-weight: bold;
+    color: #ff1e38;
+    font-weight: 800;
     font-size: 13px;
+    letter-spacing: 1px;
 }
 .btn-action {
     display: inline-block;
-    background: linear-gradient(90deg, #0066ff 0%, #00a2ff 100%);
+    background: linear-gradient(135deg, #e60023 0%, #ff1e38 100%);
     color: white !important;
     text-decoration: none !important;
     border-radius: 12px;
     padding: 12px 28px;
     font-weight: bold;
     margin-right: 15px;
-    box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4);
+    box-shadow: 0 4px 20px rgba(230, 0, 35, 0.5);
+    transition: all 0.3s ease;
+}
+.btn-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 30, 56, 0.7);
 }
 .btn-secondary-action {
     display: inline-block;
-    background: #161b22;
+    background: #121620;
     color: #ffffff !important;
     text-decoration: none !important;
-    border: 1px solid #21262d;
+    border: 1px solid #1f293d;
     border-radius: 12px;
     padding: 12px 28px;
     font-weight: bold;
+    transition: all 0.3s ease;
+}
+.btn-secondary-action:hover {
+    border-color: #ff1e38;
+    background: #1b1216;
 }
 .card-box {
-    background-color: #161b22;
-    border: 1px solid #21262d;
-    border-radius: 12px;
-    padding: 15px 8px;
+    background-color: #121620;
+    border: 1px solid #1f293d;
+    border-radius: 16px;
+    padding: 18px 8px;
     text-align: center;
     margin-bottom: 15px;
-    min-height: 110px;
+    min-height: 120px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+.card-box:hover {
+    border-color: #ff1e38;
+    transform: translateY(-3px);
 }
 .role-badge {
-    color: #00a2ff;
+    color: #ff1e38;
     font-size: 11px;
-    font-weight: bold;
+    font-weight: 900;
+    letter-spacing: 0.5px;
 }
 .staff-title {
     color: #ffffff;
@@ -131,21 +150,22 @@ div[role="radiogroup"] label p {
 .btn-discord-login {
     display: block;
     width: 100%;
-    background: linear-gradient(90deg, #0066ff 0%, #00a2ff 100%);
+    background: linear-gradient(135deg, #e60023 0%, #ff1e38 100%);
     color: #ffffff !important;
     text-decoration: none !important;
     font-weight: bold;
     font-size: 15px;
     padding: 14px 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 136, 255, 0.4);
+    border-radius: 14px;
+    box-shadow: 0 4px 25px rgba(230, 0, 35, 0.5);
     text-align: center;
     border: none;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 .btn-discord-login:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(0, 136, 255, 0.6);
+    box-shadow: 0 6px 30px rgba(255, 30, 56, 0.8);
 }
 </style>
 """, unsafe_allow_html=True)
@@ -153,11 +173,11 @@ div[role="radiogroup"] label p {
 # --- LOGIN / WELCOME GATEWAY ---
 if not st.session_state.logged_in:
     login_html = (
-        f'<div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(180deg, rgba(11, 14, 20, 0.85) 0%, rgba(11, 14, 20, 0.95) 100%), url(\'{bg_style}\'); background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center; z-index: 99999;">'
-        f'<div style="background: #11151c; border: 1px solid #1e293b; border-radius: 24px; padding: 40px; width: 460px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">'
-        f'<img src="{logo_style}" style="width: 85px; height: 85px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #0088ff;">'
-        '<div style="color: #0088ff; font-size: 11px; font-weight: bold; letter-spacing: 2px; margin-bottom: 10px;">VILLAGE RF COMMUNITY PORTAL</div>'
-        '<h1 style="color: #ffffff; font-size: 30px; font-weight: 900; margin-bottom: 10px;">Enter the <span style="color: #0088ff;">VILLAGE</span> world.</h1>'
+        f'<div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: linear-gradient(180deg, rgba(8, 10, 15, 0.85) 0%, rgba(8, 10, 15, 0.96) 100%), url(\'{bg_style}\'); background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center; z-index: 99999;">'
+        f'<div style="background: #0e1117; border: 1px solid #1f293d; border-radius: 24px; padding: 40px; width: 460px; text-align: center; box-shadow: 0 25px 60px rgba(0,0,0,0.9);">'
+        f'<img src="{logo_style}" style="width: 85px; height: 85px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #ff1e38; box-shadow: 0 0 20px rgba(255,30,56,0.4);">'
+        '<div style="color: #ff1e38; font-size: 11px; font-weight: 900; letter-spacing: 3px; margin-bottom: 10px;">VILLAGE RF COMMUNITY PORTAL</div>'
+        '<h1 style="color: #ffffff; font-size: 30px; font-weight: 900; margin-bottom: 10px;">Enter the <span style="color: #ff1e38;">VILLAGE</span> world.</h1>'
         '<p style="color: #64748b; font-size: 13px; line-height: 1.5; margin-bottom: 25px;">Connect your Discord account to access the official website and verify your community access.</p>'
         '<a href="?login=true" target="_self" class="btn-discord-login">🔗 Continue with Discord ➔</a>'
         '</div></div>'
@@ -169,7 +189,7 @@ if not st.session_state.logged_in:
 
 # 3. Sidebar Navigation
 with st.sidebar:
-    st.markdown("<h2 style='color: white;'>🎮 VILLAGE RF</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color: white; font-weight: 900;'>🎮 VILLAGE RF</h2>", unsafe_allow_html=True)
     st.markdown("<p style='color: #64748b; font-size: 12px; margin-bottom: 15px;'>MAIN MENU</p>", unsafe_allow_html=True)
     
     page = st.radio(
@@ -181,8 +201,8 @@ with st.sidebar:
     
     st.markdown("---")
     st.markdown(
-        "<div style='background: #161b22; padding: 15px; border-radius: 12px; border: 1px solid #21262d;'>"
-        "<div style='color: #00a2ff; font-weight: bold; font-size: 14px;'>🔵 VILLAGE RF</div>"
+        "<div style='background: #121620; padding: 15px; border-radius: 14px; border: 1px solid #1f293d;'>"
+        "<div style='color: #ff1e38; font-weight: bold; font-size: 14px;'>🔴 VILLAGE RF</div>"
         "<div style='color: #64748b; font-size: 12px; margin-top: 2px;'>Server Online — LIVE</div>"
         "</div>",
         unsafe_allow_html=True
@@ -191,10 +211,10 @@ with st.sidebar:
 # 4. Main Content Pages
 if "Home" in page:
     home_html = (
-        f'<div style="background: linear-gradient(180deg, rgba(11, 14, 20, 0.3) 0%, rgba(11, 14, 20, 1) 100%), url(\'{bg_style}\'); background-size: cover; background-position: center; border-radius: 20px; padding: 55px 45px; border: 1px solid #1e293b; margin-bottom: 25px;">'
-        '<span class="hero-tag">🔵 OFFICIAL COMMUNITY PORTAL • VILLAGE RF / 2026</span>'
+        f'<div style="background: linear-gradient(180deg, rgba(8, 10, 15, 0.4) 0%, rgba(8, 10, 15, 1) 100%), url(\'{bg_style}\'); background-size: cover; background-position: center; border-radius: 20px; padding: 55px 45px; border: 1px solid #1f293d; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">'
+        '<span class="hero-tag">🔴 OFFICIAL COMMUNITY PORTAL • VILLAGE RF / 2026</span>'
         '<h1 class="hero-title">VILLAGE RF</h1>'
-        '<p style="color: #0088ff; font-weight: bold; font-size: 17px; margin-top: -5px;">MORE THAN JUST A SERVER.</p>'
+        '<p style="color: #ff1e38; font-weight: bold; font-size: 17px; margin-top: -5px;">MORE THAN JUST A SERVER.</p>'
         '<p style="color: #94a3b8; font-size: 15px; max-width: 650px; line-height: 1.6;">Welcome to the official VILLAGE RF community portal. Stay connected, check the latest events, meet the team and keep your Discord access verified.</p>'
         '<div style="margin-top: 25px;">'
         '<a href="https://discord.gg/WC9NFNVFS" target="_blank" class="btn-action">Join Community ➔</a>'
@@ -217,9 +237,9 @@ elif "Staff Team" in page:
     c1, c2, c3, c4, c5, c6, c7 = st.columns(7)
     
     with c1:
-        st.markdown("<div class='card-box' style='border-color:#0088ff;'><div class='role-badge'>👑 OWNER</div><div class='staff-title'>! Haroun.13K</div><div class='staff-sub'>@off_marseille</div></div>", unsafe_allow_html=True)
+        st.markdown("<div class='card-box' style='border-color:#ff1e38;'><div class='role-badge'>👑 OWNER</div><div class='staff-title'>! Haroun.13K</div><div class='staff-sub'>@off_marseille</div></div>", unsafe_allow_html=True)
     with c2:
-        st.markdown("<div class='card-box' style='border-color:#0088ff;'><div class='role-badge'>👑 FOUNDER</div><div class='staff-title'>ADLANE HB</div><div class='staff-sub'>@adlanehb</div></div>", unsafe_allow_html=True)
+        st.markdown("<div class='card-box' style='border-color:#ff1e38;'><div class='role-badge'>👑 FOUNDER</div><div class='staff-title'>ADLANE HB</div><div class='staff-sub'>@adlanehb</div></div>", unsafe_allow_html=True)
     with c3:
         st.markdown("<div class='card-box'><div class='role-badge'>🟣 CO-OWNER</div><div class='staff-title'>SIDO</div><div class='staff-sub'>@sido_sido_18</div></div>", unsafe_allow_html=True)
     with c4:

@@ -34,7 +34,7 @@ if "logged_in" not in st.session_state:
 if "active_page" not in st.session_state:
     st.session_state.active_page = "Home"
 
-# 2. Modern Ultra-Red Dark Theme CSS & Hero Banner Styling
+# 2. Modern Ultra-Red Dark Theme CSS & Top Navigation Bar Styling
 st.markdown("""
 <style>
 #MainMenu, header, footer, div[data-testid="stDecoration"], div[data-testid="stToolbar"] {
@@ -72,6 +72,73 @@ section[data-testid="stSidebar"] div.stButton > button:hover {
     background: rgba(255, 30, 56, 0.15) !important;
     color: #ffffff !important;
     transform: translateX(4px) !important;
+}
+
+/* شريط التنقل العلوي الفخم (Top Navbar) */
+.top-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(11, 14, 20, 0.95);
+    border: 1px solid #1f293d;
+    border-radius: 16px;
+    padding: 12px 25px;
+    margin-bottom: 25px;
+    backdrop-filter: blur(10px);
+}
+
+.top-nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.top-nav-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.top-nav-links a:hover, .top-nav-links a.active {
+    color: #ffffff;
+}
+
+.top-user-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-pill {
+    background: rgba(18, 22, 32, 0.9);
+    border: 1px solid #1f293d;
+    border-radius: 12px;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.logout-btn {
+    background: rgba(230, 0, 35, 0.15);
+    border: 1px solid #ff1e38;
+    color: #ff1e38 !important;
+    padding: 8px 18px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #ff1e38;
+    color: #ffffff !important;
 }
 
 /* Hero Banner Card With Server Background Image */
@@ -312,6 +379,25 @@ with st.sidebar:
         '</div>',
         unsafe_allow_html=True
     )
+
+# --- TOP NAVIGATION BAR ---
+st.markdown(
+    '<div class="top-navbar">'
+    '<div class="top-nav-links">'
+    f'<a href="#" style="color: {"#ffffff" if st.session_state.active_page == "Home" else "#94a3b8"};">Home</a>'
+    f'<a href="#" style="color: {"#ffffff" if st.session_state.active_page == "Rules" else "#94a3b8"};">Rules</a>'
+    f'<a href="#" style="color: {"#ffffff" if st.session_state.active_page == "Staff Team" else "#94a3b8"};">Staff</a>'
+    f'<a href="#" style="color: {"#ffffff" if st.session_state.active_page == "Events" else "#94a3b8"};">Events</a>'
+    f'<a href="#" style="color: {"#ffffff" if st.session_state.active_page == "Staff Application" else "#94a3b8"};">Staff Application</a>'
+    f'<a href="#" style="color: {"#ffffff" if st.session_state.active_page == "Discord" else "#94a3b8"};">Discord</a>'
+    '</div>'
+    '<div class="top-user-box">'
+    '<div class="user-pill">👤 ZAKI VEX &nbsp;|&nbsp; <span style="color: #00ff88;">Member</span></div>'
+    '<a href="?logout=true" target="_self" class="logout-btn">Logout</a>'
+    '</div>'
+    '</div>',
+    unsafe_allow_html=True
+)
 
 # 4. Main Content Pages
 page = st.session_state.active_page
